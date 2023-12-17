@@ -1,0 +1,384 @@
+#!/usr/bin/env bash
+
+#	Script to install my dotfiles & system, as a post-install on Archcraft
+#
+#	Author: dasharpest
+#	url: https://github.com/dasharpest
+#
+#	- Adapted from original work by: z0mbi3
+#	url: https://github.com/gh0stzk/dotfiles/blob/master/RiceInstaller
+
+CRE=$(tput setaf 1)
+CYE=$(tput setaf 3)
+CGR=$(tput setaf 2)
+CBL=$(tput setaf 4)
+BLD=$(tput bold)
+CNC=$(tput sgr0)
+
+backup_folder=~/dots_Backup
+date=$(date +%Y%m%d-%H%M%S)
+
+########## ---------- You Must Not Run This as Root ---------- ##########
+
+if [ "$(id -u)" = 0 ]; then
+    echo "This script MUST NOT be run as root user."
+    exit 1
+fi
+
+########## ---------- Welcome ---------- ##########
+
+printf '%s%sThis script will remove some Archraft programs / configs if installed, then check if you have the necessary dependencies and, if not, will install them.
+\nThen, it will clone the RICE in your HOME directory.
+\nAfter that, it will create a backup of your files and copy the new files to your HOME directory.
+\nIt will also copy DoomEmacs, PhotoGIMP & Vim configs and also install additional software that I use. (Google Chrome, Brave, VSCode & Spotify and others...)
+\nYou will be prompted for your root password to install missing dependencies, copy system files, start system services and to switch to zsh shell if its not your default.%s\n\n'
+
+while true; do
+	read -rp " Do you wish to continue? [y/N]: " yn
+		case $yn in
+			[Yy]* ) break;;
+			[Nn]* ) exit;;
+			* ) printf " Error: just write 'y' or 'n'\n\n";;
+		esac
+    done
+
+########## ---------- Install Packages ---------- ##########
+
+# Remove archcraft app configs, if installed
+sudo pacman -Rns archcraft-bspwm archcraft-vim archcraft-config-music archcraft-help archcraft-about archcraft-ranger
+
+dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc picom xdo xdotool jgmenu \
+			  alacritty brightnessctl dunst rofi lsd stalonetray jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn \
+			  qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat dmidecode libguestfs \
+			  feh ueberzug maim pamixer libwebp xdg-user-dirs thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin \
+			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme plymouth newsboat fzf ytfzf syncthing nvtop htop \
+			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels wget kvantum audacity ardour \
+			  emacs-nativecomp fd ripgrep keepassxc lxappearance qt6ct qpwgraph qbittorrent yt-dlp mpv vim vim-runtime realtime-privileges \
+			  unclutter npm python-pipx python-pynvim neovim xsel go discord telegram-desktop gimp asciiquarium lynx w3m nano \
+			  calf lsp-plugins-lv2 x42-plugins-lv2 distrho-ports-lv2 ambix-lv2 ir.lv2 artyfx dpf-plugins-lv2 zam-plugins-lv2 linuxsampler gigedit mda.lv2 \
+			  zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot xorg-xwininfo xorg-xrandr)
+
+is_installed() {
+  pacman -Qi "$1" &> /dev/null
+  return $?
+}
+
+printf "%s%sChecking for required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
+for paquete in "${dependencies[@]}"
+do
+  if ! is_installed "$paquete"; then
+    sudo pacman -S "$paquete" --noconfirm
+    printf "\n"
+  else
+    printf '%s%s is already installed on your system!%s\n' "${CGR}" "$paquete" "${CNC}"
+    sleep 1
+  fi
+done
+sleep 2
+
+########## ---------- Set Rustup Version to Stable (so eww will Install) ---------- ##########
+
+rustup default stable
+sleep 2
+
+########## ---------- Import Keys to Install EWW, Install Yay and Install EWW & Other Dependencies from AUR ---------- ##########
+
+# Installing Yay
+	if command -v yay >/dev/null 2>&1; then
+		printf "%s%sYay is already installed%s\n" "${BLD}" "${CGR}" "${CNC}"
+	else
+		printf "%s%sInstalling Yay%s\n" "${BLD}" "${CBL}" "${CNC}"
+		{
+			cd "$HOME" || exit
+			git clone git clone https://aur.archlinux.org/yay-bin.git
+			cd yay-bin || exit
+			makepkg -si --noconfirm
+		} && {
+			cd "$HOME" || exit
+			rm -rf {yay-bin}
+		} || {
+			printf "\n%s%sFailed to install Yay. You may need to install it manually%s\n" "${BLD}" "${CRE}" "${CNC}"
+			}
+	fi
+
+curl -sS https://github.com/elkowar.gpg | gpg --import -i -
+curl -sS https://github.com/web-flow.gpg | gpg --import -i -
+
+aurdep=(eww-git pokemon-colorscripts-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git \
+		betterlockscreen sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 \
+		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin)
+
+is_installed() {
+  yay -Qi "$1" &> /dev/null
+  return $?
+}
+
+printf "%s%sChecking for required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
+for paquete in "${aurdep[@]}"
+do
+  if ! is_installed "$paquete"; then
+    yay -S "$paquete" --noconfirm
+    printf "\n"
+  else
+    printf '%s%s is already installed on your system!%s\n' "${CGR}" "$paquete" "${CNC}"
+    sleep 1
+  fi
+done
+sleep 2
+
+########## ---------- Prepare Folders ---------- ##########
+
+# Checks if the user-dirs.dirs file exists in ~/.config
+	if [ ! -e "$HOME/.config/user-dirs.dirs" ]; then
+		xdg-user-dirs-update
+		echo "Creating xdg-user-dirs"
+	fi
+sleep 2
+
+########## ---------- Clone the Dotfiles! ---------- ##########
+
+dots_repo_url="https://github.com/dasharpest/dotfiles"
+dots_repo_dir="$HOME/ds-dotfiles"
+
+# Checks if the repository directory already exists and, if so, deletes it.
+	if [ -d "$dots_repo_dir" ]; then
+		printf "Removing existing dotfiles repository\n"
+		rm -rf "$dots_repo_dir"
+	fi
+
+# Clone the Repository
+printf "Cloning dotfiles from %s\n" "$dots_repo_url"
+git clone --depth=1 "$dots_repo_url" "$dots_repo_dir"
+sleep 2
+
+########## ---------- Backup Files ---------- ##########
+
+printf "Backup files will be stored in %s%s%s/dots_Backup%s \n\n" "${BLD}" "${CRE}" "$HOME" "${CNC}"
+sleep 2
+
+if [ ! -d "$backup_folder" ]; then
+  mkdir -p "$backup_folder/local/share"
+fi
+
+for folder in bspwm alacritty picom rofi eww sxhkd dunst polybar .ncmpcpp ncmpcpp nvim ranger zsh .mpd mpd Code cava emacs GIMP geany newsboat .emacs.d surfraw qt6ct; do
+  if [ -d "$HOME/.config/$folder" ]; then
+    mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date"
+    echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
+  else
+    echo "The folder $folder does not exist in $HOME/.config/"
+  fi
+done
+
+for folder in .audacity-data .vscode .mpd .ncmpcpp ncmpcpp mpd .newsboat .emacs.d .vim_runtime .w3m; do
+  if [ -d "$HOME/$folder" ]; then
+    mv "$HOME/$folder" "$backup_folder/${folder}_$date"
+    echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
+  else
+    echo "The folder $folder does not exist in $HOME/"
+  fi
+done
+
+for folder in nvim; do
+  if [ -d "$HOME/.local/share/$folder" ]; then
+    mv "$HOME/.local/share/$folder" "$backup_folder/local/share/${folder}_$date"
+    echo "$folder folder backed up successfully at $backup_folder/local/share/${folder}_$date"
+  else
+    echo "The folder $folder does not exist in ~/.local/share/"
+  fi
+done
+
+for file in user.js; do
+  if [ -e "$HOME"/.mozilla/firefox/*.default-release/$file ]; then
+    mv "$HOME"/.mozilla/firefox/*.default-release/$file "$backup_folder"/${file}_$date
+    echo "$file file backed up successfully at $backup_folder/${file}_$date"
+  else
+    echo "The file $file does not exist in $HOME/.mozilla/firefox/"
+  fi
+done
+
+[ -f ~/.zshrc ] && mv ~/.zshrc ~/dots_Backup/.zshrc-backup-"$date"
+[ -f ~/.basrc ] && mv ~/.bashrc ~/dots_Backup/.bashrc-backup-"$date"
+[ -f ~/.nanorc ] && mv ~/.nanorc ~/dots_Backup/.nanorc-backup-"$date"
+[ -f ~/.vimrc ] && mv ~/.vimrc ~/dots_Backup/.vimrc-backup-"$date"
+[ -f ~/.lynxrc ] && mv ~/.lynxrc ~/dots_Backup/.lynxrc-backup-"$date"
+
+printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
+sleep 5
+
+########## ---------- Clone amix's 'awesome' Vim Config and 'Vim-Wiki' / 'Vim-Calendar' Plugins ---------- ##########
+
+echo "Cloning amix's 'awesome' vim config & vimwiki plugin"
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+
+mkdir -p ~/.vim_runtime/pack/plugins/start/
+git clone https://github.com/vimwiki/vimwiki ~/.vim_runtime/pack/plugins/start/vimwiki/
+git clone https://github.com/mattn/calendar-vim ~/.vim_runtime/pack/plugins/start/calendar-vim
+sleep 2
+
+########## ---------- Clone ayamir's Neovim Config ---------- ##########
+
+git clone --depth=1 https://github.com/ayamir/nvimdots/ ~/.config/nvim
+
+########## ---------- Clone and Copy PhotoGIMP ---------- ##########
+
+printf "%s%sCloning the Repo & copying PhotoGIMP config...%s\n" "${BLD}" "${CBL}" "${CNC}"
+
+pg_repo_url="https://github.com/Diolinux/PhotoGIMP"
+pg_repo_dir="$HOME/PhotoGIMP"
+
+	if [ -d "$pg_repo_dir" ]; then
+		printf "Removing existing dotfiles repository\n"
+		rm -rf "$pg_repo_dir"
+	fi
+
+printf "Cloning dotfiles from %s\n" "$pg_repo_url"
+git clone --depth=1 "$pg_repo_url" "$pg_repo_dir"
+
+mv ~/PhotoGIMP/.var/app/org.gimp.GIMP/config/GIMP/ ~/.config/
+sleep 2
+
+########## ---------- Clone and Copy Doom Emacs ---------- ##########
+
+printf "%s%sCloning the Repo & copying 'Doom Emacs' config...%s\n" "${BLD}" "${CBL}" "${CNC}"
+
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom install
+sleep 2
+
+########## ---------- Copy the Themes! ---------- ##########
+
+printf "Copying files to respective directories..\n"
+
+[ ! -d ~/.config ] && mkdir -p ~/.config
+[ ! -d ~/.local/bin ] && mkdir -p ~/.local/bin
+[ ! -d ~/.local/share/applications ] && mkdir -p ~/.local/share/applications
+[ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts
+
+for archivos in ~/ds-dotfiles/.config/*; do
+  cp -R "${archivos}" ~/.config/
+  if [ $? -eq 0 ]; then
+	printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+for archivos in ~/ds-dotfiles/.local/bin/*; do
+  cp -R "${archivos}" ~/.local/bin/
+  if [ $? -eq 0 ]; then
+	printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+for archivos in ~/ds-dotfiles/.local/share/applications/*; do
+  cp -R "${archivos}" ~/.local/share/applications/
+  if [ $? -eq 0 ]; then
+	printf "%s%s%s file copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+for archivos in ~/ds-dotfiles/.local/share/fonts/*; do
+  cp -R "${archivos}" ~/.local/share/fonts/
+  if [ $? -eq 0 ]; then
+	printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+for archivos in ~/ds-dotfiles/.mozilla/firefox/*.default-release; do
+  cp -R "${archivos}" ~/.mozilla/firefox/*.default-release/
+  if [ $? -eq 0 ]; then
+	printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+cp -rf "$HOME"/ds-dotfiles/.bashrc "$HOME"
+cp -rf "$HOME"/ds-dotfiles/.lynxrc "$HOME"
+cp -rf "$HOME"/ds-dotfiles/.nanorc "$HOME"
+cp -R "$HOME"/ds-dotfiles/.audacity-data "$HOME"
+cp -R "$HOME"/ds-dotfiles/.vscode "$HOME"
+cp -R "$HOME"/ds-dotfiles/.w3m "$HOME"
+cp -rf "$HOME"/ds-dotfiles/.zshrc "$HOME"
+cp -rf "$HOME"/ds-dotfiles/.vim_runtime/my_configs.vim ~/.vim_runtime/
+cp -rf "$HOME"/ds-dotfiles/.config/nvim/lua/modules/configs/ui/alpha.lua ~/.config/nvim/lua/modules/configs/ui/
+cp -R "$HOME"/ds-dotfiles/.config/nvim/lua/user/ ~/.config/nvim/lua/
+
+sudo mkdir -p /usr/share/archcraft/icons/dunst/ && sudo cp -R ~/ds-dotfiles/usr/share/archcraft/icons/dunst/ /usr/share/archcraft/icons/
+
+printf "%s%sFiles copied succesfully!!%s\n" "${BLD}" "${CGR}" "${CNC}"
+sleep 1
+
+fc-cache -rv >/dev/null 2>&1
+sleep 2
+
+########## --------- Download and Copy Wallpapers ---------- ##########
+
+printf "%s%sCloning the Repo and copying extra wallpapers...%s\n" "${BLD}" "${CBL}" "${CNC}"
+
+curl https://raw.githubusercontent.com/dasharpest/dotfiles-walls/main/get-walls -o "$HOME"/ds-get-walls
+chmod +x ~/ds-get-walls
+sh ~/ds-get-walls
+sleep 2
+
+########## ---------- Enable System Services, Add User to Libvirt & Realtime Groups and Enable Intel Nested Virtualization --------- ##########
+
+	if systemctl is-enabled --quiet mpd.service; then
+		printf "\n%s%sDisabling and stopping the global mpd service and Updating Grub%s\n" "${BLD}" "${CBL}" "${CNC}"
+		sudo systemctl stop mpd.service
+		sudo systemctl disable mpd.service
+	fi
+
+printf "\n%s%sEnabling & starting the user-level mpd & betterlockscreen services, syncthing & libvirt system services, Adding user to libvirt & realtime groups and enabling nested vitualisation%s\n" "${BLD}" "${CYE}" "${CNC}"
+systemctl --user enable --now mpd.service
+sudo systemctl enable --now betterlockscreen@$USER.service
+systemctl --user enable --now syncthing.service
+sudo systemctl enable --now libvirtd.service
+sudo systemctl enable --now libvirtd.socket
+sudo usermod -a -G realtime $(whoami)
+sudo usermod -a -G libvirt $(whoami)
+sudo cp -rf "$HOME"/ds-dotfiles/etc/libvirt/libvirtd.conf /etc/libvirt/
+sudo modprobe -r kvm_intel
+sudo modprobe kvm_intel nested=1
+echo "options kvm-intel nested=1" | sudo tee /etc/modprobe.d/kvm-intel.conf
+sudo systemctl restart libvirtd
+printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
+sleep 2
+
+########## ---------- Add 'Opencore' Boot Entry and Update Grub --------- ##########
+
+sudo cp -rf "$HOME"/ds-dotfiles/etc/grub.d/40_custom /etc/grub.d/
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+########## ---------- Add User to Input Group and Install Touchpad Gestures (un-comment for laptop install) ---------- ##########
+
+#yay -S libinput-gestures-git --noconfirm
+#sudo gpasswd -a $USER input
+
+########## --------- Change shell to zsh ---------- ##########
+
+	if [[ $SHELL != "/usr/bin/zsh" ]]; then
+		printf "\n%s%sChanging your shell to zsh. Your root password is needed.%s\n\n" "${BLD}" "${CYE}" "${CNC}"
+		chsh -s /usr/bin/zsh
+		printf "%s%sShell changed to zsh. Please Reboot to Complete Installation%s\n\n" "${BLD}" "${CGR}" "${CNC}"
+	else
+		printf "%s%sYour shell is already zsh. Please Reboot to Complete Installation\%s\n" "${BLD}" "${CGR}" "${CNC}"
+	fi
+zsh

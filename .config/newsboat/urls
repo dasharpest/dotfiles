@@ -1,0 +1,211 @@
+# -------- Starred Articles / Flagged Articles {{{
+# ------------------------------------------------------
+
+# https://newsboat.org/releases/2.10.1/docs/newsboat.html#_flagging_articles
+# https://github.com/akrennmair/newsbeuter/issues/464#issuecomment-272574679
+# Usage: go to an article, press Ctrl+e, press s, press enter; it will now show up in your 'Starred Articles' query feed
+# To Cancel: press Escape
+"query:Starred Articles:flags # \"s\""
+
+# }}}
+# -------- Query Feeds {{{
+# ------------------------------------------------------
+
+# http://www.offensivethinking.org/blog/2009/05/12/efficient-rss-reading.html
+# https://github.com/gpakosz/.newsbeuter/blob/master/urls
+# http://www.newsbeuter.org/doc/newsbeuter.html#_query_feeds
+# hidden query feeds: https://github.com/newsboat/newsboat/issues/33
+# query:<name of feed>:<filter expression> [<tag> ...]
+
+"query:All Unread Articles:unread = \"yes\""
+"query:All Articles YT-Linux/Tech:tags # \"YT-Linux/Tech\"" "YT-Linux/Tech"
+"query:All Articles YT-Crypto/Finance:tags # \"YT-Crypto/Finance\"" "YT-Crypto/Finance"
+"query:All Articles Linux-Subreddit:tags # \"Linux-Subreddit\"" "Linux-Subreddit"
+
+# }}}
+# -------- YT-Crypto/Finance {{{
+# ------------------------------------------------------
+
+http://www.youtube.com/feeds/videos.xml?channel_id=UC-5HLi3buMzdxjdTdic3Aig "YT-Crypto/Finance"
+#The Modern Investor
+http://www.youtube.com/feeds/videos.xml?channel_id=UC60a4msAOcjOWMMvNRyBx2w "YT-Crypto/Finance"
+#Mitch Ray
+http://www.youtube.com/feeds/videos.xml?channel_id=UC62xYL7JHnGa-kZUI9h7Vcw "YT-Crypto/Finance"
+#Crypto Market News
+http://www.youtube.com/feeds/videos.xml?channel_id=UC67AEEecqFEc92nVvcqKdhA "YT-Crypto/Finance"
+#Crypto Daily
+http://www.youtube.com/feeds/videos.xml?channel_id=UCAeAB8ABXGoGMbXuYPmiu2A "YT-Crypto/Finance"
+#The Swedish Investor
+http://www.youtube.com/feeds/videos.xml?channel_id=UCB6Q0S1gUHXMe5-Jjx0_laQ "YT-Crypto/Finance"
+#Simply Bitcoin
+http://www.youtube.com/feeds/videos.xml?channel_id=UCBAQgjMqCuXQXfmLhtZuIuA "YT-Crypto/Finance"
+#Bitcoin and Friends
+http://www.youtube.com/feeds/videos.xml?channel_id=UCDipd6eMJL_q4dPjnMIqSbQ "YT-Crypto/Finance"
+#The Rational Investor
+http://www.youtube.com/feeds/videos.xml?channel_id=UCFU-BE5HRJoudqIz1VDKlhQ "YT-Crypto/Finance"
+#CTO LARSSON
+http://www.youtube.com/feeds/videos.xml?channel_id=UCFv_fMg2ENc2_6qWmy5I4nQ "YT-Crypto/Finance"
+#Mr Kristof
+http://www.youtube.com/feeds/videos.xml?channel_id=UCGUwKGPkCMNXynqYQQA2vXw "YT-Crypto/Finance"
+#Crypto Savy
+http://www.youtube.com/feeds/videos.xml?channel_id=UCGXWKlq1Oxr3ddEtmKhAkPg "YT-Crypto/Finance"
+#Real Vision Crypto
+http://www.youtube.com/feeds/videos.xml?channel_id=UCH9HlTrjyLmLRS0iE1P4rrg "YT-Crypto/Finance"
+#Money Rules - Investing Tips
+http://www.youtube.com/feeds/videos.xml?channel_id=UCHop-jpf-huVT1IYw79ymPw "YT-Crypto/Finance"
+#Chico Crypto
+http://www.youtube.com/feeds/videos.xml?channel_id=UCIHdDJ0tjn_3j-FS7s_X1kQ "YT-Crypto/Finance"
+#Valuetainment
+http://www.youtube.com/feeds/videos.xml?channel_id=UCIb34uXDsfTq4PJKW0eztkA "YT-Crypto/Finance"
+#Jason Pizzino
+http://www.youtube.com/feeds/videos.xml?channel_id=UCJ0QV-XhATeq4-hTgqMz1TQ "YT-Crypto/Finance"
+#The Gentlemen of Crypto
+http://www.youtube.com/feeds/videos.xml?channel_id=UCJWCJCWOxBYSi5DhCieLOLQ "YT-Crypto/Finance"
+#aantonop
+http://www.youtube.com/feeds/videos.xml?channel_id=UCJgHxpqfhWEEjYH9cLXqhIQ "YT-Crypto/Finance"
+#Digital Asset News
+http://www.youtube.com/feeds/videos.xml?channel_id=UCKDkKX3rp3WIUrklfhGmXZw "YT-Crypto/Finance"
+#Eddie Griffin Funny Money
+http://www.youtube.com/feeds/videos.xml?channel_id=UCMtJYS0PrtiUwlk6zjGDEMA "YT-Crypto/Finance"
+#EllioTrades
+http://www.youtube.com/feeds/videos.xml?channel_id=UCO7SRI9ST5BmyiPZru3rFIA "YT-Crypto/Finance"
+#Crypto Ed
+http://www.youtube.com/feeds/videos.xml?channel_id=UCP0g6ygQkYjmog801YnNqtQ "YT-Crypto/Finance"
+#Davinci Jeremie
+http://www.youtube.com/feeds/videos.xml?channel_id=UCR93yACeNzxMSk6Y1cHM2pw "YT-Crypto/Finance"
+#Coin Bureau Clips
+http://www.youtube.com/feeds/videos.xml?channel_id=UCRqBu-grVX1p97WaX4d-OuQ "YT-Crypto/Finance"
+#Cointelegraph
+http://www.youtube.com/feeds/videos.xml?channel_id=UCRvqjQPSeaWn-uEx-w0XOIg "YT-Crypto/Finance"
+#Benjamin Cowen
+http://www.youtube.com/feeds/videos.xml?channel_id=UCThv5tYUVaG4ZPA3p6EXZbQ "YT-Crypto/Finance"
+#GoldSilver (w/ Mike Maloney)
+http://www.youtube.com/feeds/videos.xml?channel_id=UCVIOA9XqMtMUk8U-IF-dSYA "YT-Crypto/Finance"
+#Sami Loyal - Forflies
+http://www.youtube.com/feeds/videos.xml?channel_id=UCXEl1p2upTA3qOSHaCoGYlw "YT-Crypto/Finance"
+#Digital Asset News DEGEN
+http://www.youtube.com/feeds/videos.xml?channel_id=UC_Jt1VYHZO4Kc4cJQP5utdw "YT-Crypto/Finance"
+#UpOnly
+http://www.youtube.com/feeds/videos.xml?channel_id=UCbLhGKVY-bJPcawebgtNfbw "YT-Crypto/Finance"
+#Altcoin Daily
+http://www.youtube.com/feeds/videos.xml?channel_id=UCiMgF08KQ4z-Gnu8o2BLOxA "YT-Crypto/Finance"
+#Jacob Canfield
+http://www.youtube.com/feeds/videos.xml?channel_id=UCiUnrCUGCJTCC7KjuW493Ww "YT-Crypto/Finance"
+#Crypto Zombie
+http://www.youtube.com/feeds/videos.xml?channel_id=UCiuD3eNaZ95eSXImp_eSIww "YT-Crypto/Finance"
+#Tom Crown
+http://www.youtube.com/feeds/videos.xml?channel_id=UCjJ90kZCcv5oTSeqJLlFyqA "YT-Crypto/Finance"
+#Market Mobster
+http://www.youtube.com/feeds/videos.xml?channel_id=UCjXdoICJ4KXHuDIEFYfBgHw "YT-Crypto/Finance"
+#sunny decree
+http://www.youtube.com/feeds/videos.xml?channel_id=UClgJyzwGs-GyaNxUHcLZrkg "YT-Crypto/Finance"
+#InvestAnswers
+http://www.youtube.com/feeds/videos.xml?channel_id=UCnqZ2hx679DqRi6khRUNw2g "YT-Crypto/Finance"
+#TheChartGuys
+http://www.youtube.com/feeds/videos.xml?channel_id=UCnwxzpFzZNtLH8NgTeAROFA "YT-Crypto/Finance"
+#Eric Krown Crypto
+http://www.youtube.com/feeds/videos.xml?channel_id=UCpf2Lxgf10AjzBT4GIIgDJw "YT-Crypto/Finance"
+#George Gammon
+http://www.youtube.com/feeds/videos.xml?channel_id=UCqK_GSMbpiV8spgD3ZGloSw "YT-Crypto/Finance"
+#Coin Bureau
+http://www.youtube.com/feeds/videos.xml?channel_id=UCrYmtJBtLdtm2ov84ulV-yg "YT-Crypto/Finance"
+#Ivan on Tech
+http://www.youtube.com/feeds/videos.xml?channel_id=UCtOV5M-T3GcsJAq8QKaf0lg "YT-Crypto/Finance"
+#Bitcoin Magazine
+http://www.youtube.com/feeds/videos.xml?channel_id=UCt_oM56Ui0BCCgi0Yc-Wh3Q "YT-Crypto/Finance"
+#Crypto Bobby
+http://www.youtube.com/feeds/videos.xml?channel_id=UCuiWJeOMZ7CCrnOTwYuFjcQ "YT-Crypto/Finance"
+#Ledger Status
+http://www.youtube.com/feeds/videos.xml?channel_id=UCviqt5aaucA1jP3qFmorZLQ "YT-Crypto/Finance"
+#Crypto Jebb
+
+# }}}
+# -------- YT-Linux/Tech {{{
+# ------------------------------------------------------
+
+http://www.youtube.com/feeds/videos.xml?channel_id=UCylGUf9BvQooEFjgdNudoQg "YT-Linux/Tech"
+#The Linux Cast
+http://www.youtube.com/feeds/videos.xml?channel_id=UC1yGcBvdPGxRIMT1yo_bKIQ "YT-Linux/Tech"
+#Jake@Linux
+http://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "YT-Linux/Tech"
+#Luke Smith
+http://www.youtube.com/feeds/videos.xml?channel_id=UC2rUTe_XMx88LR3JLJwyutw "YT-Linux/Tech"
+#JustAGuy Linux
+http://www.youtube.com/feeds/videos.xml?channel_id=UC3pasXoRUTKPpQaKtlJz62g "YT-Linux/Tech"
+#The linux dabbler
+http://www.youtube.com/feeds/videos.xml?channel_id=UC5U7mHlhP6s6478wd7ZvnhA "YT-Linux/Tech"
+#Trafotin
+http://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw "YT-Linux/Tech"
+#The Linux Experiment
+http://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "YT-Linux/Tech"
+#Mental Outlaw
+http://www.youtube.com/feeds/videos.xml?channel_id=UC9F5SkQPgG1besItGOVkz0A "YT-Linux/Tech"
+#Linux Game Cast
+http://www.youtube.com/feeds/videos.xml?channel_id=UCBq5p-xOla8xhnrbhu8AIAg "YT-Linux/Tech"
+#Tech Over Tea
+http://www.youtube.com/feeds/videos.xml?channel_id=UCFQMnBA3CS502aghlcr0_aw "YT-Linux/Tech"
+#Coffeezilla
+http://www.youtube.com/feeds/videos.xml?channel_id=UCs6KfncB4OV6Vug4o_bzijg "YT-Linux/Tech"
+#Techlore
+http://www.youtube.com/feeds/videos.xml?channel_id=UCtMVHI3AJD4Qk4hcbZnI9ZQ "YT-Linux/Tech"
+#SomeOrdinaryGamers
+http://www.youtube.com/feeds/videos.xml?channel_id=UCG4me5Pb9AhdZeJXEdlBM6w "YT-Linux/Tech"
+#Linux Saloon
+http://www.youtube.com/feeds/videos.xml?channel_id=UCcbvYBJzvw4_soq2I8R1JKQ "YT-Linux/Tech"
+#The Linux Tube
+http://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg "YT-Linux/Tech"
+#DistroTube
+http://www.youtube.com/feeds/videos.xml?channel_id=UCWJUSpXVHTaHErtGWC5qPlQ "YT-Linux/Tech"
+#Destination Linux
+http://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA "YT-Linux/Tech"
+#Brodie Robertson
+http://www.youtube.com/feeds/videos.xml?channel_id=UCNvl_86ygZXRuXjxbONI5jA "YT-Linux/Tech"
+#10leej
+http://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA "YT-Linux/Tech"
+#Lex Fridman
+http://www.youtube.com/feeds/videos.xml?channel_id=UCIXn-OKMRbJzI8iuR1xaH6A "YT-Linux/Tech"
+#NIX tricks
+http://www.youtube.com/feeds/videos.xml?channel_id=UCJWAqA9DzA1bHwCd0TOUWsw "YT-Linux/Tech"
+#Late Night Linux
+http://www.youtube.com/feeds/videos.xml?channel_id=UCYVU6rModlGxvJbszCclGGw "YT-Linux/Tech"
+#Rob Braxman Tech
+http://www.youtube.com/feeds/videos.xml?channel_id=UCl2mFZoRqjw_ELax4Yisf6w "YT-Linux/Tech"
+#Louis Rossmann
+http://www.youtube.com/feeds/videos.xml?channel_id=UCoryWpk4QVYKFCJul9KBdyw "YT-Linux/Tech"
+#Switched to Linux
+http://www.youtube.com/feeds/videos.xml?channel_id=UCmyGZ0689ODyReHw3rsKLtQ "YT-Linux/Tech"
+#Michael Tunnell
+https://www.youtube.com/feeds/videos.xml?user=gotbletu "YT-Linux/Tech"
+#gotbletu
+
+# }}}
+# -------- Linux-Subreddit {{{
+# ------------------------------------------------------
+
+https://www.reddit.com/r/termux/.rss "Linux-Subreddit"
+https://www.reddit.com/r/w3m/.rss "Linux-Subreddit"
+https://www.reddit.com/r/clistuff/.rss "Linux-Subreddit"
+https://www.reddit.com/r/linux/.rss "Linux-Subreddit"
+https://www.reddit.com/r/commandline/.rss "Linux-Subreddit"
+https://www.reddit.com/r/unixporn/.rss "Linux-Subreddit"
+https://www.reddit.com/r/UsabilityPorn/.rss "Linux-Subreddit"
+https://www.reddit.com/r/pkgoftheday/.rss "Linux-Subreddit"
+https://www.reddit.com/r/gnu/.rss "Linux-Subreddit"
+https://www.reddit.com/r/archlinux/.rss "Linux-Subreddit"
+https://www.reddit.com/r/linux_devices/.rss "Linux-Subreddit"
+https://www.reddit.com/r/UnixProTips/.rss "Linux-Subreddit"
+https://www.reddit.com/r/zsh/.rss "Linux-Subreddit"
+https://www.reddit.com/r/neovim/.rss "Linux-Subreddit"
+https://www.reddit.com/r/bash/.rss "Linux-Subreddit"
+https://www.reddit.com/r/vim_magic/.rss "Linux-Subreddit"
+https://www.reddit.com/r/vim/.rss "Linux-Subreddit"
+https://www.reddit.com/r/vimplugins/.rss "Linux-Subreddit"
+https://www.reddit.com/r/linuxprojects/.rss "Linux-Subreddit"
+https://www.reddit.com/r/ScriptSwap/.rss "Linux-Subreddit"
+https://www.reddit.com/r/usefulscripts/.rss "Linux-Subreddit"
+https://www.reddit.com/r/debian/.rss "Linux-Subreddit"
+https://www.reddit.com/r/opensource/.rss "Linux-Subreddit"
+https://www.reddit.com/r/coolgithubprojects/.rss "Linux-Subreddit"
+https://www.reddit.com/r/selfhosted/.rss "Linux-Subreddit"
+
+# }}}

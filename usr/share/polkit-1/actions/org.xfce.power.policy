@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+
+  
+
+  <vendor>XFCE Power Manager</vendor>
+  <vendor_url>http://goodies.xfce.org/projects/applications/xfce4-power-manager</vendor_url>
+  <icon_name>battery</icon_name>
+
+  <action id="org.xfce.power.backlight-helper">
+    
+    <description>Modify the laptop display brightness</description>
+    <description xml:lang="bg">Промяна на яркостта на дисплея на лаптопа</description>
+    <description xml:lang="de">Ändern der Helligkeit des Laptop-Displays</description>
+    <description xml:lang="en_GB">Modify the laptop display brightness</description>
+    <description xml:lang="fr">Modifier la luminosité de l’écran de l’ordinateur portable</description>
+    <description xml:lang="he">שנה את בהירות תצוגת הלפטופ</description>
+    <description xml:lang="it">Modifica la luminosità dello schermo del portatile</description>
+    <description xml:lang="ja">ラップトップディスプレイの明るさを調整します</description>
+    <description xml:lang="ko">랩톱 화면 밝기를 조절합니다</description>
+    <description xml:lang="lt">Keisti nešiojamojo kompiuterio ryškumą</description>
+    <description xml:lang="nb">Endre skjermens lysstyrke</description>
+    <description xml:lang="nl">Verander de helderheid van het laptopscherm</description>
+    <description xml:lang="pl">Modyfikowanie jasności wyświetlacza laptopa</description>
+    <description xml:lang="pt">Modificar a luminosidade do ecrã do portátil</description>
+    <description xml:lang="ru">Изменение яркости дисплея ноутбука</description>
+    <description xml:lang="sl">Prilagodi svetlost zaslona prenosnika</description>
+    <description xml:lang="sq">Ndryshoni ndriçimin e ekranit të portativit</description>
+    <description xml:lang="sr">Измени осветљење заслона лаптопа</description>
+    <description xml:lang="sv">Modifiera den bärbara datorns ljusstyrka</description>
+    <description xml:lang="tr">Dizüstü bilgisayar ekranının parlaklığını değiştirin</description>
+    <description xml:lang="uk">Зміна яскравості дисплея ноутбука</description>
+    <description xml:lang="zh_CN">修改笔记本电脑显示器亮度</description>
+    <description xml:lang="zh_TW">修改筆記型電腦顯示亮度</description>
+    <message>Authentication is required to modify the laptop display brightness</message>
+    <message xml:lang="bg">Изисква се удостоверяване, за да промените яркостта на дисплея на лаптопа</message>
+    <message xml:lang="de">Um die Helligkeit des Laptop-Bildschirms zu ändern, ist eine Authentifizierung erforderlich.</message>
+    <message xml:lang="en_GB">Authentication is required to modify the laptop display brightness</message>
+    <message xml:lang="fr">L’authentification est nécessaire pour modifier la luminosité de l’écran de l’ordinateur portable.</message>
+    <message xml:lang="he">נדרש אימות לשינוי בהירות תצוגת הלפטופ</message>
+    <message xml:lang="it">È richiesta l'autenticazione per modificare la luminosità dello schermo</message>
+    <message xml:lang="ja">ラップトップディスプレイの明るさを変更するには認証が必要です</message>
+    <message xml:lang="ko">랩톱 화면 밝기를 조절하려면 인증이 필요합니다</message>
+    <message xml:lang="lt">Norint keisti nešiojamojo kompiuterio ryškumą, reikia nustatyti tapatybę</message>
+    <message xml:lang="nb">Autentisering kreves for å justere skjermens lysstyrke</message>
+    <message xml:lang="nl">Authenticatie is vereist voor het veranderen van de helderheid van het laptopscherm</message>
+    <message xml:lang="pl">Uwierzytelnianie jest wymagane do modyfikowania jasności wyświetlacza laptopa</message>
+    <message xml:lang="pt">A autenticação é necessária para modificar a luminosidade do ecrã do computador portátil</message>
+    <message xml:lang="ru">Для изменения яркости дисплея ноутбука требуется аутентификация</message>
+    <message xml:lang="sl">Za prilagajanje svetlosti prenosnika je potrebna overitev</message>
+    <message xml:lang="sq">Që të ndryshoni ndriçimin e ekranit të portativit, lypset të bëni mirëfilltësimin</message>
+    <message xml:lang="sr">Потребна је лозинка ради измене осветљења лаптопа</message>
+    <message xml:lang="sv">Autentisering krävs för att modifiera ljusstyrkan på den bärbara datorns skärm</message>
+    <message xml:lang="tr">Dizüstü bilgisayar ekranının parlaklığını değiştirmek için kimlik doğrulaması gerekiyor</message>
+    <message xml:lang="uk">Для зміни яскравості дисплея ноутбука необхідна автентифікація</message>
+    <message xml:lang="zh_CN">需要进行身份验证才能修改笔记本电脑显示器亮度</message>
+    <message xml:lang="zh_TW">修改筆記型電腦顯示亮度需要驗證</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>yes</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/xfpm-power-backlight-helper</annotate>
+  </action>
+
+  <action id="org.xfce.power.xfce4-pm-helper">
+    
+    <description>Suspend or hibernate the system</description>
+    <description xml:lang="bg">Приспиване или хибернация на системата</description>
+    <description xml:lang="de">Das System anhalten oder in den Ruhezustand versetzen</description>
+    <description xml:lang="en_GB">Suspend or hibernate the system</description>
+    <description xml:lang="fr">Mettre le système en veille ou en hibernation</description>
+    <description xml:lang="he">השהה או הכנס למצב שינה את המערכת</description>
+    <description xml:lang="it">Sospendi o iberna il sistema</description>
+    <description xml:lang="ja">システムをサスペンドまたはハイバネートします</description>
+    <description xml:lang="ko">시스템 대기 또는 최대 절전</description>
+    <description xml:lang="lt">Pristabdyti ar užmigdyti sistemą</description>
+    <description xml:lang="nb">Sett systemet i hvile- eller dvalemodus</description>
+    <description xml:lang="nl">Breng het systeem in pauzestand of in slaapstand</description>
+    <description xml:lang="pl">Wstrzymanie lub hibernowanie systemu</description>
+    <description xml:lang="pt">Suspender ou hibernar o sistema</description>
+    <description xml:lang="ru">Перевести систему в ждущий или спящий режимы</description>
+    <description xml:lang="sl">Mirovanje ali pripravljenost sistema</description>
+    <description xml:lang="sq">Pezulloni, ose plogështoni sistemin</description>
+    <description xml:lang="sr">Обустави или замрзни систем</description>
+    <description xml:lang="sv">Ställ in systemet i viloläge eller vänteläge</description>
+    <description xml:lang="tr">Sistemi askıya al veya hazırda beklet</description>
+    <description xml:lang="uk">Призупиніть або переведіть систему в сплячий режим</description>
+    <description xml:lang="zh_CN">挂起或休眠系统</description>
+    <description xml:lang="zh_TW">暫停或休眠系統</description>
+    <message>Authentication is required to place the system in suspend or hibernate mode</message>
+    <message xml:lang="bg">Изисква се удостоверяване, за да поставите системата в режим на приспиване или хибернация</message>
+    <message xml:lang="de">Um das System anzuhalten oder in den Ruhezustand zu versetzen, ist eine Authentifizierung erforderlich.</message>
+    <message xml:lang="en_GB">Authentication is required to place the system in suspend or hibernate mode</message>
+    <message xml:lang="fr">L’authentification est nécessaire pour placer le système en mode veille ou en mode hibernation.</message>
+    <message xml:lang="he">נדרש אימות להכנסת המערכת להשהיה או למצב שינה</message>
+    <message xml:lang="it">È richiesta l'autenticazione per sospendere o ibernare il sistema</message>
+    <message xml:lang="ja">システムをサスペンドまたはハイバネートするには認証が必要です</message>
+    <message xml:lang="ko">시스템을 대기 또는 최대 절전 모드에 두려면 인증이 필요합니다</message>
+    <message xml:lang="lt">Norint pristabdyti ar užmigdyti sistemą, reikia nustatyti tapatybę</message>
+    <message xml:lang="nb">Autentisering kreves for å sette systemet i hvile- eller dvalemodus</message>
+    <message xml:lang="nl">Authenticatie is vereist om het systeem in pauzestand of in slaapstand te kunnen brengen</message>
+    <message xml:lang="pl">Uwierzytelnianie jest wymagane do wprowadzania systemu w tryb wstrzymania lub hibernacji</message>
+    <message xml:lang="pt">A autenticação é necessária para colocar o sistema em modo suspenso ou em hibernação</message>
+    <message xml:lang="ru">Для перевода системы в ждущий или спящий режимы необходима аутентификация</message>
+    <message xml:lang="sl">Za prehod v stanje mirovanja ali pripravljenosti je potrebna overitev</message>
+    <message xml:lang="sq">Që të kaloni sistemin nën mënyrën pezullim, ose plogështim, duhet të bëni mirëfilltësimin</message>
+    <message xml:lang="sr">Потребна је лозинка ради смештања система у обуставу или замрзавање</message>
+    <message xml:lang="sv">Autentisering krävs för att sätta systemet i viloläge eller vänteläge</message>
+    <message xml:lang="tr">Sistemi askıya alma veya hazırda bekletme moduna geçirmek için kimlik doğrulaması gerekiyor</message>
+    <message xml:lang="uk">Для переведення системи в режим очікування або сплячий режим необхідна автентифікація</message>
+    <message xml:lang="zh_CN">需要身份验证才能将系统置于挂起或休眠模式</message>
+    <message xml:lang="zh_TW">讓系統進入暫停或休眠模式需要驗證</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>yes</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/xfce4-pm-helper</annotate>
+  </action>
+
+</policyconfig>

@@ -1,0 +1,68 @@
+# do not reload feeds on first startup
+suppress-first-reload yes
+
+# vim binds
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key h next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+bind-key l open
+bind-key h quit
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key D pb-download
+bind-key x pb-delete
+
+# macro setup
+unbind-key ,
+bind-key SPACE macro-prefix
+
+# set default browser as w3m
+browser "/usr/bin/w3m %u"
+
+# open in w3m browser
+macro w open-in-browser
+
+# open in gui browser
+macro b set browser "firefox"; open-in-browser
+
+# launch video player
+macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
+
+# download video
+macro d set browser "yt-dlp"; open-in-browser ; set browser linkhandler
+
+# download audio only
+macro a set browser "yt-dlp --embed-medatada -xic -f bestaudio/best" ; open-in-browser ; set browser linkhandler
+
+# general
+download-full-page yes
+reload-threads 15
+freshrss-min-items 500
+show-read-feeds no
+feed-sort-order name-asc
+
+# don't ask for confirmation on read feed(s)
+confirm-mark-feed-read no
+confirm-mark-all-feeds-read no
+
+# decoration
+highlight all "---.*---" yellow
+highlight feedlist ".*(0/0))" black
+highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
+highlight article "(^Link:.*|^Date:.*)" default default
+highlight article "https?://[^ ]+" green default
+highlight article "^(Title):.*$" blue default
+highlight article "\\[[0-9][0-9]*\\]" magenta default bold
+highlight article "\\[image\\ [0-9]+\\]" green default bold
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
+highlight article ":.*\\(link\\)$" cyan default
+highlight article ":.*\\(image\\)$" blue default
+highlight article ":.*\\(embedded flash\\)$" magenta default

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Ledger Live
+Comment=Launches the ledger live app
+Icon=~/.local/share/applications/ledger.png
+Terminal=false
+Exec=/home/sharpest/.appimage/ledger-live-desktop-2.69.0-linux-x86_64.AppImage
+Categories=Graphics;Utility;
+MimeType=inode/directory;
+#Keywords=File;Manager;Browser;Explorer;Launcher;

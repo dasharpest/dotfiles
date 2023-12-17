@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});require('./chunk-LDV6YPMG.js');var _vscode = require('vscode');var r=n=>{n.subscriptions.push(_vscode.workspace.onDidChangeConfiguration(o=>{o.affectsConfiguration("catppuccin")&&_vscode.window.showErrorMessage("VSCode Web doesn't support advanced Catppuccin options at the moment.")}))};exports.activate = r;
