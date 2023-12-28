@@ -34,7 +34,7 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 			alacritty --class FloaTerm,Fileman -e ranger
 			;;
 		--nvim)
-			alacritty --class nvim -e nvim
+			alacritty -e nvim
 			;;
 		--music)
 			alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
