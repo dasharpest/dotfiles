@@ -45,7 +45,7 @@ while true; do
 ########## ---------- Install Packages ---------- ##########
 
 # Remove archcraft app configs, if installed
-sudo pacman -Rns archcraft-bspwm archcraft-vim archcraft-config-music archcraft-help archcraft-about archcraft-ranger
+sudo pacman -Rns archcraft-bspwm archcraft-vim archcraft-config-music archcraft-help archcraft-about archcraft-ranger xfce-polkit
 
 dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc picom xdo xdotool jgmenu \
 			  alacritty brightnessctl dunst rofi lsd stalonetray jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn \
