@@ -34,7 +34,7 @@ fi
 }
 
 update_system() {
-	yay -Syu --nocombinedupgrade
+	yay -Syu --combinedupgrade=false
 	echo -e
 	echo -e "\033[1m\033[32mDone ..\033[0m"
 }
