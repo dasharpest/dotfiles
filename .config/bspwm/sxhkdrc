@@ -75,10 +75,11 @@ ctrl + alt + Delete
 	OpenApps --htop
 
 # Apps
-shift + alt + {f,b,g,e,c,n,q,i,a,h,r,t,m,d,o,v,p,y,u,x,s,numbersign,k}
+shift + alt + {f,b,g,w,e,c,n,q,i,a,h,r,t,m,d,o,v,p,y,u,x,s,numbersign,apostrophe,equal,k}
 	{firefox, \
 	brave, \
 	google-chrome-stable, \
+	chromium, \
 	geany, \
 	code, \
 	thunar, \
@@ -98,6 +99,8 @@ shift + alt + {f,b,g,e,c,n,q,i,a,h,r,t,m,d,o,v,p,y,u,x,s,numbersign,k}
 	keepassxc, \
 	surfshark, \
 	OpenApps --newsboat, \
+	caprine, \
+	galculator, \
 	OpenApps --music}
 
 # Hide/Show Bar (Polybar and/or eww)

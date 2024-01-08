@@ -140,7 +140,7 @@ alias mkcd="mkcd_alias() { mkdir "$1" && cd "$1"; }; mkcd_alias"
 alias mkdir="mkdir -p"
 alias cdc="cd ~/.config"
 
-alias gg="cd /run/media/sharpest/Data/git"
+alias gg="cd /mnt/Data/git"
 alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
