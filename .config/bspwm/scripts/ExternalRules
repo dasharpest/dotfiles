@@ -26,7 +26,7 @@ consequences=$4
 			eval "$consequences"
 			[ "$state" ] || echo "state=floating focus=on center=on"
 			;;
-		whatsapp-nativefier-d40211|TelegramDesktop)
+		whatsapp-nativefier-d40211|TelegramDesktop|Caprine)
 			eval "$consequences"
 			[ "$state" ] || echo "state=floating follow=on rectangle=930x617+0+0 center=on"
 			;;
@@ -77,6 +77,10 @@ consequences=$4
 		screencast)
 			eval "$consequences"
 			[ "$state" ] || echo "state=floating focus=on center=on rectangle=849x477+0+0"
+			;;
+		Galculator)
+			eval "$consequences"
+			[ "$state" ] || echo "state=floating focus=on center=on"
 			;;
 	esac
 
