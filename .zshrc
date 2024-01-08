@@ -147,7 +147,7 @@ alias gp="git push"
 alias gpl="git pull"
 alias gcl="git clone"
 alias gs="git status"
-alias dots="/usr/bin/git --git-dir=/run/media/sharpest/Data/git/dotfiles --work-tree=$HOME"
+alias dots="/usr/bin/git --git-dir=/mnt/Data/git/dotfiles --work-tree=$HOME"
 
 alias pac="sudo pacman"
 alias ytf="ytfzf -t"
