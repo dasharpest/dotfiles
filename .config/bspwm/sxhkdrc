@@ -151,6 +151,18 @@ super + {_,shift + }q
 super + button10
 	bspc node pointed -c
 
+# make tiled with mouse
+super + shift + button3
+	bspc node -t tiled
+
+# make floating with mouse
+super + shift + button1
+	BUTTON=1 dragtofloat
+
+# make fullscreen with mouse
+super + shift + button2
+	bspc node -t fullscreen
+
 ####
 
 # rotate desktop
