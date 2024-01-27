@@ -48,7 +48,7 @@ while true; do
 sudo pacman -Rns archcraft-bspwm archcraft-vim archcraft-config-music archcraft-help archcraft-about archcraft-ranger xfce-polkit
 
 dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc picom xdo xdotool jgmenu \
-			  alacritty brightnessctl dunst rofi lsd stalonetray jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn \
+			  alacritty brightnessctl dunst rofi lsd stalonetray jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn meld \
 			  qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat dmidecode libguestfs \
 			  feh ueberzug maim pamixer libwebp xdg-user-dirs thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin \
 			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme plymouth newsboat fzf ytfzf syncthing nvtop htop \
