@@ -140,6 +140,12 @@ alias mkcd="mkcd_alias() { mkdir "$1" && cd "$1"; }; mkcd_alias"
 alias mkdir="mkdir -p"
 alias cdc="cd ~/.config"
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4=' ../../../..'
+alias .5='cd ../../../../..'
+
 alias gg="cd /mnt/Data/git"
 alias ga="git add"
 alias gc="git commit"

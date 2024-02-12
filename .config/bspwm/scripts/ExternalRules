@@ -82,6 +82,10 @@ consequences=$4
 			eval "$consequences"
 			[ "$state" ] || echo "state=floating focus=on center=on"
 			;;
+		gnome-network-displays)
+			eval "$consequences"
+			[ "$state" ] || echo "state=floating focus=on center=on"
+			;;
 	esac
 
 	case "$instance" in

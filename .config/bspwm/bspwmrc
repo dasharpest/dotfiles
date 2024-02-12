@@ -64,13 +64,15 @@ for i in ${files[@]}; do
 declare -a brows=(firefox Brave-browser discord)
 for i in ${brows[@]}; do
    bspc rule -a $i desktop='^3' follow=on focus=on; done
-   
+   bspc rule -a $i desktop='^3' follow=on focus=on; done
+
+bspc rule -a Google-chrome desktop='^6' follow=on focus=on
+bspc rule -a '*:*:Picture-in-picture' state=floating
+
 ## 4 > code (always open editors on workspace-4)
 declare -a code=(Geany Code)
 for i in ${code[@]}; do
    bspc rule -a $i desktop='^4' follow=on focus=on; done
-
-bspc rule -a Google-chrome desktop='^6' follow=on focus=on
 
 #  ╔═╗╦ ╦╔╦╗╔═╗╔═╗╔╦╗╔═╗╦═╗╔╦╗
 #  ╠═╣║ ║ ║ ║ ║╚═╗ ║ ╠═╣╠╦╝ ║ 
@@ -118,14 +120,14 @@ pidof -q polkit-gnome-authentication-agent-1 || { /usr/lib/polkit-gnome/polkit-g
 # Touchpad gestures
 #exec libinput-gestures-setup desktop autostart start &
 
-# Launch mpd daemon
-exec mpd &
-
-# Launch emacs daemon
-emacs --daemon
-
 # Fix cursor
 xsetroot -cursor_name left_ptr
 
 # Hide mouse cursor
 unclutter &
+
+# Launch mpd daemon
+exec mpd &
+
+# Launch emacs daemon
+emacs --daemon
