@@ -9,88 +9,73 @@ class=$2
 instance=$3
 consequences=$4
 
+result() {
+	eval "$consequences"
+	[ "$state" ] || echo "$1"
+}
+
 	case "$class" in
 		FloaTerm)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating center=on"
+			result "state=floating center=on"
 			;;
 		Updating)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating sticky=on center=on"
+			result "state=floating sticky=on center=on"
 			;;
 		mpv)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating focus=on rectangle=849x477+0+0 center=on"
+			result "state=floating focus=on rectangle=849x477+0+0 center=on"
 			;;
 		Viewnior)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating focus=on center=on"
+			result "state=floating focus=on center=on"
 			;;
 		whatsapp-nativefier-d40211|TelegramDesktop|Caprine)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating follow=on rectangle=930x617+0+0 center=on"
+			result "state=floating follow=on rectangle=930x617+0+0 center=on"
 			;;
 		Pavucontrol)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating center=on"
+			result "state=floating center=on"
 			;;
 		Virt-manager)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating desktop=^5 follow=on center=on"
+			result "state=floating desktop=^5 follow=on center=on"
 			;;
 		firefox|Navigator)
-			eval "$consequences"
-			[ "$state" ] || echo "desktop=^3 follow=on"
+			result "desktop=^3 follow=on"
 			;;
 		nvim)
-			eval "$consequences"
-			[ "$state" ] || echo "desktop=^1 follow=on"
+			result "desktop=^1 follow=on"
 			;;
 		Gimp-2.10)
-			eval "$consequences"
-			[ "$state" ] || echo "desktop=^5 follow=on"
+			result "desktop=^5 follow=on"
 			;;
 		spotify-tray)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating follow=on rectangle=1050x685+0+0 center=on"
+			result "state=floating follow=on rectangle=1050x685+0+0 center=on"
 			;;
 		Spotify)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating follow=on rectangle=1050x685+0+0 center=on"
+			result "state=floating follow=on rectangle=1050x685+0+0 center=on"
 			;;
 		qpwgraph)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating follow=on rectangle=1240x900+0+0 center=on"
+			result "state=floating follow=on rectangle=1240x900+0+0 center=on"
 			;;
 		Lxappearance)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating follow=on rectangle=1240x900+0+0 center=on"
+			result "state=floating follow=on rectangle=1240x900+0+0 center=on"
 			;;
 		Nvidia-settings)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating follow=on rectangle=1240x900+0+0 center=on"
+			result "state=floating follow=on rectangle=1240x900+0+0 center=on"
 			;;
 		Fileman)
-			eval "$consequences"
-			[ "$state" ] || echo "desktop=^2 follow=on"
+			result "desktop=^2 follow=on"
 			;;
 		screencast)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating focus=on center=on rectangle=849x477+0+0"
+			result "state=floating focus=on center=on rectangle=849x477+0+0"
 			;;
 		Galculator)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating focus=on center=on"
+			result "state=floating focus=on center=on"
 			;;
 		gnome-network-displays)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating focus=on center=on"
+			result "state=floating focus=on center=on"
 			;;
 	esac
 
 	case "$instance" in
 		Toolkit)
-			eval "$consequences"
-			[ "$state" ] || echo "state=floating sticky=on rectangle=500x290+1054+593"
+			result "state=floating sticky=on rectangle=500x290+1054+593"
 			;;
 	esac  
