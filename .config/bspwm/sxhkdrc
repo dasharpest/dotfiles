@@ -37,12 +37,11 @@ super + {a,BackSpace}
 	{rofi_launcher,rofi_powermenu}
 
 # Rofi Menus/Applets
-super + shift + {e,v,Return,o,w,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,backslash,z}
+super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,backslash,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
 	OpenApps --floating, \
 	tdrop -a -w 70% -h 35% -y -1% -x 15%  --class scratch alacritty --class=scratch, \
-	WallSelect, \
 	nmd, \
 	rofi_asroot, \
 	rofi_screenshot, \
@@ -72,7 +71,7 @@ ctrl + alt + Delete
 	OpenApps --htop
 
 # Apps
-shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,period,w,Tab,k}
+shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,k}
 	{firefox, \
 	brave, \
 	/opt/google/chrome/google-chrome --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm, \
@@ -98,9 +97,16 @@ shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,
 	OpenApps --newsboat, \
 	galculator, \
 	freetube, \
-	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/, \
 	bspwinmask, \
 	OpenApps --music}
+
+# Change Wallpaper
+super + alt + w
+	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
+
+# Wallpaper Selecter
+super + shift + w
+	WallSelect
 
 # Hide/Show Bar (Polybar and/or eww)
 ctrl + alt {h,u}
