@@ -100,8 +100,8 @@ shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,
 	bspwinmask, \
 	OpenApps --music}
 
-# Change Wallpaper
-super + alt + w
+# Random Wallpaper
+alt + super + w
 	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
 
 # Wallpaper Selecter
