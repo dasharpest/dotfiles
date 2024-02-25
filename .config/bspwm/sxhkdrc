@@ -10,10 +10,6 @@ alt + F1
 super + Return
 	OpenApps --terminal
 	
-# Open floating Terminal
-super + shift + Return
-	OpenApps --floating
-
 # Menu aplicaciones
 super + @space
 	OpenApps --menu
@@ -23,12 +19,8 @@ alt + @space
 	RiceSelector
 
 # jgmenu
-~button2
+button2
   xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/scripts/menu.txt --config-file=~/.config/bspwm/jgmenurc
-
-# Scratchpad
-super + shift + o
-	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch alacritty --class=scratch
 
 # Power off, Reboot, Log out, Lockscreen, kill an app
 ctrl + super + alt + {p,r,q,l,k}
@@ -45,9 +37,12 @@ super + {a,BackSpace}
 	{rofi_launcher,rofi_powermenu}
 
 # Rofi Menus/Applets
-super + shift + {e,v,n,r,s,f,b,p,a,t,m,c,u,g,period,z}
+super + shift + {e,v,Return,o,w,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,backslash,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
+	OpenApps --floating, \
+	tdrop -a -w 70% -h 35% -y -1% -x 15%  --class scratch alacritty --class=scratch, \
+	WallSelect, \
 	nmd, \
 	rofi_asroot, \
 	rofi_screenshot, \
@@ -55,12 +50,14 @@ super + shift + {e,v,n,r,s,f,b,p,a,t,m,c,u,g,period,z}
 	brave --incognito, \
 	bspcolorpicker, \
 	OpenApps --usercard, \
-	systray, \
+	telegram-desktop, \
 	OpenApps --player, \
 	OpenApps --calendar, \
 	OpenApps --update, \
 	OpenApps --nvtop, \
 	OpenApps --screencast, \
+	caprine, \
+	systray, \
 	OpenApps --fetch}
 
 # Rofi Window Switch
@@ -75,11 +72,12 @@ ctrl + alt + Delete
 	OpenApps --htop
 
 # Apps
-shift + alt + {f,b,g,w,e,c,n,q,i,a,h,r,t,m,d,o,v,p,y,u,x,s,numbersign,apostrophe,equal,k}
+shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,period,w,Tab,k}
 	{firefox, \
 	brave, \
-	google-chrome-stable, \
+	/opt/google/chrome/google-chrome --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm, \
 	chromium, \
+	vivaldi, \
 	geany, \
 	code, \
 	thunar, \
@@ -88,19 +86,20 @@ shift + alt + {f,b,g,w,e,c,n,q,i,a,h,r,t,m,d,o,v,p,y,u,x,s,numbersign,apostrophe
 	pavucontrol, \
     qpwgraph, \
 	OpenApps --ranger, \
-	telegram-desktop, \
+	tutanota-desktop, \
 	env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify-tray --disable-gpu --no-zygote %U, \
 	discord, \
 	onlyoffice-desktopeditors, \
-	virt-manager, \
 	popcorntime, \
 	audacity, \
 	ardour8, \
 	keepassxc, \
 	surfshark, \
 	OpenApps --newsboat, \
-	caprine, \
 	galculator, \
+	freetube, \
+	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/, \
+	bspwinmask, \
 	OpenApps --music}
 
 # Hide/Show Bar (Polybar and/or eww)
@@ -127,17 +126,9 @@ alt + Print
 super + Escape
 	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
 
-# Random wallpaper
-super + alt + w
-	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
-
 #
 # bspwm hotkeys
 #
-
-# Hide/Unhide Window
-alt + shift + Tab
-	bspwinmask
 
 # Reload BSPWM
 super + alt + r
@@ -241,6 +232,15 @@ super + {_,shift + }{1-9,0}
 
 shift + alt + {1-9,0}
 	bspc {node -d} '^{1-9,10}' '--follow'
+
+# move active window to prev / next desktop & follow
+control + alt + { Right,Left }
+    DIR={next.local,prev.local}; \
+    bspc node -d "$DIR" --follow
+
+control + alt + button{7,6}
+    DIR={next.local,prev.local}; \
+    bspc node -d "$DIR" --follow
 
 # cycle through occupied workspaces with side buttons
 super + button{9,8}

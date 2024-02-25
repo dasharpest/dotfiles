@@ -48,9 +48,9 @@ icon_path = /usr/share/icons/Papirus-Dark/48x48/actions/:/usr/share/icons/Papiru
 
 browser = firefox
 
-mouse_left_click = close_current
-mouse_middle_click = do_action
-mouse_right_click = close_all
+mouse_left_click = do_action
+mouse_middle_click = close_all
+mouse_right_click = close_current
 
 [urgency_low]
 timeout = 3

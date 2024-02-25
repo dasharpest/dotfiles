@@ -105,7 +105,7 @@ sleep 2
 curl -sS https://github.com/elkowar.gpg | gpg --import -i -
 curl -sS https://github.com/web-flow.gpg | gpg --import -i -
 
-aurdep=(eww-git pokemon-colorscripts-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git \
+aurdep=(eww-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin tutanota-desktop-bin \
 		betterlockscreen sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 \
 		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin)
 
@@ -219,7 +219,16 @@ sleep 2
 
 ########## ---------- Clone ayamir's Neovim Config ---------- ##########
 
+printf "%s%sCloning ayamir's NVIM config%s\n" "${BLD}" "${CBL}" "${CNC}"
 git clone --depth=1 https://github.com/ayamir/nvimdots/ ~/.config/nvim
+
+########## ---------- Clone and Install Pokemon-Color-Scripts ---------- ##########
+
+printf "%s%sInstalling Pokemon Color-Scripts...%s\n" "${BLD}" "${CBL}" "${CNC}"
+git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git
+cd pokemon-colorscripts
+sudo ./install.sh
+cd ~
 
 ########## ---------- Clone and Copy PhotoGIMP ---------- ##########
 
