@@ -53,7 +53,7 @@ dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany
 			  ntfs-3g exfatprogs android-udev gvfs-mtp gvfs gvfs-afc gvfs-goa gvfs-nfs gvfs-smb gvfs-google gvfs-gphoto2 \
 			  feh ueberzug maim pamixer libwebp xdg-user-dirs thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin \
 			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme plymouth newsboat fzf ytfzf syncthing nvtop htop chromium \
-			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels wget kvantum audacity ardour \
+			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels wget kvantum audacity ardour vivaldi vivaldi-ffmpeg-codecs \
 			  emacs-nativecomp fd ripgrep keepassxc lxappearance qt6ct qpwgraph qbittorrent yt-dlp mpv vim vim-runtime realtime-privileges \
 			  unclutter npm python-pipx python-pynvim neovim xsel go discord telegram-desktop gimp asciiquarium lynx w3m nano p7zip xarchiver \
 			  calf lsp-plugins-lv2 x42-plugins-lv2 distrho-ports-lv2 ambix-lv2 ir.lv2 artyfx dpf-plugins-lv2 zam-plugins-lv2 linuxsampler gigedit mda.lv2 \
