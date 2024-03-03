@@ -219,7 +219,7 @@ sleep 2
 
 ########## ---------- Clone ayamir's Neovim Config ---------- ##########
 
-printf "%s%sCloning ayamir's NVIM config%s\n" "${BLD}" "${CBL}" "${CNC}"
+printf "%s%sCloning ayamir's NEOVIM config%s\n" "${BLD}" "${CBL}" "${CNC}"
 git clone --depth=1 https://github.com/ayamir/nvimdots/ ~/.config/nvim
 
 ########## ---------- Clone and Install Pokemon-Color-Scripts ---------- ##########
@@ -328,8 +328,6 @@ cp -R "$HOME"/ds-dotfiles/.vscode "$HOME"
 cp -R "$HOME"/ds-dotfiles/.w3m "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.zshrc "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.vim_runtime/my_configs.vim ~/.vim_runtime/
-cp -rf "$HOME"/ds-dotfiles/.config/nvim/lua/modules/configs/ui/alpha.lua ~/.config/nvim/lua/modules/configs/ui/
-cp -R "$HOME"/ds-dotfiles/.config/nvim/lua/user/ ~/.config/nvim/lua/
 
 sudo mkdir -p /usr/share/archcraft/icons/dunst/ && sudo cp -R ~/ds-dotfiles/usr/share/archcraft/icons/dunst/ /usr/share/archcraft/icons/
 
