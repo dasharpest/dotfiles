@@ -68,7 +68,7 @@ button10
 
 # System monitor
 ctrl + alt + Delete
-	OpenApps --htop
+	OpenApps --sysmon
 
 # Apps
 shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,k}

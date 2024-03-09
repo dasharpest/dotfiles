@@ -42,8 +42,8 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 		--fetch)
 			alacritty --hold --class FloaTerm,FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=40 -e ~/.local/bin/sysfetch
 			;;
-		--htop)
-			alacritty -e htop
+		--sysmon)
+			alacritty -e btop
 			;;
 		--nvtop)
 			alacritty -e nvtop
