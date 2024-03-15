@@ -60,19 +60,28 @@ declare -a files=(qBittorrent Thunar)
 for i in ${files[@]}; do
    bspc rule -a $i desktop='^2' follow=on focus=on; done
 
-## 3 > web (always open web browser on workspace-3)
-declare -a brows=(firefox Brave-browser discord)
+## 3 > brows (always open general browsers on workspace-3)
+declare -a brows=(firefox Chromium discord)
 for i in ${brows[@]}; do
    bspc rule -a $i desktop='^3' follow=on focus=on; done
-   bspc rule -a $i desktop='^3' follow=on focus=on; done
-
-bspc rule -a Google-chrome desktop='^6' follow=on focus=on
-bspc rule -a '*:*:Picture-in-picture' state=floating
 
 ## 4 > code (always open editors on workspace-4)
 declare -a code=(Geany Code)
 for i in ${code[@]}; do
    bspc rule -a $i desktop='^4' follow=on focus=on; done
+
+## 5 > wrk (always open work browser on workspace-5)
+declare -a wrk=(Brave-browser)
+for i in ${wrk[@]}; do
+   bspc rule -a $i desktop='^5' follow=on focus=on; done
+
+## 6 > vid (always open yt-video on workspace-6)
+declare -a vid=(FreeTube)
+for i in ${vid[@]}; do
+   bspc rule -a $i desktop='^6' follow=on focus=on; done
+
+bspc rule -a '*:*:Picture-in-picture' state=floating
+bspc rule -a '*:*:pop-up' state=floating
 
 #  ╔═╗╦ ╦╔╦╗╔═╗╔═╗╔╦╗╔═╗╦═╗╔╦╗
 #  ╠═╣║ ║ ║ ║ ║╚═╗ ║ ╠═╣╠╦╝ ║ 

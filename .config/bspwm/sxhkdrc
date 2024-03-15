@@ -304,7 +304,7 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 	bspvolume{ --inc, --dec, --toggle}
 	
 super + XF86Audio{RaiseVolume,LowerVolume,Mute}
-	Volume{ --inc, --dec, --toggle}
+	bspvolue-plus{ --inc, --dec, --toggle}
 	
 # Music Control
 XF86Audio{Next,Prev,Play,Stop}

@@ -91,7 +91,7 @@ sleep 2
 		printf "%s%sInstalling Yay%s\n" "${BLD}" "${CBL}" "${CNC}"
 		{
 			cd "$HOME" || exit
-			git clone git clone https://aur.archlinux.org/yay-bin.git
+			git clone https://aur.archlinux.org/yay-bin.git
 			cd yay-bin || exit
 			makepkg -si --noconfirm
 		} && {
