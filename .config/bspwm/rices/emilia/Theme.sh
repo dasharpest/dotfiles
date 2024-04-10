@@ -13,7 +13,7 @@
 # Set bspwm configuration for Emilia
 set_bspwm_config() {
 	bspc config border_width 1
-	bspc config top_padding 59
+	bspc config top_padding 56
 	bspc config bottom_padding 2
 	bspc config left_padding 2
 	bspc config right_padding 2
@@ -25,40 +25,40 @@ set_bspwm_config() {
 
 # Reload terminal colors
 set_term_config() {
-	cat > "$HOME"/.config/alacritty/rice-colors.toml << EOF
+	cat >"$HOME"/.config/alacritty/rice-colors.toml <<EOF
 # (Tokyo Night) color scheme for Emilia Rice
 
 # Default colors
 [colors.primary]
 background = "#1a1b26"
-foreground = "#a9b1d6"
+foreground = "#c0caf5"
 
 # Cursor colors
 [colors.cursor]
-cursor = "#bb9af7"
+cursor = "#c0caf5"
 text = "#1a1b26"
 
 # Normal colors
 [colors.normal]
-black = "#32344a"
+black = "#15161e"
 blue = "#7aa2f7"
-cyan = "#449dab"
+cyan = "#7dcfff"
 green = "#9ece6a"
-magenta = "#ad8ee6"
+magenta = "#bb9af7"
 red = "#f7768e"
-white = "#787c99"
+white = "#a9b1d6"
 yellow = "#e0af68"
 
 # Bright colors
 [colors.bright]
-black = "#444b6a"
-blue = "#7da6ff"
-cyan = "#0db9d7"
-green = "#b9f27c"
+black = "#414868"
+blue = "#7aa2f7"
+cyan = "#7dcfff"
+green = "#9ece6a"
 magenta = "#bb9af7"
-red = "#ff7a93"
-white = "#acb0d0"
-yellow = "#ff9e64"
+red = "#f7768e"
+white = "#c0caf5"
+yellow = "#e0af68"
 EOF
 }
 
@@ -68,51 +68,41 @@ set_picom_config() {
 		-e "s/normal = .*/normal =  { fade = true; shadow = true; }/g" \
 		-e "s/shadow-color = .*/shadow-color = \"#000000\"/g" \
 		-e "s/corner-radius = .*/corner-radius = 6/g" \
-		-e "s/\".*:class_g = 'Alacritty'\"/\"95:class_g = 'Alacritty'\"/g" \
-		-e "s/\".*:class_g = 'FloaTerm'\"/\"95:class_g = 'FloaTerm'\"/g"
+		-e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
+		-e "s/\".*:class_g = 'FloaTerm'\"/\"100:class_g = 'FloaTerm'\"/g"
 }
 
-# Set stalonetray config
-set_stalonetray_config() {
-	sed -i "$HOME"/.config/bspwm/stalonetrayrc \
-		-e "s/background .*/background \"#1A1B26\"/" \
-		-e "s/vertical .*/vertical false/" \
-		-e "s/geometry .*/geometry 1x1-132+58/" \
-		-e "s/grow_gravity .*/grow_gravity NE/" \
-		-e "s/icon_gravity .*/icon_gravity NE/"
-}
-	
 # Set dunst notification daemon config
 set_dunst_config() {
 	sed -i "$HOME"/.config/bspwm/dunstrc \
 		-e "s/transparency = .*/transparency = 0/g" \
 		-e "s/frame_color = .*/frame_color = \"#1a1b26\"/g" \
 		-e "s/separator_color = .*/separator_color = \"#c0caf5\"/g" \
-		-e "s/font = .*/font = JetBrainsMono Nerd Font Medium 9/g" \
+		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
 		-e "s/foreground='.*'/foreground='#f9f9f9'/g"
-		
+
 	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
-	cat >> "$HOME"/.config/bspwm/dunstrc <<- _EOF_
-			[urgency_low]
-			timeout = 3
-			background = "#1a1b26"
-			foreground = "#c0caf5"
+	cat >>"$HOME"/.config/bspwm/dunstrc <<-_EOF_
+		[urgency_low]
+		timeout = 3
+		background = "#1a1b26"
+		foreground = "#c0caf5"
 
-			[urgency_normal]
-			timeout = 6
-			background = "#1a1b26"
-			foreground = "#c0caf5"
+		[urgency_normal]
+		timeout = 6
+		background = "#1a1b26"
+		foreground = "#c0caf5"
 
-			[urgency_critical]
-			timeout = 0
-			background = "#1a1b26"
-			foreground = "#c0caf5"
-_EOF_
+		[urgency_critical]
+		timeout = 0
+		background = "#1a1b26"
+		foreground = "#c0caf5"
+	_EOF_
 }
 
 # Set eww colors
 set_eww_colors() {
-	cat > "$HOME"/.config/bspwm/eww/colors.scss << EOF
+	cat >"$HOME"/.config/bspwm/eww/colors.scss <<EOF
 // Eww colors for Emilia rice
 \$bg: #1a1b26;
 \$bg-alt: #222330;
@@ -140,33 +130,46 @@ set_jgmenu_colors() {
 }
 
 # Set Rofi launcher config
-set_launcher_config () {
+set_launcher_config() {
 	sed -i "$HOME/.config/bspwm/scripts/Launcher.rasi" \
-		-e 's/\(font: \).*/\1"JetBrainsMono Nerd Font Bold 9";/' \
+		-e '22s/\(font: \).*/\1"JetBrainsMono NF Bold 9";/' \
 		-e 's/\(background: \).*/\1#1A1B26;/' \
 		-e 's/\(background-alt: \).*/\1#1A1B26E0;/' \
 		-e 's/\(foreground: \).*/\1#c0caf5;/' \
 		-e 's/\(selected: \).*/\1#7aa2f7;/' \
-		-e 's/[^/]*-rofi/em-rofi/'
+		-e "s/rices\/[[:alnum:]\-]*/rices\/${RICETHEME}/g"
+
+	# NetworkManager launcher
+	sed -i "$HOME/.config/bspwm/scripts/NetManagerDM.rasi" \
+		-e '12s/\(background: \).*/\1#1A1B26;/' \
+		-e '13s/\(background-alt: \).*/\1#222330;/' \
+		-e '14s/\(foreground: \).*/\1#c0caf5;/' \
+		-e '15s/\(selected: \).*/\1#7aa2f7;/' \
+		-e '16s/\(active: \).*/\1#9ece6a;/' \
+		-e '17s/\(urgent: \).*/\1#f7768e;/'
+
+	# WallSelect menu colors
+	sed -i "$HOME/.config/bspwm/scripts/WallSelect.rasi" \
+		-e 's/\(main-bg: \).*/\1#1A1B26E6;/' \
+		-e 's/\(main-fg: \).*/\1#C0CAF5;/' \
+		-e 's/\(select-bg: \).*/\1#7aa2f7;/' \
+		-e 's/\(select-fg: \).*/\1#1A1B26;/'
 }
-	
+
 # Launch the bar
 launch_bars() {
 
 	for mon in $(polybar --list-monitors | cut -d":" -f1); do
-		MONITOR=$mon polybar -q emi-bar -c ${rice_dir}/config.ini &
+		MONITOR=$mon polybar -q emi-bar -c "${rice_dir}"/config.ini &
 	done
 
 }
-
-
 
 ### ---------- Apply Configurations ---------- ###
 
 set_bspwm_config
 set_term_config
 set_picom_config
-set_stalonetray_config
 launch_bars
 set_eww_colors
 set_jgmenu_colors

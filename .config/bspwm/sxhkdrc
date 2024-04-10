@@ -33,16 +33,16 @@ ctrl + alt + l
 ##---------- Rofi Launcher & Menus ----------##
 
 # Rofi Apps & Power Launcher
-super + {a,BackSpace}
-	{rofi_launcher,rofi_powermenu}
+super + {a,BackSpace,w}
+	{rofi_launcher,rofi_powermenu,WallSelect}
 
 # Rofi Menus/Applets
-super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,backslash,z}
+super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,backslash,w,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
 	OpenApps --floating, \
 	tdrop -a -w 70% -h 35% -y -1% -x 15%  --class scratch alacritty --class=scratch, \
-	nmd, \
+	OpenApps --netmanager, \
 	rofi_asroot, \
 	rofi_screenshot, \
 	OpenApps --ranger-float, \
@@ -57,6 +57,7 @@ super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,backslas
 	OpenApps --screencast, \
 	caprine, \
 	systray, \
+	whatsdesk, \
 	OpenApps --fetch}
 
 # Rofi Window Switch
@@ -71,7 +72,7 @@ ctrl + alt + Delete
 	OpenApps --sysmon
 
 # Apps
-shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,k}
+shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,comma,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,apostrophe,k}
 	{firefox, \
 	brave, \
 	/opt/google/chrome/google-chrome --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm, \
@@ -87,6 +88,7 @@ shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,
 	OpenApps --ranger, \
 	tutanota-desktop, \
 	env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify-tray --disable-gpu --no-zygote %U, \
+	youtube-music, \
 	discord, \
 	onlyoffice-desktopeditors, \
 	popcorntime, \
@@ -98,15 +100,12 @@ shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,
 	galculator, \
 	freetube, \
 	bspwinmask, \
+	evolution, \
 	OpenApps --music}
 
 # Random Wallpaper
 alt + super + w
 	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
-
-# Wallpaper Selecter
-super + shift + w
-	WallSelect
 
 # Hide/Show Bar (Polybar and/or eww)
 ctrl + alt {h,u}
@@ -304,7 +303,7 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 	bspvolume{ --inc, --dec, --toggle}
 	
 super + XF86Audio{RaiseVolume,LowerVolume,Mute}
-	bspvolue-plus{ --inc, --dec, --toggle}
+	bspvolume-plus{ --inc, --dec, --toggle}
 	
 # Music Control
 XF86Audio{Next,Prev,Play,Stop}

@@ -145,7 +145,7 @@
 			  (eventbox :cursor "pointer"
 				(button :class "player-toggle" 
 						:onclick "MediaControl --toggle" 
-						{STATUS == "Playing" ? "󰏤" : STATUS == "Paused" ? "󰐊" : "󰓛 "}))
+						{STATUS == "Playing" ? "󰏤" : STATUS == "Paused" ? "󰐊" : "󰓛"}))
 						
 			  (eventbox :cursor "pointer"
 				(button :class "player-next" 
@@ -197,7 +197,7 @@
 		 ))
 
 		 (eventbox :cursor "pointer"
-		 (button :onclick ""
+		 (button :onclick "OpenApps --netmanager"
 				 (box :orientation "h"
 					  :spacing 3
 					  :valign "center"
@@ -334,12 +334,12 @@
 ;;---------- Main windows ----------;;
 
 (defwindow bar
-	:geometry (geometry :y "10px"
+	:geometry (geometry :y "0px"
 						:width "100%"
 						:anchor "top center")
 
 	:stacking "fg"
-	:reserve (struts :distance "5px" :side "top")
+	:reserve (struts :distance "3px" :side "top")
 	:windowtype "dock"
 	:wm-ignore false
 (allbars))

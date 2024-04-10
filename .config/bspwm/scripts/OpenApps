@@ -19,16 +19,16 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 			alacritty
 			;;
 		--floating)
-			alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90
+			alacritty --class FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90
 			;;
 		--update)
-			alacritty --hold --class FloaTerm,FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90 -e Updates --update-system
+			alacritty --hold --class FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90 -e Updates --update-system
 			;;
 		--checkupdates)
-			alacritty --hold --class Updating,Updating -o window.dimensions.lines=22 window.dimensions.columns=47 -e Updates --print-updates
+			alacritty --hold --class Updating -o window.dimensions.lines=22 window.dimensions.columns=47 -e Updates --print-updates
 			;;
 		--ranger-float)
-			alacritty --class FloaTerm,FloaTerm -e ranger
+			alacritty --class FloaTerm -e ranger
 			;;
 		--ranger)
 			alacritty --class Fileman -e ranger
@@ -37,16 +37,19 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 			alacritty --class nvim -e nvim
 			;;
 		--music)
-			alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
+			alacritty --class FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
 			;;
 		--fetch)
-			alacritty --hold --class FloaTerm,FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=40 -e ~/.local/bin/sysfetch
+			alacritty --hold --class FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=40 -e ~/.local/bin/sysfetch
 			;;
 		--sysmon)
 			alacritty -e btop
 			;;
 		--nvtop)
 			alacritty -e nvtop
+			;;
+		--netmanager)
+			NetManagerDM
 			;;
 		# Apps
 		--filemanager)
@@ -67,10 +70,10 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 		--emacs-c)
 			emacsclient -c -a "";;
 		--newsboat)
-			alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=30 window.dimensions.columns=101 -e newsboat
+			alacritty --class FloaTerm -o window.dimensions.lines=30 window.dimensions.columns=101 -e newsboat
 			;;
 		--screencast)
-			gnome-network-displays --class FloaTerm
+			gnome-network-displays
 			;;
 		# Eww Widgets
 		--powermenu)
