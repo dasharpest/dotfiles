@@ -72,10 +72,9 @@ ctrl + alt + Delete
 	OpenApps --sysmon
 
 # Apps
-shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,comma,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,apostrophe,k}
+shift + alt + {f,b,w,v,e,c,n,q,i,a,h,r,t,m,comma,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,apostrophe,k,g}
 	{firefox, \
 	brave, \
-	/opt/google/chrome/google-chrome --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm, \
 	chromium, \
 	vivaldi, \
 	geany, \
@@ -101,7 +100,8 @@ shift + alt + {f,b,g,w,v,e,c,n,q,i,a,h,r,t,m,comma,d,o,p,y,u,slash,s,numbersign,
 	freetube, \
 	bspwinmask, \
 	evolution, \
-	OpenApps --music}
+	OpenApps --music, \
+	/opt/google/chrome/google-chrome --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm}
 
 # Random Wallpaper
 alt + super + w
