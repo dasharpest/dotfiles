@@ -18,7 +18,7 @@
 bspwm_dir="$HOME/.config/bspwm"
 current_rice_file="$bspwm_dir/.rice"
 preview_dir="$bspwm_dir/rices/${options[*]}"
-rofi_command="rofi -dmenu -theme $bspwm_dir/scripts/RiceSelector.rasi"
+rofi_command="rofi -dmenu -theme $bspwm_dir/scripts/RiceSelector-new.rasi"
 
 # Variables to try to define the correct size of the images for your resolution
 monitor_res=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f1)
