@@ -261,12 +261,36 @@ sleep 2
 printf "Copying files to respective directories..\n"
 
 [ ! -d ~/.config ] && mkdir -p ~/.config
+[ ! -d ~/.icons ] && mkdir -p ~/.icons
+[ ! -d ~/.themes ] && mkdir -p ~/.themes
 [ ! -d ~/.local/bin ] && mkdir -p ~/.local/bin
 [ ! -d ~/.local/share/applications ] && mkdir -p ~/.local/share/applications
 [ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts
 
 for archivos in ~/ds-dotfiles/.config/*; do
   cp -R "${archivos}" ~/.config/
+  if [ $? -eq 0 ]; then
+	printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+for archivos in ~/ds-dotfiles/.icons/*; do
+  cp -R "${archivos}" ~/.icons/
+  if [ $? -eq 0 ]; then
+	printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+for archivos in ~/ds-dotfiles/.themes/*; do
+  cp -R "${archivos}" ~/.themes/
   if [ $? -eq 0 ]; then
 	printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
 	sleep 1
