@@ -47,15 +47,15 @@ while true; do
 # Remove archcraft apps, if installed
 sudo pacman -Rns archcraft-bspwm archcraft-vim archcraft-config-music archcraft-help archcraft-about archcraft-ranger archcraft-omz xfce-polkit gnu-netcat
 
-dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc picom xdo xdotool jgmenu viewnior nwg-look fastfetch btop \
+dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc picom xdo xdotool jgmenu viewnior nwg-look fastfetch btop networkmanager \
 			  alacritty brightnessctl dunst rofi lsd jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn meld tumbler cmake kvantum-qt5 \
 			  openbsd-netcat qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils dmidecode libguestfs \
 			  ntfs-3g exfatprogs android-udev gvfs-mtp gvfs gvfs-afc gvfs-goa gvfs-nfs gvfs-smb gvfs-google gvfs-gphoto2 \
 			  feh ueberzug maim pamixer libwebp xdg-user-dirs thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin \
-			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme plymouth newsboat fzf ytfzf syncthing nvtop htop chromium \
+			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme plymouth newsboat fzf ytfzf syncthing nvtop htop chromium kitty \
 			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels wget kvantum audacity ardour vivaldi vivaldi-ffmpeg-codecs \
 			  emacs-nativecomp fd ripgrep keepassxc lxappearance qt6ct qpwgraph qbittorrent yt-dlp mpv vim vim-runtime realtime-privileges \
-			  unclutter npm python-pipx python-pynvim neovim xsel go discord telegram-desktop gimp asciiquarium lynx w3m nano p7zip xarchiver evolution evolution-on evolution-ews \
+			  unclutter npm python-gobject python-pipx python-pynvim neovim xsel go discord telegram-desktop gimp asciiquarium lynx w3m nano p7zip xarchiver evolution evolution-on evolution-ews \
 			  calf lsp-plugins-lv2 x42-plugins-lv2 distrho-ports-lv2 ambix-lv2 artyfx dpf-plugins-lv2 zam-plugins-lv2 linuxsampler gigedit mda.lv2 \
 			  zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot xorg-xwininfo xorg-xrandr)
 
@@ -355,9 +355,13 @@ sleep 2
 	fi
 
 printf "\n%s%sEnabling & starting the user-level mpd & betterlockscreen services, syncthing & libvirt system services, Adding user to libvirt & realtime groups and enabling nested vitualisation%s\n" "${BLD}" "${CYE}" "${CNC}"
+
 systemctl --user enable --now mpd.service
+
 sudo systemctl enable --now betterlockscreen@$USER.service
+
 systemctl --user enable --now syncthing.service
+
 sudo systemctl enable --now libvirtd.service
 sudo systemctl enable --now libvirtd.socket
 sudo usermod -a -G realtime $(whoami)
@@ -367,6 +371,7 @@ sudo modprobe -r kvm_intel
 sudo modprobe kvm_intel nested=1
 echo "options kvm-intel nested=1" | sudo tee /etc/modprobe.d/kvm-intel.conf
 sudo systemctl restart libvirtd
+
 printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 2
 
@@ -377,8 +382,8 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 ########## ---------- Add User to Input Group and Install Touchpad Gestures (un-comment for laptop install) ---------- ##########
 
-#yay -S libinput-gestures-git --noconfirm
-#sudo gpasswd -a $USER input
+yay -S libinput-gestures-git --noconfirm
+sudo gpasswd -a $USER input
 
 ########## --------- Change shell to zsh ---------- ##########
 

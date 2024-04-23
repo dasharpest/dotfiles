@@ -12,44 +12,35 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 		--menu)
 			rofi -show drun -theme $HOME/.config/bspwm/scripts/Launcher.rasi
 			;; 
-		--rice)
-			RiceSelector-new
-			;;
 		--terminal)
-			alacritty
+			Term --terminal
 			;;
 		--floating)
-			alacritty --class FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90
+			Term --floating
 			;;
 		--update)
-			alacritty --hold --class FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90 -e Updates --update-system
+			Term --update 
 			;;
 		--checkupdates)
-			alacritty --hold --class Updating -o window.dimensions.lines=22 window.dimensions.columns=47 -e Updates --print-updates
-			;;
-		--ranger-float)
-			alacritty --class FloaTerm -e ranger
+			Term --checkupdates
 			;;
 		--ranger)
-			alacritty --class Fileman -e ranger
+			Term --ranger
 			;;
 		--nvim)
-			alacritty --class nvim -e nvim
+			Term --nvim
 			;;
 		--music)
-			alacritty --class FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
+			Term --music
 			;;
 		--fetch)
-			alacritty --hold --class FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=40 -e ~/.local/bin/sysfetch
+			Term --fetch
 			;;
 		--sysmon)
-			alacritty -e btop
+			Term --sysmon
 			;;
 		--nvtop)
-			alacritty -e nvtop
-			;;
-		--netmanager)
-			NetManagerDM
+			Term --nvtop
 			;;
 		# Apps
 		--filemanager)
@@ -75,6 +66,9 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 		--screencast)
 			gnome-network-displays
 			;;
+		--whats)
+			whatsdesk --disable-gpu
+			;;
 		# Eww Widgets
 		--powermenu)
 			eww -c "$WIDGET_DIR" open --toggle powermenu
@@ -87,6 +81,9 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 			;;
 		--calendar)
 			eww -c "$WIDGET_DIR" open --toggle date
+			;;
+		--netmanager)
+			NetManagerDM
 			;;
 		*)
 			echo "Opción no válida"

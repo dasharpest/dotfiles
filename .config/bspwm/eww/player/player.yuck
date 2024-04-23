@@ -161,6 +161,14 @@
 					"󰒭"
 				)
 			)
+      (eventbox
+				:cursor "pointer"
+				(button 
+					:class "min" 
+					:onclick "eww -c ~/.config/bspwm/eww open --toggle music" 
+					"󰅙"
+				)
+			)
 		)		
 	)
 )
@@ -168,8 +176,8 @@
 ;; Windows ;;
 
 (defwindow music
-    :geometry (geometry :y "10%"
-						:anchor "top center")
+    :geometry (geometry :y "-7%"
+						:anchor "bottom center")
 	:wm-ignore false
     (player))
     

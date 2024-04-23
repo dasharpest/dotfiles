@@ -82,8 +82,8 @@ pidof -q picom || { picom --config "$HOME"/.config/bspwm/picom.conf & }
 
 dunst -config "$HOME"/.config/bspwm/dunstrc &
 
-feh -z --no-fehbg --bg-fill "${rice_dir}"/walls
-#feh --no-fehbg --bg-fill ${rice_dir}/walls/default.*
+#feh -z --no-fehbg --bg-fill "${rice_dir}"/walls
+feh --no-fehbg --bg-fill ${rice_dir}/walls/default.*
 
 pidof -q eww || { eww -c "$HOME"/.config/bspwm/eww daemon & }
 
@@ -96,6 +96,8 @@ xsetroot -cursor_name left_ptr
 unclutter &
 
 exec mpd &
+
+/usr/bin/emacs --daemon &
 
 ## 1 > terminal (always open emacs on workspace-1)
 declare -a term=(Emacs)
@@ -118,7 +120,7 @@ for i in ${code[@]}; do
    bspc rule -a $i desktop='^4' follow=on focus=on; done
 
 ## 5 > wrk (always open work browser on workspace-5)
-declare -a wrk=(Brave-browser)
+declare -a wrk=(Brave-browser Vivaldi-stable)
 for i in ${wrk[@]}; do
    bspc rule -a $i desktop='^5' follow=on focus=on; done
 

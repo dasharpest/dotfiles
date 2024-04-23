@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+#   █████╗ ██████╗ ██████╗ ███████╗    ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ 
+#  ██╔══██╗██╔══██╗██╔══██╗██╔════╝    ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
+#  ███████║██████╔╝██████╔╝███████╗    ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝
+#  ██╔══██║██╔═══╝ ██╔═══╝ ╚════██║    ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗
+#  ██║  ██║██║     ██║     ███████║    ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║
+#  ╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝    ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+
+WIDGET_DIR="$HOME/.config/bspwm/eww"
+
+	case "$1" in
+		--menu)
+			rofi -show drun -theme $HOME/.config/bspwm/scripts/Launcher.rasi
+			;; 
+		--terminal)
+			alacritty
+			;;
+		--floating)
+			alacritty --class FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90
+			;;
+		--update)
+			alacritty --hold --class FloaTerm -o window.dimensions.lines=22 window.dimensions.columns=90 -e Updates --update-system
+			;;
+		--checkupdates)
+			alacritty --hold --class Updating -o window.dimensions.lines=22 window.dimensions.columns=47 -e Updates --print-updates
+			;;
+		--ranger-float)
+			alacritty --class FloaTerm -e ranger
+			;;
+		--ranger)
+			alacritty --class Fileman -e ranger
+			;;
+		--nvim)
+			alacritty --class nvim -e nvim
+			;;
+		--music)
+			alacritty --class FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
+			;;
+		--fetch)
+			alacritty --hold --class FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=40 -e ~/.local/bin/sysfetch
+			;;
+		--sysmon)
+			alacritty -e btop
+			;;
+		--nvtop)
+			alacritty -e nvtop
+			;;
+		--netmanager)
+			NetManagerDM
+			;;
+		--whats)
+			whatsdesk --disable-gpu
+			;;
+		# Apps
+		--filemanager)
+			thunar
+			;;
+		--browser)
+			firefox
+			;;
+		--editor)
+			geany
+			;;
+		--telegram)
+			telegram-desktop
+			;;
+		--soundcontrol)
+			pavucontrol
+			;;
+		--emacs-c)
+			emacsclient -c -a "";;
+		--newsboat)
+			alacritty --class FloaTerm -o window.dimensions.lines=30 window.dimensions.columns=101 -e newsboat
+			;;
+		--screencast)
+			gnome-network-displays
+			;;
+		# Eww Widgets
+		--powermenu)
+			eww -c "$WIDGET_DIR" open --toggle powermenu
+			;;
+		--usercard)
+			eww -c "$WIDGET_DIR" open --toggle launchermenu
+			;;
+		--player)
+			eww -c "$WIDGET_DIR" open --toggle music
+			;;
+		--calendar)
+			eww -c "$WIDGET_DIR" open --toggle date
+			;;
+		*)
+			echo "Opción no válida"
+			;;
+	esac

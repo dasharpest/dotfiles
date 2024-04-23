@@ -17,6 +17,12 @@ super + @space
 # Theme Selector
 alt + @space
 	RiceSelector
+ctrl + alt + @space
+	RiceSelector-new
+
+#Terminal Selector
+ctrl + alt + t
+	Term --selecterm
 
 # jgmenu
 button2
@@ -37,7 +43,7 @@ super + {a,BackSpace,w}
 	{rofi_launcher,rofi_powermenu,WallSelect}
 
 # Rofi Menus/Applets
-super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,backslash,w,z}
+super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,w,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
 	OpenApps --floating, \
@@ -50,14 +56,13 @@ super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,backslas
 	bspcolorpicker, \
 	OpenApps --usercard, \
 	telegram-desktop, \
-	OpenApps --player, \
+	youtube-music, \
 	OpenApps --calendar, \
 	OpenApps --update, \
 	OpenApps --nvtop, \
 	OpenApps --screencast, \
 	caprine, \
-	systray, \
-	whatsdesk, \
+	OpenApps --whats, \
 	OpenApps --fetch}
 
 # Rofi Window Switch
@@ -72,7 +77,7 @@ ctrl + alt + Delete
 	OpenApps --sysmon
 
 # Apps
-shift + alt + {f,b,w,v,e,c,n,q,i,a,h,r,t,m,comma,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,apostrophe,k,g}
+shift + alt + {f,b,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,apostrophe,k,g}
 	{firefox, \
 	brave, \
 	chromium, \
@@ -87,7 +92,6 @@ shift + alt + {f,b,w,v,e,c,n,q,i,a,h,r,t,m,comma,d,o,p,y,u,slash,s,numbersign,eq
 	OpenApps --ranger, \
 	tutanota-desktop, \
 	env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify-tray --disable-gpu --no-zygote %U, \
-	youtube-music, \
 	discord, \
 	onlyoffice-desktopeditors, \
 	popcorntime, \
@@ -107,9 +111,17 @@ shift + alt + {f,b,w,v,e,c,n,q,i,a,h,r,t,m,comma,d,o,p,y,u,slash,s,numbersign,eq
 alt + super + w
 	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
 
+# Pick Wallpaper 
+ctrl + alt + w
+	WallSelect
+
 # Hide/Show Bar (Polybar and/or eww)
-ctrl + alt {h,u}
+super + alt {h,u}
 	HideBar {-h,-u}
+
+# Hide/Unhide Window
+ctrl + alt + h
+	BspHideNode
 
 # Change transparency on focused window
 ctrl + alt + {plus,minus,t}
