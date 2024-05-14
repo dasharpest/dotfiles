@@ -14,7 +14,7 @@
 set_bspwm_config() {
 	bspc config border_width 1
 	bspc config top_padding 2
-	bspc config bottom_padding 60
+	bspc config bottom_padding 2
 	bspc config left_padding 2
 	bspc config right_padding 2
 #	bspc config normal_border_color "#9bced7"

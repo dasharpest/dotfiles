@@ -26,10 +26,10 @@ chosen="$(echo -e "$options" | rofi -theme "$HOME"/.config/bspwm/scripts/TermSel
 	case $chosen in
 
 			"$ALACRITTY")
-				echo alacritty >"${cfg_term}"
+				echo alacritty >"${cfg_term}" ; OpenApps --floating &
 				;;
 			"$KITTY")
-				echo kitty >"${cfg_term}"
+				echo kitty >"${cfg_term}" ; OpenApps --floating &
 				;;
 	esac
 }
