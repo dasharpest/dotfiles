@@ -28,6 +28,7 @@ video/mp4=mpv.desktop;
 video/x-matroska=mpv.desktop;mplayer.desktop;
 image/heif=viewnior.desktop;
 application/x-trash=geany.desktop;
+application/pdf=org.gnome.Evince.desktop;
 
 [Default Applications]
 image/gif=viewnior.desktop
@@ -48,3 +49,4 @@ application/vnd.sqlite3=geany.desktop
 x-scheme-handler/mailto=userapp-Evolution-DQE4K2.desktop
 image/heif=viewnior.desktop
 application/x-trash=geany.desktop
+application/pdf=org.gnome.Evince.desktop

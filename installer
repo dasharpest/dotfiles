@@ -161,7 +161,7 @@ if [ ! -d "$backup_folder" ]; then
   mkdir -p "$backup_folder/local/share"
 fi
 
-for folder in bspwm alacritty picom rofi eww sxhkd dunst polybar .ncmpcpp ncmpcpp nvim ranger zsh .mpd mpd Code cava emacs GIMP geany newsboat .emacs.d surfraw qt6ct; do
+for folder in bspwm alacritty picom rofi eww sxhkd dunst polybar .ncmpcpp ncmpcpp nvim ranger zsh .mpd mpd Code cava emacs GIMP geany newsboat .emacs.d surfraw qt6ct FreeTube; do
   if [ -d "$HOME/.config/$folder" ]; then
     mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date"
     echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
@@ -202,6 +202,7 @@ done
 [ -f ~/.nanorc ] && mv ~/.nanorc ~/dots_Backup/.nanorc-backup-"$date"
 [ -f ~/.vimrc ] && mv ~/.vimrc ~/dots_Backup/.vimrc-backup-"$date"
 [ -f ~/.lynxrc ] && mv ~/.lynxrc ~/dots_Backup/.lynxrc-backup-"$date"
+[ -f ~/.config/mimeapps.list ] && mv ~/.lynxrc ~/dots_Backup/mimeapp.list-backup-"$date"
 
 printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 5
@@ -352,6 +353,8 @@ cp -R "$HOME"/ds-dotfiles/.vscode "$HOME"
 cp -R "$HOME"/ds-dotfiles/.w3m "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.zshrc "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.vim_runtime/my_configs.vim ~/.vim_runtime/
+cp -rf "$HOME"/ds-dotfiles/.config/mimeapp.list "$HOME"/.config/
+cp -rf "$HOME"/ds-dotfiles/.config/redshift.conf "$HOME"/.config/
 
 sudo mkdir -p /usr/share/archcraft/icons/dunst/ && sudo cp -R ~/ds-dotfiles/usr/share/archcraft/icons/dunst/ /usr/share/archcraft/icons/
 
