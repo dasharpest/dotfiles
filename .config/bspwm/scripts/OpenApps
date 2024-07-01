@@ -42,6 +42,9 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 		--nvtop)
 			Term --nvtop
 			;;
+		--rangerfloat)
+			Term --ranger-float
+			;;
 		# Apps
 		--filemanager)
 			thunar
@@ -58,17 +61,14 @@ WIDGET_DIR="$HOME/.config/bspwm/eww"
 		--soundcontrol)
 			pavucontrol
 			;;
-		--emacs-c)
-			emacsclient -c -a "";;
-		--newsboat)
-			alacritty --class FloaTerm -o window.dimensions.lines=30 window.dimensions.columns=101 -e newsboat
-			;;
 		--screencast)
 			gnome-network-displays
 			;;
 		--whats)
 			whatsdesk --disable-gpu
 			;;
+		--emacs-c)
+			emacsclient -c -a "";;
 		# Eww Widgets
 		--powermenu)
 			eww -c "$WIDGET_DIR" open --toggle powermenu
