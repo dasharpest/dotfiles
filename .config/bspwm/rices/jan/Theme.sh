@@ -12,12 +12,12 @@
 
 # Set bspwm configuration for Jan
 set_bspwm_config() {
-	bspc config border_width 0
+	bspc config border_width 1
 	bspc config top_padding 50
 	bspc config bottom_padding 2
 	bspc config left_padding 2
 	bspc config right_padding 2
-	bspc config normal_border_color "#4C3A6D"
+#	bspc config normal_border_color "#4C3A6D"
 	bspc config active_border_color "#4C3A6D"
 	bspc config focused_border_color "#785DA5"
 	bspc config presel_feedback_color "#070219"
@@ -200,31 +200,23 @@ set_jgmenu_colors() {
 		-e 's/color_sep_fg = .*/color_sep_fg = #626483/'
 }
 
-# Set Rofi launcher config
+# Set rofi colors
 set_launcher_config() {
-	sed -i "$HOME/.config/bspwm/scripts/Launcher.rasi" \
-		-e '22s/\(font: \).*/\1"Terminess Nerd Font Mono Bold 10";/' \
-		-e 's/\(background: \).*/\1#070219F0;/' \
-		-e 's/\(background-alt: \).*/\1#070219E0;/' \
-		-e 's/\(foreground: \).*/\1#c0caf5;/' \
-		-e 's/\(selected: \).*/\1#fb007af0;/' \
-		-e "s/rices\/[[:alnum:]\-]*/rices\/${RICETHEME}/g"
+	cat >"$HOME"/.config/bspwm/src/rofi-themes/shared.rasi <<EOF
+// Rofi colors for Jan
 
-	# NetworkManager launcher
-	sed -i "$HOME/.config/bspwm/scripts/NetManagerDM.rasi" \
-		-e '12s/\(background: \).*/\1#070219F0;/' \
-		-e '13s/\(background-alt: \).*/\1#070219;/' \
-		-e '14s/\(foreground: \).*/\1#27fbfe;/' \
-		-e '15s/\(selected: \).*/\1#19bffe;/' \
-		-e '16s/\(active: \).*/\1#a6e22e;/' \
-		-e '17s/\(urgent: \).*/\1#fb007a;/'
-
-	# WallSelect menu colors
-	sed -i "$HOME/.config/bspwm/scripts/WallSelect.rasi" \
-		-e 's/\(main-bg: \).*/\1#070219F0;/' \
-		-e 's/\(main-fg: \).*/\1#c0caf5;/' \
-		-e 's/\(select-bg: \).*/\1#fb007a;/' \
-		-e 's/\(select-fg: \).*/\1#070219;/'
+* {
+    font: "Terminess Nerd Font Mono Bold 10";
+    background: #070219F0;
+    background-alt: #070219E0;
+    foreground: #27fbfe;
+    selected: #fb007af0;
+    active: #a6e22e;
+    urgent: #fb007a;
+    
+    img-background: url("~/.config/bspwm/rices/jan/rofi.webp", width);
+}
+EOF
 }
 
 # Launch the bar
@@ -242,8 +234,8 @@ set_bspwm_config
 set_alacritty_config
 set_kitty_config
 set_picom_config
-launch_bars
 set_dunst_config
 set_eww_colors
 set_jgmenu_colors
 set_launcher_config
+launch_bars

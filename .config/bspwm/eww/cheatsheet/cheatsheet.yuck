@@ -26,7 +26,7 @@
  ██████ ██   ██ ███████ ██   ██    ██        ███████ ██   ██ ███████ ███████    ██")
     (label  :class "title-info"
             :yalign 0
-            :text "(Press F1 to close this window)")
+            :text "(Under Construction)")
 
   )
 )
@@ -65,6 +65,9 @@
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Wallpaper Selector")
         (label :class "keys-alt" :xalign 1 :text "Super + Alt + w"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Terminal selector")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + t"))
       (box :orientation "h" :space-evenly "true"
         (label :class "category-workspaces" :xalign 0.5 :text "Workspaces")
         (label :text ""))
@@ -133,10 +136,10 @@
         (label :class "keys-alt" :xalign 1 :text ""))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Change Node focus")
-        (label :class "keys-alt" :xalign 1 :text "Shift +    "))
+        (label :class "keys-alt" :xalign 1 :text "Shift + Super +    "))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Swap Nodes")
-        (label :class "keys-alt" :xalign 1 :text "Shift + Ctrl +    "))
+        (label :class "keys-alt" :xalign 1 :text "Shift Super Ctrl +    "))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "")
         (label :class "keys-alt" :xalign 1 :text ""))
@@ -175,19 +178,25 @@
         (label :class "keys-alt" :xalign 1 :text "Super + Alt + {h,u}"))
       (box :orientation "h" :space-evenly "true"
         (label :class "keys" :xalign 0 :text "Change transparency")
-        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt +   "))
+        (label :class "keys-alt" :xalign 1 :text "Ctrl + Alt + {+,-,t}"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Screenshot now")
-        (label :class "keys-alt" :xalign 1 :text "Print"))
+        (label :class "keys" :xalign 0 :text "Network Manager")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + n"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Screenshot select")
-        (label :class "keys-alt" :xalign 1 :text "Ctrl + Print"))
+        (label :class "keys" :xalign 0 :text "Screenshot")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + s"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Screenshot in 10s")
-        (label :class "keys-alt" :xalign 1 :text "Alt + Print"))
+        (label :class "keys" :xalign 0 :text "Bluetooth")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + b"))
       (box :orientation "h" :space-evenly "true"
-        (label :class "keys" :xalign 0 :text "Screenshot active node")
-        (label :class "keys-alt" :xalign 1 :text "Shift + Print"))
+        (label :class "keys" :xalign 0 :text "Clipboard")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + c"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Android Mount")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + a"))
+      (box :orientation "h" :space-evenly "true"
+        (label :class "keys" :xalign 0 :text "Power Menu")
+        (label :class "keys-alt" :xalign 1 :text "Super + Alt + p"))
       (box :orientation "h" :space-evenly "true"
         (label :class "category-apps" :xalign 0.5 :text "Apps")
         (label :text ""))

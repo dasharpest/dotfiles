@@ -3,10 +3,10 @@
 #  ╚═╝╩ ╚═╩ ╩╩ ╩═╩╝╩╚═╚═╝
 
 # Show keybindings help
-alt + F1
-	KeybindingsHelp
+#alt + F1
+#    OpenApps --KeyHelp
 	
-# Open Terminal (alacritty)
+# Open Terminal
 super + Return
 	OpenApps --terminal
 	
@@ -20,38 +20,41 @@ alt + @space
 ctrl + alt + @space
 	RiceSelector-new
 
-#Terminal Selector
-ctrl + alt + t
-	Term --selecterm
+# Rofi Widgets & Alt Sys Tools
+ctrl + alt + {l,t,n,a,c,v,b,m,p,r,Delete,s}
+	{betterlockscreen -l dimblur, \
+	Term --selecterm, \
+	OpenApps --netmanager, \
+	OpenApps --android, \
+	OpenApps --calendar, \
+	OpenApps --clipboard, \
+	OpenApps --bluetooth, \
+	OpenApps --player, \
+	OpenApps --soundcontrol, \
+	rofi_asroot, \
+	OpenApps --sysmon, \
+	OpenApps --screenshot}
 
 # jgmenu
 button2
-  xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/scripts/menu.txt --config-file=~/.config/bspwm/jgmenurc
+  xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/src/jgmenu/menu.txt --config-file=~/.config/bspwm/jgmenurc
 
 # Power off, Reboot, Log out, Lockscreen, kill an app
 ctrl + super + alt + {p,r,q,l,k}
 	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
 
-# (Better)Lockscreen
-ctrl + alt + l
-    betterlockscreen -l dimblur
+# Rofi Apps Full & Power Launcher
+super + {a,BackSpace}
+	{rofi_launcher,OpenApps --powermenu}
 
-##---------- Rofi Launcher & Menus ----------##
-
-# Rofi Apps & Power Launcher
-super + {a,BackSpace,w}
-	{rofi_launcher,rofi_powermenu,WallSelect}
-
-# Rofi Menus/Applets
-super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,w,z}
+# Rofi Menus/Applets & Alt Apps
+super + shift + {e,v,Return,o,s,f,b,p,a,t,m,c,u,g,period,apostrophe,w,equal,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
 	OpenApps --floating, \
 	tdrop -a -w 70% -h 35% -y -1% -x 15%  --class scratch alacritty --class=scratch, \
-	OpenApps --netmanager, \
-	rofi_asroot, \
 	rofi_screenshot, \
-	OpenApps --ranger-float, \
+	OpenApps --rangerfloat, \
 	brave --incognito, \
 	bspcolorpicker, \
 	OpenApps --usercard, \
@@ -63,6 +66,7 @@ super + shift + {e,v,Return,o,n,r,s,f,b,p,a,t,m,c,u,g,period,apostrophe,w,z}
 	OpenApps --screencast, \
 	caprine, \
 	OpenApps --whats, \
+	galculator, \
 	OpenApps --fetch}
 
 # Rofi Window Switch
@@ -72,22 +76,18 @@ alt + Tab
 button10
 	rofi_windows
 
-# System monitor
-ctrl + alt + Delete
-	OpenApps --sysmon
-
 # Apps
-shift + alt + {f,b,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,period,Tab,apostrophe,k,g}
+shift + alt + {f,b,w,g,v,e,c,n,q,i,h,r,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apostrophe,a,k}
 	{firefox, \
 	brave, \
 	chromium, \
+	google-chrome-stable, \
 	vivaldi, \
 	geany, \
 	code, \
 	thunar, \
 	qbittorrent, \
-	gimp-2.10, \
-	pavucontrol, \
+	flatpak run org.gimp.GIMP, \
     qpwgraph, \
 	OpenApps --ranger, \
 	tutanota-desktop, \
@@ -99,19 +99,18 @@ shift + alt + {f,b,w,v,e,c,n,q,i,a,h,r,t,m,d,o,p,y,u,slash,s,numbersign,equal,pe
 	ardour8, \
 	keepassxc, \
 	surfshark, \
-	OpenApps --newsboat, \
-	galculator, \
+	tradingview, \
 	freetube, \
-	bspwinmask, \
+	gpt4all-chat, \
 	evolution, \
-	OpenApps --music, \
-	/opt/google/chrome/google-chrome --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm}
+	OpenApps --soundcontrol, \
+	OpenApps --music}
 
 # Random Wallpaper
 alt + super + w
 	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
 
-# Pick Wallpaper 
+# Choose Wallpaper 
 ctrl + alt + w
 	WallSelect
 
@@ -163,7 +162,7 @@ super + button10
 super + shift + button3
 	bspc node -t tiled
 
-# make floating with mouse
+# drag floating with mouse
 super + shift + button1
 	BUTTON=1 dragtofloat
 
@@ -320,3 +319,13 @@ super + XF86Audio{RaiseVolume,LowerVolume,Mute}
 # Music Control
 XF86Audio{Next,Prev,Play,Stop}
 	MediaControl {--next,--previous,--toggle,--stop}
+
+# Laptop Keys
+XF86MyComputer
+	Thunar
+
+XF86HomePage
+	firefox
+
+XF86Calculator
+	galculator

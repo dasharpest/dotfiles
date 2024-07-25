@@ -47,7 +47,7 @@ while true; do
 # Remove archcraft apps, if installed
 sudo pacman -Rns archcraft-bspwm archcraft-vim archcraft-config-music archcraft-help archcraft-about archcraft-ranger archcraft-omz xfce-polkit gnu-netcat
 
-dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc picom xdo xdotool jgmenu viewnior nwg-look fastfetch btop networkmanager \
+dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc picom xdo xdotool jgmenu viewnior nwg-look fastfetch btop networkmanager xcolor \
 			  alacritty brightnessctl dunst rofi lsd jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn meld tumbler cmake kvantum-qt5 pulsemixer redshift galculator \
 			  openbsd-netcat qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils dmidecode libguestfs \
 			  ntfs-3g exfatprogs android-udev gvfs-mtp gvfs gvfs-afc gvfs-goa gvfs-nfs gvfs-smb gvfs-google gvfs-gphoto2 \
@@ -105,8 +105,8 @@ sleep 2
 curl -sS https://github.com/elkowar.gpg | gpg --import -i -
 curl -sS https://github.com/web-flow.gpg | gpg --import -i -
 
-aurdep=(eww-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin tutanota-desktop-bin \
-		betterlockscreen sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 \
+aurdep=(eww-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin tutanota-desktop-bin betterlockscreen \
+		sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs \
 		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview) 
 
 is_installed() {

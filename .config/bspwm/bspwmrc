@@ -15,7 +15,7 @@
 
 read -r RICETHEME < "$HOME"/.config/bspwm/.rice
 export RICETHEME
-PATH="$HOME/.config/bspwm/scripts:$PATH"
+PATH="$HOME/.config/bspwm/src:$PATH"
 rice_dir="$HOME/.config/bspwm/rices/$RICETHEME"
 export XDG_CURRENT_DESKTOP='bspwm'
 
@@ -38,7 +38,7 @@ done
 #  ╠╩╗╚═╗╠═╝║║║║║║  ║  ║ ║║║║╠╣ ║║ ╦
 #  ╚═╝╚═╝╩  ╚╩╝╩ ╩  ╚═╝╚═╝╝╚╝╚  ╩╚═╝
 
-bspc config external_rules_command "$HOME"/.config/bspwm/scripts/ExternalRules
+bspc config external_rules_command "$HOME"/.config/bspwm/src/ExternalRules
 
 bspc config window_gap                6
 bspc config split_ratio               0.51
@@ -85,11 +85,13 @@ dunst -config "$HOME"/.config/bspwm/dunstrc &
 #feh -z --no-fehbg --bg-fill "${rice_dir}"/walls
 feh --no-fehbg --bg-fill ${rice_dir}/walls/default.*
 
+pidof -q greenclip || { greenclip daemon & }
+
 pidof -q eww || { eww -c "$HOME"/.config/bspwm/eww daemon & }
 
 pidof -q polkit-gnome-authentication-agent-1 || { /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & }
 
-#exec libinput-gestures-setup desktop autostart start &
+exec libinput-gestures-setup desktop autostart start &
 
 xsetroot -cursor_name left_ptr
 
@@ -132,4 +134,5 @@ for i in ${vid[@]}; do
 bspc rule -a '*:*:Picture-in-picture' state=floating
 bspc rule -a '*:*:pop-up' state=floating
 
+# Launch Surfshark VPN if not runnng
 start-ss.sh &
