@@ -27,6 +27,8 @@ configuration {
     selected:                    #81ae5f;
 }
 
+@import "shared.rasi"
+
 /*****----- Main Window -----*****/
 window {
     /* properties for window widget */

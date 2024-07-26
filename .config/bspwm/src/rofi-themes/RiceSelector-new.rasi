@@ -1,16 +1,16 @@
 // # z0mbi3 -  https://github.com/gh0stzk/dotfiles
 
-// Config //
 configuration {
     modi:                        "drun";
     show-icons:                  true;
     drun-display-format:         "{name}";
     font:                        "JetBrainsMono NF Bold 11";
-
     //hover-select:				 true;
 	//me-select-entry:			 "";
 	//me-accept-entry:			 "MousePrimary";
 }
+
+@import "shared.rasi"
 
 * {
 main-bg: #14171c;
@@ -20,7 +20,6 @@ select-fg: #14171c;
 }
 
 
-// Main //
 window {
     enabled:                     true;
     fullscreen:                  false;
@@ -37,11 +36,10 @@ window {
 mainbox {
     enabled:                     true;
     children:                    [ "listview" ];
-    background-color:            @main-bg;
+    background-color:            @background;
 }
 
 
-// Lists //
 listview {
     enabled:                     true;
     columns:                     6;
@@ -57,7 +55,7 @@ listview {
     fixed-columns:               true;
     cursor:                      "default";
     background-color:            transparent;
-    text-color:                  @main-fg;
+    text-color:                  @forefround;
 }
 
 
@@ -70,7 +68,7 @@ element {
     border-radius:               20px;
     cursor:                      pointer;
     background-color:            transparent;
-    text-color:                  @main-fg;
+    text-color:                  @foreground;
 }
 @media(max-aspect-ratio: 1.8) {
     element {
