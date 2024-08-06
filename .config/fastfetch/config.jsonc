@@ -52,6 +52,11 @@
       "key": "  ",
       "keyColor": "yellow"
     },
+    {
+      "type": "uptime",
+      "key": "  ",
+      "keyColor": "bright_green"
+    },
     "break",
     {
       "type": "custom",

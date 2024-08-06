@@ -51,6 +51,9 @@ case "$1" in
     --ranger)
         Term --ranger
         ;;
+    --lynx)
+        Term --lynx
+        ;;
     --nvim)
         Term --nvim
         ;;

@@ -58,6 +58,9 @@ case $MY_TERM in
             "--ranger")
                 alacritty --class Fileman -e ranger
                 ;;
+            "--lynx")
+                alacritty --class firefox -e lynx
+                ;;
             "--sysmon")
                 alacritty -e btop
                 ;;
@@ -91,6 +94,9 @@ case $MY_TERM in
                 ;;
             "--ranger")
                 kitty --class Fileman -e ranger
+                ;;
+            "--lynx")
+                kitty --class firefox -e lynx
                 ;;
             "--sysmon")
                 kitty -e btop
