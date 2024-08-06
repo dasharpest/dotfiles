@@ -21,7 +21,7 @@ ctrl + alt + @space
 	RiceSelector-new
 
 # Rofi Widgets & Alt Sys Tools
-ctrl + alt + {l,t,n,a,c,v,b,m,p,r,Delete,s}
+ctrl + alt + {l,t,n,a,c,v,b,m,r,Delete,p,s}
 	{betterlockscreen -l dimblur, \
 	Term --selecterm, \
 	OpenApps --netmanager, \
@@ -30,9 +30,9 @@ ctrl + alt + {l,t,n,a,c,v,b,m,p,r,Delete,s}
 	OpenApps --clipboard, \
 	OpenApps --bluetooth, \
 	OpenApps --player, \
-	OpenApps --soundcontrol, \
 	rofi_asroot, \
 	OpenApps --sysmon, \
+	bspcolorpicker, \
 	OpenApps --screenshot}
 
 # jgmenu
@@ -47,16 +47,14 @@ ctrl + super + alt + {p,r,q,l,k}
 super + {a,BackSpace}
 	{rofi_launcher,OpenApps --powermenu}
 
-# Rofi Menus/Applets & Alt Apps
-super + shift + {e,v,Return,o,s,f,b,p,a,t,m,c,u,g,period,apostrophe,w,equal,z}
+# Applets & Alt Apps
+super + shift + {e,v,Return,o,f,b,a,t,m,c,u,g,period,apostrophe,w,equal,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
 	OpenApps --floating, \
 	tdrop -a -w 70% -h 35% -y -1% -x 15%  --class scratch alacritty --class=scratch, \
-	rofi_screenshot, \
 	OpenApps --rangerfloat, \
 	brave --incognito, \
-	bspcolorpicker, \
 	OpenApps --usercard, \
 	telegram-desktop, \
 	youtube-music, \
@@ -77,10 +75,11 @@ button10
 	rofi_windows
 
 # Apps
-shift + alt + {f,b,w,g,v,e,c,n,q,i,h,r,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apostrophe,a,k}
+shift + alt {f,b,w,l,g,v,e,c,n,q,i,h,r,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apostrophe,k}
 	{firefox, \
 	brave, \
 	chromium, \
+	OpenApps --lynx, \
 	google-chrome-stable, \
 	vivaldi, \
 	geany, \
@@ -90,6 +89,7 @@ shift + alt + {f,b,w,g,v,e,c,n,q,i,h,r,t,m,d,o,p,y,u,slash,comma,equal,period,se
 	flatpak run org.gimp.GIMP, \
     qpwgraph, \
 	OpenApps --ranger, \
+	OpenApps --soundcontrol, \
 	tutanota-desktop, \
 	env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify-tray --disable-gpu --no-zygote %U, \
 	discord, \
@@ -103,7 +103,6 @@ shift + alt + {f,b,w,g,v,e,c,n,q,i,h,r,t,m,d,o,p,y,u,slash,comma,equal,period,se
 	freetube, \
 	gpt4all-chat, \
 	evolution, \
-	OpenApps --soundcontrol, \
 	OpenApps --music}
 
 # Random Wallpaper
@@ -128,15 +127,19 @@ ctrl + alt + {plus,minus,t}
 
 # Screenshot Now
 Print
-	ScreenShoTer --now
+	ScreenShoTer_nomenu --now
 
 # Screenshot Select
 ctrl + Print
-	ScreenShoTer --sel
+	ScreenShoTer-nomenu --sel
 
-# Screenshot in 10s
+# Screenshot in 3s
 alt + Print
-	ScreenShoTer --in10
+	ScreenShoTer-nomenu --in3
+
+# Screenshot of active in 3s
+super + Print
+	ScreenShoTer-nomenu --active
 
 # Reload sxhkd
 super + Escape
@@ -201,8 +204,8 @@ super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
-ctrl + alt + {m,x,s,p,i}
-	bspc node -g {marked,locked,sticky,private,hidden}
+#ctrl + alt + {m,x,s,p,i}
+#	bspc node -g {marked,locked,sticky,private,hidden}
 
 # Focused desktop window gaps scroll
 super + button{4,5}
@@ -313,7 +316,7 @@ XF86MonBrightness{Up,Down}
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	bspvolume{ --inc, --dec, --toggle}
 	
-super + XF86Audio{RaiseVolume,LowerVolume,Mute}
+ctrl + XF86Audio{RaiseVolume,LowerVolume,Mute}
 	bspvolume-plus{ --inc, --dec, --toggle}
 	
 # Music Control
