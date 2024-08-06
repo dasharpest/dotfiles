@@ -30,7 +30,7 @@ fi
 printf '%s%sThis script will remove some Archraft programs / configs if installed, then check if you have the necessary dependencies and, if not, will install them.
 \nThen, it will clone the RICE in your HOME directory.
 \nAfter that, it will create a backup of your files and copy the new files to your HOME directory.
-\nIt will also copy DoomEmacs, PhotoGIMP & Vim configs and also install additional software that I use. (Google Chrome, Brave, VSCode & Spotify and others...)
+\nIt will also copy DoomEmacs, PhotoGIMP & Vim configs and also install additional software that I use. (Brave, VSCode & Spotify and others...)
 \nYou will be prompted for your root password to install missing dependencies, copy system files, start system services and to switch to zsh shell if its not your default.%s\n\n'
 
 while true; do
@@ -107,7 +107,7 @@ curl -sS https://github.com/web-flow.gpg | gpg --import -i -
 
 aurdep=(eww-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin tutanota-desktop-bin betterlockscreen \
 		sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs \
-		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview) 
+		brave-bin visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview) 
 
 is_installed() {
   yay -Qi "$1" &> /dev/null
@@ -161,7 +161,7 @@ if [ ! -d "$backup_folder" ]; then
   mkdir -p "$backup_folder/local/share"
 fi
 
-for folder in bspwm alacritty picom rofi eww sxhkd dunst polybar .ncmpcpp ncmpcpp nvim ranger zsh .mpd mpd Code cava emacs GIMP geany newsboat .emacs.d surfraw qt6ct FreeTube; do
+for folder in bspwm alacritty picom rofi eww sxhkd dunst polybar .ncmpcpp ncmpcpp nvim ranger zsh .mpd mpd Code cava emacs GIMP geany newsboat .emacs.d surfraw qt6ct FreeTube tmux; do
   if [ -d "$HOME/.config/$folder" ]; then
     mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date"
     echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
@@ -170,7 +170,7 @@ for folder in bspwm alacritty picom rofi eww sxhkd dunst polybar .ncmpcpp ncmpcp
   fi
 done
 
-for folder in .audacity-data .vscode .mpd .ncmpcpp ncmpcpp mpd .newsboat .emacs.d .vim_runtime .w3m; do
+for folder in .vscode .mpd .ncmpcpp ncmpcpp mpd .newsboat .emacs.d .vim_runtime .w3m; do
   if [ -d "$HOME/$folder" ]; then
     mv "$HOME/$folder" "$backup_folder/${folder}_$date"
     echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
@@ -217,11 +217,6 @@ mkdir -p ~/.vim_runtime/pack/plugins/start/
 git clone https://github.com/vimwiki/vimwiki ~/.vim_runtime/pack/plugins/start/vimwiki/
 git clone https://github.com/mattn/calendar-vim ~/.vim_runtime/pack/plugins/start/calendar-vim
 sleep 2
-
-########## ---------- Clone ayamir's Neovim Config ---------- ##########
-
-printf "%s%sCloning ayamir's NEOVIM config%s\n" "${BLD}" "${CBL}" "${CNC}"
-git clone --depth=1 https://github.com/ayamir/nvimdots/ ~/.config/nvim
 
 ########## ---------- Clone and Install Pokemon-Color-Scripts ---------- ##########
 
@@ -348,7 +343,6 @@ done
 cp -rf "$HOME"/ds-dotfiles/.bashrc "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.lynxrc "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.nanorc "$HOME"
-cp -R "$HOME"/ds-dotfiles/.audacity-data "$HOME"
 cp -R "$HOME"/ds-dotfiles/.vscode "$HOME"
 cp -R "$HOME"/ds-dotfiles/.w3m "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.zshrc "$HOME"
