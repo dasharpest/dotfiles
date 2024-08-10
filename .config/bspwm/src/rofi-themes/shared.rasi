@@ -4,10 +4,10 @@
     font: "Terminess Nerd Font Mono Bold 10";
     background: #14171c;
     background-alt: #14171cE0;
-    foreground: #b8bfe5;
+    foreground: #abb2bf;
     selected: #8677cf;
     active: #81ae5f;
     urgent: #e06c75;
-    
+
     img-background: url("~/.config/bspwm/rices/isabel/rofi.webp", width);
 }

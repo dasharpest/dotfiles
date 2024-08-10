@@ -5,7 +5,7 @@
 # Show keybindings help
 #alt + F1
 #    OpenApps --KeyHelp
-	
+
 # Open Terminal
 super + Return
 	OpenApps --terminal
@@ -107,7 +107,7 @@ shift + alt {f,b,w,l,g,v,e,c,n,q,i,h,r,a,t,m,d,o,p,y,u,slash,comma,equal,period,
 
 # Random Wallpaper
 alt + super + w
-	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
+	WallRandom
 
 # Choose Wallpaper 
 ctrl + alt + w
