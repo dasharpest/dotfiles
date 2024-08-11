@@ -29,7 +29,7 @@ choose_terminal() {
     local chosen
     chosen=$(printf '%s\n' "${options[@]}" | rofi -theme "$ROFI_THEME" -mesg "[ Your current terminal is $MY_TERM ]" -dmenu -selected-row "$selected_index")
     
-    [[ -n "$chosen" ]] && echo "${chosen,,}" > "$CFG_TERM" && OpenApps --terminal
+    [[ -n "$chosen" ]] && echo "${chosen,,}" > "$CFG_TERM" && OpenApps --floating
 }
 
 # Terminal selector
