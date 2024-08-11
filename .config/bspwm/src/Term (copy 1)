@@ -51,8 +51,11 @@ case $MY_TERM in
             "--checkupdates")
                 alacritty --hold --class Updating,Updating -o window.dimensions.lines=22 window.dimensions.columns=47 -e Updates --print-updates
                 ;;
-            "--ranger")
+            "--ranger-float")
                 alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=14 window.dimensions.columns=90 -e ranger
+                ;;
+            "--ranger")
+                alacritty --class Fileman,Fileman -e ranger
                 ;;
             "--nvim")
                 alacritty -e nvim
@@ -84,6 +87,9 @@ case $MY_TERM in
                 ;;
             "--ranger")
                 kitty --hold --class=FloaTerm -o initial_window_width=844 -o initial_window_height=328 -e ranger
+                ;;
+            "--ranger")
+                kitty --class Fileman,Fileman -e ranger
                 ;;
             "--nvim")
                 kitty -e nvim
