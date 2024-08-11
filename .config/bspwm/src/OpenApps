@@ -64,7 +64,7 @@ case "$1" in
         Term --fetch
         ;;
 	--sysmon)
-		Term --sysmon
+		Term --btop
 		;;
 	--nvtop)
 		Term --nvtop

@@ -29,7 +29,7 @@ choose_terminal() {
     local chosen
     chosen=$(printf '%s\n' "${options[@]}" | rofi -theme "$ROFI_THEME" -mesg "[ Your current terminal is $MY_TERM ]" -dmenu -selected-row "$selected_index")
     
-    [[ -n "$chosen" ]] && echo "${chosen,,}" > "$CFG_TERM" ; OpenApps --floating &
+    [[ -n "$chosen" ]] && echo "${chosen,,}" > "$CFG_TERM" && OpenApps --terminal
 }
 
 # Terminal selector
@@ -56,6 +56,9 @@ case $MY_TERM in
                 ;;
             "--nvim")
                 alacritty -e nvim
+                ;;
+            "--btop")
+                alacritty -e btop
                 ;;
             "--music")
                 alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
@@ -84,6 +87,9 @@ case $MY_TERM in
                 ;;
             "--nvim")
                 kitty -e nvim
+                ;;
+            "--btop")
+                kitty -e btop
                 ;;
             "--music")
                 kitty --class=FloaTerm -o initial_window_width=637 -o initial_window_height=412 -e ncmpcpp
