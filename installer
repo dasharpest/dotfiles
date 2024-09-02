@@ -51,7 +51,7 @@ dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany
 			  alacritty brightnessctl dunst rofi lsd jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn meld tumbler cmake kvantum-qt5 pulsemixer redshift galculator \
 			  openbsd-netcat qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils dmidecode libguestfs \
 			  ntfs-3g exfatprogs android-udev gvfs-mtp gvfs gvfs-afc gvfs-goa gvfs-nfs gvfs-smb gvfs-google gvfs-gphoto2 \
-			  feh ueberzug maim pamixer libwebp xdg-user-dirs thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin \
+			  feh ueberzug maim pamixer libwebp xdg-user-dirs thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin android-tools \
 			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme plymouth newsboat fzf ytfzf syncthing nvtop htop chromium kitty redshift \
 			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels wget kvantum audacity ardour vivaldi vivaldi-ffmpeg-codecs \
 			  emacs-nativecomp fd ripgrep keepassxc lxappearance qt6ct qpwgraph qbittorrent yt-dlp mpv vim vim-runtime realtime-privileges \
@@ -77,12 +77,32 @@ do
 done
 sleep 2
 
-########## ---------- Set Rustup Version to Stable (so eww will Install) ---------- ##########
+########## ---------- Set Rustup Version to Stable ---------- ##########
 
 rustup default stable
 sleep 2
 
-########## ---------- Import Keys to Install EWW, Install Yay and Install EWW & Other Dependencies from AUR ---------- ##########
+########## ---------- Install EWW, Yay & Other Dependencies from AUR ---------- ##########
+
+## Installing Eww
+if command -v eww >/dev/null 2>&1; then
+    printf "\n%s%sEww is already installed%s\n" "${BLD}" "${CGR}" "${CNC}"
+else
+    printf "\n%s%sDownload and installing eww..%s\n" "${BLD}" "${CBL}" "${CNC}"
+    if curl -L https://github.com/gh0stzk/pkgs/raw/main/eww -o eww; then
+		echo "Download complete."
+		chmod +x eww
+		echo "Installing eww..."
+			if sudo install -Dm755 eww /usr/bin/eww; then
+				echo "Installation complete."
+				rm eww
+			else
+				echo "Error: Something happend..."
+			fi
+	else
+		echo "Error: The file can't be downloaded..."
+	fi
+fi
 
 # Installing Yay
 	if command -v yay >/dev/null 2>&1; then
@@ -102,10 +122,7 @@ sleep 2
 			}
 	fi
 
-curl -sS https://github.com/elkowar.gpg | gpg --import -i -
-curl -sS https://github.com/web-flow.gpg | gpg --import -i -
-
-aurdep=(eww-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin tutanota-desktop-bin betterlockscreen \
+aurdep=(tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin tutanota-desktop-bin betterlockscreen \
 		sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs \
 		brave-bin visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview) 
 
@@ -202,6 +219,7 @@ done
 [ -f ~/.nanorc ] && mv ~/.nanorc ~/dots_Backup/.nanorc-backup-"$date"
 [ -f ~/.vimrc ] && mv ~/.vimrc ~/dots_Backup/.vimrc-backup-"$date"
 [ -f ~/.lynxrc ] && mv ~/.lynxrc ~/dots_Backup/.lynxrc-backup-"$date"
+[ -f ~/.Xresources ] && mv ~/.Xresources ~/dots_Backup/.Xresources-backup-"$date"
 [ -f ~/.config/mimeapps.list ] && mv ~/.lynxrc ~/dots_Backup/mimeapp.list-backup-"$date"
 
 printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
@@ -345,6 +363,7 @@ cp -rf "$HOME"/ds-dotfiles/.lynxrc "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.nanorc "$HOME"
 cp -R "$HOME"/ds-dotfiles/.vscode "$HOME"
 cp -R "$HOME"/ds-dotfiles/.w3m "$HOME"
+cp -R "$HOME"/ds-dotfiles/.Xresources "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.zshrc "$HOME"
 cp -rf "$HOME"/ds-dotfiles/.vim_runtime/my_configs.vim ~/.vim_runtime/
 cp -rf "$HOME"/ds-dotfiles/.config/mimeapp.list "$HOME"/.config/
@@ -356,6 +375,7 @@ printf "%s%sFiles copied succesfully!!%s\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 1
 
 fc-cache -rv >/dev/null 2>&1
+xrdb -merge ~/.Xresources
 sleep 2
 
 ########## --------- Download and Copy Wallpapers ---------- ##########
