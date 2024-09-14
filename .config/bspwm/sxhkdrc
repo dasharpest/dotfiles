@@ -127,7 +127,7 @@ ctrl + alt + {plus,minus,t}
 
 # Screenshot Now
 Print
-	ScreenShoTer_nomenu --now
+	ScreenShoTer-nomenu --now
 
 # Screenshot Select
 ctrl + Print
