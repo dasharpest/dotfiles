@@ -52,11 +52,12 @@ dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany
 			  openbsd-netcat qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils dmidecode libguestfs \
 			  ntfs-3g exfatprogs android-udev gvfs-mtp gvfs gvfs-afc gvfs-goa gvfs-nfs gvfs-smb gvfs-google gvfs-gphoto2 \
 			  feh ueberzug maim pamixer libwebp xdg-user-dirs thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin android-tools \
-			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme plymouth newsboat fzf ytfzf syncthing nvtop htop chromium kitty redshift \
-			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels wget kvantum audacity ardour vivaldi vivaldi-ffmpeg-codecs \
+			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme plymouth newsboat fzf ytfzf syncthing nvtop htop chromium kitty redshift remmina gpodder \
+			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels wget kvantum audacity ardour vivaldi vivaldi-ffmpeg-codecs obsidian \
 			  emacs-nativecomp fd ripgrep keepassxc lxappearance qt6ct qpwgraph qbittorrent yt-dlp mpv vim vim-runtime realtime-privileges \
 			  unclutter npm python-gobject python-pipx python-pynvim neovim xsel go discord telegram-desktop gimp asciiquarium lynx w3m nano p7zip xarchiver evolution evolution-on evolution-ews \
 			  calf lsp-plugins-lv2 x42-plugins-lv2 distrho-ports-lv2 ambix-lv2 artyfx dpf-plugins-lv2 zam-plugins-lv2 linuxsampler gigedit mda.lv2 \
+			  ttf-ubuntu-mono-nerd xsettingsd \
 			  zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot xorg-xwininfo xorg-xrandr)
 
 is_installed() {
@@ -122,9 +123,9 @@ fi
 			}
 	fi
 
-aurdep=(tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin tutanota-desktop-bin betterlockscreen \
+aurdep=(picom-git lobster-git maestral dzr onedrivegui-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin \
 		sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs \
-		brave-bin visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview) 
+		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview tutanota-desktop-bin betterlockscreen) 
 
 is_installed() {
   yay -Qi "$1" &> /dev/null
@@ -143,6 +144,53 @@ do
   fi
 done
 sleep 2
+
+########## ---------- Add gh0stzk's    repo to pacman.conf ---------- ##########
+
+REPO_CONTENT="[gh0stzk-dotfiles]
+SigLevel = Optional TrustAll
+Server = http://gh0stzk.github.io/pkgs/x86_64"
+
+if ! grep -q "\[gh0stzk-dotfiles\]" /etc/pacman.conf; then
+    if echo -e "\n$REPO_CONTENT" | sudo tee -a /etc/pacman.conf >/dev/null 2>> RiceError.log; then
+		printf "%s%sgh0stzk-dotfiles%s repository added succesfully.%s\n" "${BLD}" "${CYE}" "${CGR}" "${CNC}"
+		sudo pacman -Syy
+		sleep 1
+	else
+		printf "%s%sFailded to add custom repo. See %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CYE}" "${CBL}" "${CYE}" "${CNC}"
+		sleep 1
+	fi
+else
+	printf "My custom repo already exists in your pacman.conf"
+	sleep 1
+fi
+sleep 5
+clear
+
+########## ---------- Install needed packages from gh0stzk's repo ---------- ##########
+
+customdeps=(gh0stzk-gtk-themes gh0stzk-cursor-qogirr \
+			gh0stzk-icons-beautyline gh0stzk-icons-candy gh0stzk-icons-catppuccin-mocha gh0stzk-icons-dracula gh0stzk-icons-glassy \
+			gh0stzk-icons-gruvbox-plus-dark gh0stzk-icons-hack gh0stzk-icons-luv gh0stzk-icons-sweet-rainbow gh0stzk-icons-tokyo-night \
+			gh0stzk-icons-vimix-white gh0stzk-icons-zafiro gh0stzk-icons-zafiro-purple)
+
+printf "%s%sChecking for required custom packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
+for cpaquete in "${customdeps[@]}"; do
+    if ! is_installed "$cpaquete"; then
+        if sudo pacman -S "$cpaquete" --noconfirm >/dev/null 2>> RiceError.log; then
+            printf "%s%s%s %shas been installed succesfully.%s\n" "${BLD}" "${CYE}" "$cpaquete" "${CBL}" "${CNC}"
+            sleep 1
+        else
+            printf "%s%s%s %shas not been installed correctly. See %sRiceError.log %sfor more details.%s\n" "${BLD}" "${CYE}" "$cpaquete" "${CRE}" "${CBL}" "${CRE}" "${CNC}"
+            sleep 1
+        fi
+    else
+        printf '%s%s%s %sis already installed on your system!%s\n' "${BLD}" "${CYE}" "$cpaquete" "${CGR}" "${CNC}"
+        sleep 1
+    fi
+done
+sleep 5
+clear
 
 ########## ---------- Prepare Folders ---------- ##########
 
