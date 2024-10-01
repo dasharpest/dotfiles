@@ -22,7 +22,7 @@ frame_width = 6
 frame_color = "#14171c"
 separator_color = "#abb2bf"
 
-font = JetBrainsMono NF Medium 9
+font = Inconsolata Semi Condensed Bold 9
 
 line_height = 0
 markup = full

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#  ██╗   ██╗ █████╗ ██████╗ ██╗███╗   ██╗██╗  ██╗ █████╗ 
+#  ██╗   ██╗ █████╗ ██████╗ ██╗███╗   ██╗██╗  ██╗ █████╗
 #  ██║   ██║██╔══██╗██╔══██╗██║████╗  ██║██║ ██╔╝██╔══██╗
 #  ██║   ██║███████║██████╔╝██║██╔██╗ ██║█████╔╝ ███████║
 #  ╚██╗ ██╔╝██╔══██║██╔══██╗██║██║╚██╗██║██╔═██╗ ██╔══██║
@@ -17,8 +17,8 @@
 read -r RICE < "$HOME"/.config/bspwm/.rice
 
 # Vars config for Varinka Rice
-# Bspwm border		# Fade windows true|false	# Shadows true|false	# Corner radius
-BORDER_WIDTH="1"	P_FADE="true"				P_SHADOWS="true"		P_CORNER_R="6"
+# Bspwm border		# Fade true|false	# Shadows true|false	# Corner radius		# Shadow color
+BORDER_WIDTH="1"	P_FADE="true"		P_SHADOWS="true"		P_CORNER_R="6"		SHADOW_C="#000000"
 
 # (Monochrome) colorscheme
 bg="#212529"  fg="#f8f9fa"
@@ -29,13 +29,17 @@ blackb="#343a40"  redb="#dee2e6"  greenb="#adb5bd"  yellowb="#e9ecef"
 blue="#495057"   magenta="#ced4da"   cyan="#6c757d"   white="#f8f9fa"
 blueb="#495057"  magentab="#ced4da"  cyanb="#6c757d"  whiteb="#f8f9fa"
 
+# Gtk theme vars
+gtk_theme="MonochromeBlue-zk"	gtk_icons="Vimix-White"	gtk_cursor="Qogirr-Dark"	geany_theme="z0mbi3-Monochromatic"
+
+
 # Set bspwm configuration
 set_bspwm_config() {
 	bspc config border_width ${BORDER_WIDTH}
-	bspc config top_padding 43
-	bspc config bottom_padding 2
-	bspc config left_padding 2
-	bspc config right_padding 2
+	bspc config top_padding 42
+	bspc config bottom_padding 1
+	bspc config left_padding 1
+	bspc config right_padding 1
 #	bspc config normal_border_color "${magenta}"
 	bspc config active_border_color "${green}"
 	bspc config focused_border_color "${white}"
@@ -140,7 +144,7 @@ color7  ${white}
 color15 ${whiteb}
 EOF
 
-pidof -x kitty && killall -USR1 kitty
+pidof -q kitty && killall -USR1 kitty
 }
 
 # Set compositor configuration
@@ -148,7 +152,7 @@ set_picom_config() {
 	sed -i "$HOME"/.config/bspwm/picom.conf \
 		-e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
 		-e "s/dock = .*/dock =  { fade = ${P_FADE}; }/g" \
-		-e "s/shadow-color = .*/shadow-color = \"${bg}\"/g" \
+		-e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
 		-e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
 		-e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
 		-e "s/\".*:class_g = 'kitty'\"/\"100:class_g = 'kitty'\"/g" \
@@ -159,9 +163,10 @@ set_picom_config() {
 set_dunst_config() {
 	sed -i "$HOME"/.config/bspwm/dunstrc \
 		-e "s/transparency = .*/transparency = 0/g" \
+		-e "s/icon_theme = .*/icon_theme = \"${gtk_icons}, Adwaita\"/g" \
 		-e "s/frame_color = .*/frame_color = \"${bg}\"/g" \
 		-e "s/separator_color = .*/separator_color = \"${blue}\"/g" \
-		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
+		-e "s/font = .*/font = Maple Mono NF Bold Italic 9/g" \
 		-e "s/foreground='.*'/foreground='${yellow}'/g"
 
 	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
@@ -216,6 +221,7 @@ set_launchers() {
 * {
     font: "Terminess Nerd Font Mono Bold 10";
     background: ${bg};
+    bg-alt: ${blackb};
     background-alt: ${bg}E0;
     foreground: ${fg};
     selected: ${magenta};
@@ -227,13 +233,40 @@ set_launchers() {
 EOF
 }
 
+set_appearance() {
+	# Set the gtk theme corresponding to rice
+	if pidof -q xsettingsd; then
+		sed -i "$HOME"/.config/bspwm/xsettingsd \
+			-e "s|Net/ThemeName .*|Net/ThemeName \"$gtk_theme\"|" \
+			-e "s|Net/IconThemeName .*|Net/IconThemeName \"$gtk_icons\"|" \
+			-e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$gtk_cursor\"|"
+	else
+		sed -i "$HOME"/.config/gtk-3.0/settings.ini \
+			-e "s/gtk-theme-name=.*/gtk-theme-name=$gtk_theme/" \
+			-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=$gtk_icons/" \
+			-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$gtk_cursor/"
+
+		sed -i "$HOME"/.gtkrc-2.0 \
+			-e "s/gtk-theme-name=.*/gtk-theme-name=\"$gtk_theme\"/" \
+			-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$gtk_icons\"/" \
+			-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$gtk_cursor\"/"
+	fi
+
+	sed -i -e "s/Inherits=.*/Inherits=$gtk_cursor/" "$HOME"/.icons/default/index.theme
+
+	# Reload daemon and apply gtk theme
+	pidof -q xsettingsd && killall -HUP xsettingsd
+	xsetroot -cursor_name left_ptr
+}
+
+# Apply Geany Theme
+set_geany(){
+	sed -i ${HOME}/.config/geany/geany.conf \
+	-e "s/color_scheme=.*/color_scheme=$geany_theme.conf/g"
+}
+
 # Launch theme
 launch_theme() {
-
-	# Launch polybar
-	for mon in $(polybar --list-monitors | cut -d":" -f1); do
-		MONITOR=$mon polybar -q varinka-bar -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
-	done
 
 	# Set default wallpaper for actual rice
 #	feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
@@ -241,6 +274,12 @@ launch_theme() {
 
 	# Launch dunst notification daemon
 	dunst -config "${HOME}"/.config/bspwm/dunstrc &
+
+	# Launch polybar
+	sleep 0.1
+	for mon in $(polybar --list-monitors | cut -d":" -f1); do
+		MONITOR=$mon polybar -q varinka-bar -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
+	done
 }
 
 ### Apply Configurations
@@ -249,6 +288,8 @@ set_bspwm_config
 set_term_config
 set_picom_config
 set_dunst_config
-launch_theme
 set_eww_colors
 set_launchers
+set_appearance
+set_geany
+launch_theme

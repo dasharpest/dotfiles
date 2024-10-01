@@ -1,18 +1,18 @@
 #  ╔═╗╔═╗╦ ╦╦═╗╔═╗  ╔═╗╔═╗╔╗╔╔═╗╦╔═╗
 #  ╔═╝╚═╗╠═╣╠╦╝║    ║  ║ ║║║║╠╣ ║║ ╦
 #  ╚═╝╚═╝╩ ╩╩╚═╚═╝  ╚═╝╚═╝╝╚╝╚  ╩╚═╝
-#	mas-nitido
+#
 #  ┬  ┬┌─┐┬─┐┌─┐
 #  └┐┌┘├─┤├┬┘└─┐
 #   └┘ ┴ ┴┴└─└─┘
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
 export BROWSERCLI='w3m'
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|htop|nvtop|y)"
 export PATH="$HOME/.config/emacs/bin:$PATH"
-export PATH=$PATH:~/.local/share/nvim/mason/bin
+
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
@@ -154,6 +154,7 @@ alias gpl="git pull"
 alias gcl="git clone"
 alias gs="git status"
 alias dots="/usr/bin/git --git-dir=/mnt/Data/git/dotfiles --work-tree=$HOME"
+alias lg="lazygit"
 
 alias pac="sudo pacman"
 alias ytf="ytfzf -t"
@@ -166,6 +167,11 @@ alias pks="pokemon-colorscripts -r --no-title"
 alias moon="curl wttr.in/Moon"
 alias nb="newsboat"
 alias wttr="curl wttr.in/"
+alias clcb="greenclip clear"
+
+alias drop="maestral"
+alias od-h="onedrive --confdir=~/.config/onedrive/accounts/****@hotmail.co.uk"
+alias od-o="onedrive --confdir=~/.config/onedrive/accounts/****@outlook.com"
 
 ### Function for crypto price (add ticker symbol for specific asset)
 ccp() {
@@ -202,6 +208,48 @@ ex () {
     echo "'$1' is not a valid file"
   fi
 }
+
+### MAESTRAL (Dropox sync)
+#compdef maestral
+
+_maestral_completion() {
+    local -a completions
+    local -a completions_with_descriptions
+    local -a response
+    (( ! $+commands[maestral] )) && return 1
+
+    response=("${(@f)$(env COMP_WORDS="${words[*]}" COMP_CWORD=$((CURRENT-1)) _MAESTRAL_COMPLETE=zsh_complete maestral)}")
+
+    for type key descr in ${response}; do
+        if [[ "$type" == "plain" ]]; then
+            if [[ "$descr" == "_" ]]; then
+                completions+=("$key")
+            else
+                completions_with_descriptions+=("$key":"$descr")
+            fi
+        elif [[ "$type" == "dir" ]]; then
+            _path_files -/
+        elif [[ "$type" == "file" ]]; then
+            _path_files -f
+        fi
+    done
+
+    if [ -n "$completions_with_descriptions" ]; then
+        _describe -V unsorted completions_with_descriptions -U
+    fi
+
+    if [ -n "$completions" ]; then
+        compadd -U -V unsorted -a completions
+    fi
+}
+
+if [[ $zsh_eval_context[-1] == loadautofunc ]]; then
+    # autoload from fpath, call function directly
+    _maestral_completion "$@"
+else
+    # eval/source/. command, register function for later
+    compdef _maestral_completion maestral
+fi
 
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │

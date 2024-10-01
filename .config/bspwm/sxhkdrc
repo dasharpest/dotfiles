@@ -22,7 +22,7 @@ ctrl + alt + @space
 
 # Rofi Widgets & Alt Sys Tools
 ctrl + alt + {l,t,n,a,c,v,b,m,r,Delete,p,s}
-	{betterlockscreen -l dimblur, \
+	{betterlockscreen -l -w dimblur, \
 	Term --selecterm, \
 	OpenApps --netmanager, \
 	OpenApps --android, \
@@ -48,51 +48,44 @@ super + {a,BackSpace}
 	{rofi_launcher,OpenApps --powermenu}
 
 # Applets & Alt Apps
-super + shift + {e,v,Return,o,f,b,a,t,m,c,u,g,period,apostrophe,w,equal,z}
+super + shift + {e,v,Return,o,n,r,b,a,t,m,u,g,period,apostrophe,w,equal,p,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
 	OpenApps --floating, \
 	tdrop -a -w 70% -h 35% -y -1% -x 15%  --class scratch alacritty --class=scratch, \
+	OpenApps --ranger, \
 	OpenApps --rangerfloat, \
 	brave --incognito, \
 	OpenApps --usercard, \
 	telegram-desktop, \
 	youtube-music, \
-	OpenApps --calendar, \
 	OpenApps --update, \
 	OpenApps --nvtop, \
-	OpenApps --screencast, \
+	gnome-network-displays, \
 	caprine, \
 	OpenApps --whats, \
 	galculator, \
+	gpodder, \
 	OpenApps --fetch}
 
 # Rofi Window Switch
 alt + Tab
 	rofi_windows
-
 button10
 	rofi_windows
 
 # Apps
-shift + alt {f,b,w,l,g,v,e,c,n,q,i,h,r,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apostrophe,k}
-	{firefox, \
-	brave, \
-	chromium, \
-	OpenApps --lynx, \
-	google-chrome-stable, \
-	vivaldi, \
-	geany, \
+shift + alt {e,c,n,q,g,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apostrophe,i,k}
+	{geany, \
 	code, \
 	thunar, \
-	qbittorrent, \
+	qbitorrent, \
 	flatpak run org.gimp.GIMP, \
     qpwgraph, \
-	OpenApps --ranger, \
 	OpenApps --soundcontrol, \
 	tutanota-desktop, \
 	env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify-tray --disable-gpu --no-zygote %U, \
-	discord, \
+	vesktop, \
 	onlyoffice-desktopeditors, \
 	popcorntime, \
 	audacity, \
@@ -101,9 +94,27 @@ shift + alt {f,b,w,l,g,v,e,c,n,q,i,h,r,a,t,m,d,o,p,y,u,slash,comma,equal,period,
 	surfshark, \
 	tradingview, \
 	freetube, \
-	gpt4all-chat, \
+	flatpak run io.gpt4all.gpt4all, \
 	evolution, \
+	chromium --profile-directory=Default --app-id=lnabneoegdnfkogedbhhmfmpfldogfjo, \
 	OpenApps --music}
+
+# KeyChords (Notes)
+super + n; {j,l,o}
+	{flatpak run net.cozic.joplin_desktop, \
+	flatpak run com.logseq.Logseq, \
+	obsidian}
+
+# KeyChords (Web)
+super + w; {b,c,g,f,l,r,v,w}
+	{brave, \
+	chromium, \	
+	google-chrome-stable, \
+	firefox, \
+	OpenApps --lynx, \
+	raindrop, \
+	vivaldi, \
+	zen-browser}
 
 # Random Wallpaper
 alt + super + w

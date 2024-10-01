@@ -57,6 +57,9 @@ case $MY_TERM in
             "--ranger")
                 alacritty --class Fileman,Fileman -e ranger
                 ;;
+            "--lynx")
+                alacritty --class Fileman,Fileman -e lynx
+                ;;
             "--nvim")
                 alacritty -e nvim
                 ;;
@@ -90,6 +93,9 @@ case $MY_TERM in
                 ;;
             "--ranger")
                 kitty --class Fileman,Fileman -e ranger
+                ;;
+            "--lynx")
+                kitty --class Fileman,Fileman -e lynx
                 ;;
             "--nvim")
                 kitty -e nvim

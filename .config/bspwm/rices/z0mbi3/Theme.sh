@@ -17,8 +17,8 @@
 read -r RICE < "$HOME"/.config/bspwm/.rice
 
 # Vars config for z0mbi3 Rice
-# Bspwm border		# Fade windows true|false	# Shadows true|false	# Corner radius
-BORDER_WIDTH="1"	P_FADE="true"				P_SHADOWS="true"		P_CORNER_R="6"
+# Bspwm border		# Fade true|false	# Shadows true|false	# Corner radius		# Shadow color
+BORDER_WIDTH="0"	P_FADE="true"		P_SHADOWS="true"		P_CORNER_R="6"		SHADOW_C="#000000"
 
 # (Decay, decayce variant) colorcheme
 bg="#0d0f18"  fg="#a5b6cf"
@@ -29,14 +29,18 @@ blackb="#3d414f"  redb="#dd6777"  greenb="#90ceaa"  yellowb="#ecd3a0"
 blue="#86aaec"   magenta="#c296eb"   cyan="#93cee9"   white="#cbced3"
 blueb="#86aaec"  magentab="#c296eb"  cyanb="#93cee9"  whiteb="#cbced3"
 
+# Gtk theme vars
+gtk_theme="Decayce-zk"	gtk_icons="Luv-Folders"	gtk_cursor="Qogirr-Dark"	geany_theme="z0mbi3-Decay"
+
+
 # Set bspwm configuration
 set_bspwm_config() {
 	bspc config border_width ${BORDER_WIDTH}
-	bspc config top_padding 3
-	bspc config bottom_padding 2
-	bspc config left_padding 68
-	bspc config right_padding 2
-#	bspc config normal_border_color "${black}"
+	bspc config top_padding 1
+	bspc config bottom_padding 1
+	bspc config left_padding 60
+	bspc config right_padding 1
+	bspc config normal_border_color "${black}"
 	bspc config active_border_color "${black}"
 	bspc config focused_border_color "${cyan}"
 	bspc config presel_feedback_color "${green}"
@@ -140,7 +144,7 @@ color7  ${white}
 color15 ${whiteb}
 EOF
 
-pidof -x kitty && killall -USR1 kitty
+pidof -q kitty && killall -USR1 kitty
 }
 
 # Set compositor configuration
@@ -148,7 +152,7 @@ set_picom_config() {
 	sed -i "$HOME"/.config/bspwm/picom.conf \
 		-e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
 		-e "s/dock = .*/dock =  { fade = ${P_FADE}; }/g" \
-		-e "s/shadow-color = .*/shadow-color = \"${bg}\"/g" \
+		-e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
 		-e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
 		-e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
 		-e "s/\".*:class_g = 'kitty'\"/\"100:class_g = 'kitty'\"/g" \
@@ -159,6 +163,7 @@ set_picom_config() {
 set_dunst_config() {
 	sed -i "$HOME"/.config/bspwm/dunstrc \
 		-e "s/transparency = .*/transparency = 0/g" \
+		-e "s/icon_theme = .*/icon_theme = \"Catppuccin-Mocha, Adwaita\"/g" \
 		-e "s/frame_color = .*/frame_color = \"${bg}\"/g" \
 		-e "s/separator_color = .*/separator_color = \"${black}\"/g" \
 		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
@@ -216,6 +221,7 @@ set_launchers() {
 * {
     font: "JetBrainsMono NF Bold 9";
     background: ${bg};
+    bg-alt: #151720;
     background-alt: ${bg}C7;
     foreground: ${fg};
     selected: ${magenta};
@@ -227,11 +233,40 @@ set_launchers() {
 EOF
 }
 
+set_appearance() {
+	# Set the gtk theme corresponding to rice
+	if pidof -q xsettingsd; then
+		sed -i "$HOME"/.config/bspwm/xsettingsd \
+			-e "s|Net/ThemeName .*|Net/ThemeName \"$gtk_theme\"|" \
+			-e "s|Net/IconThemeName .*|Net/IconThemeName \"$gtk_icons\"|" \
+			-e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$gtk_cursor\"|"
+	else
+		sed -i "$HOME"/.config/gtk-3.0/settings.ini \
+			-e "s/gtk-theme-name=.*/gtk-theme-name=$gtk_theme/" \
+			-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=$gtk_icons/" \
+			-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$gtk_cursor/"
+
+		sed -i "$HOME"/.gtkrc-2.0 \
+			-e "s/gtk-theme-name=.*/gtk-theme-name=\"$gtk_theme\"/" \
+			-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$gtk_icons\"/" \
+			-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$gtk_cursor\"/"
+	fi
+
+	sed -i -e "s/Inherits=.*/Inherits=$gtk_cursor/" "$HOME"/.icons/default/index.theme
+
+	# Reload daemon and apply gtk theme
+	pidof -q xsettingsd && killall -HUP xsettingsd
+	xsetroot -cursor_name left_ptr
+}
+
+# Apply Geany Theme
+set_geany(){
+	sed -i ${HOME}/.config/geany/geany.conf \
+	-e "s/color_scheme=.*/color_scheme=$geany_theme.conf/g"
+}
+
 # Launch theme
 launch_theme() {
-
-	# Launch eww bar
-	eww -c "${HOME}"/.config/bspwm/rices/"${RICE}"/bar open --toggle bar
 
 	# Set default wallpaper for actual rice
 #	feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
@@ -239,6 +274,20 @@ launch_theme() {
 
 	# Launch dunst notification daemon
 	dunst -config "${HOME}"/.config/bspwm/dunstrc &
+
+	# Launch eww bar
+	sleep 0.1
+	eww -c "${HOME}"/.config/bspwm/rices/"${RICE}"/bar open --toggle bar
+
+    # Fix eww,  when entering fullscreen state
+	bspc subscribe node_state | while read -r _ _ _ _ state flag; do
+        [[ "$state" == "fullscreen" ]] || continue
+            if [ "$flag" == on ]; then
+                HideBar -h
+            else
+                HideBar -u
+            fi
+    done &
 }
 
 ### Apply Configurations
@@ -247,6 +296,8 @@ set_bspwm_config
 set_term_config
 set_picom_config
 set_dunst_config
-launch_theme
 set_eww_colors
 set_launchers
+set_appearance
+set_geany
+launch_theme
