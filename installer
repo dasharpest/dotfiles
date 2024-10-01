@@ -123,7 +123,7 @@ fi
 	fi
 
 aurdep=(picom-git lobster-git maestral dzr onedrivegui-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin \
-		sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs \
+		sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs pavucontrol-gtk3 \
 		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview tutanota-desktop-bin betterlockscreen) 
 
 is_installed() {
