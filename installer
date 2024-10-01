@@ -57,8 +57,7 @@ dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany
 			  emacs-nativecomp fd ripgrep keepassxc lxappearance qt6ct qpwgraph qbittorrent yt-dlp mpv vim vim-runtime realtime-privileges \
 			  unclutter npm python-gobject python-pipx python-pynvim neovim xsel go discord telegram-desktop gimp asciiquarium lynx w3m nano p7zip xarchiver evolution evolution-on evolution-ews \
 			  calf lsp-plugins-lv2 x42-plugins-lv2 distrho-ports-lv2 ambix-lv2 artyfx dpf-plugins-lv2 zam-plugins-lv2 linuxsampler gigedit mda.lv2 \
-			  ttf-ubuntu-mono-nerd xsettingsd \
-			  zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot xorg-xwininfo xorg-xrandr)
+			  ttf-ubuntu-mono-nerd xsettingsd zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot xorg-xwininfo xorg-xrandr)
 
 is_installed() {
   pacman -Qi "$1" &> /dev/null
@@ -145,7 +144,7 @@ do
 done
 sleep 2
 
-########## ---------- Add gh0stzk's    repo to pacman.conf ---------- ##########
+########## ---------- Add gh0stzk's repo to pacman.conf ---------- ##########
 
 REPO_CONTENT="[gh0stzk-dotfiles]
 SigLevel = Optional TrustAll
