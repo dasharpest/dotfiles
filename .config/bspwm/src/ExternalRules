@@ -99,6 +99,9 @@ case "$class" in
 	Galculator)
 		result "state=floating focus=on center=on"
 		;;
+	Pavucontrol)
+		result "state=floating center=on"
+		;;
 	gnome-network-displays)
 		result "state=floating focus=on center=on"
 		;;
