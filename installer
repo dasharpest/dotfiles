@@ -47,7 +47,7 @@ while true; do
 # Remove archcraft apps, if installed
 sudo pacman -Rns archcraft-bspwm archcraft-vim archcraft-config-music archcraft-help archcraft-about archcraft-ranger archcraft-omz xfce-polkit gnu-netcat
 
-dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc picom xdo xdotool jgmenu viewnior nwg-look fastfetch btop networkmanager xcolor \
+dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc xdo xdotool jgmenu viewnior nwg-look fastfetch btop networkmanager xcolor \
 			  alacritty brightnessctl dunst rofi lsd jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn meld tumbler cmake kvantum-qt5 pulsemixer redshift galculator \
 			  openbsd-netcat qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils dmidecode libguestfs \
 			  ntfs-3g exfatprogs android-udev gvfs-mtp gvfs gvfs-afc gvfs-goa gvfs-nfs gvfs-smb gvfs-google gvfs-gphoto2 \
