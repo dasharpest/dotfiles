@@ -269,7 +269,7 @@ launch_theme() {
 
 	# Set default wallpaper for actual rice
 #	feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
-	feh --no-fehbg --bg-fill --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls/default.*
+	feh --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls/default.*
 
 	# Launch dunst notification daemon
 	dunst -config "${HOME}"/.config/bspwm/dunstrc &
