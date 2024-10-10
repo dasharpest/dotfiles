@@ -1,0 +1,8 @@
+[Unit]
+Description=Media on Toshilab
+
+[Automount]
+Where=/mnt/data
+
+[Install]
+WantedBy=multi-user.target
