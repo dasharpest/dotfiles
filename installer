@@ -48,6 +48,7 @@ while true; do
 sudo pacman -Rns archcraft-bspwm archcraft-vim archcraft-config-music archcraft-help archcraft-about archcraft-ranger archcraft-omz xfce-polkit gnu-netcat
 
 dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany geany-plugins ranger mpc xdo xdotool jgmenu viewnior nwg-look fastfetch btop networkmanager xcolor \
+			  gstreamer gst-plugins-good gst-plugins-bad gst-plugins-base gst-plugins-ugly \
 			  alacritty brightnessctl dunst rofi lsd jq polkit-gnome git playerctl mpd xclip neovim lazygit zoxide yarn meld tumbler cmake kvantum-qt5 pulsemixer redshift galculator \
 			  openbsd-netcat qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils dmidecode libguestfs \
 			  ntfs-3g exfatprogs android-udev gvfs-mtp gvfs gvfs-afc gvfs-goa gvfs-nfs gvfs-smb gvfs-google gvfs-gphoto2 \
@@ -123,7 +124,7 @@ fi
 	fi
 
 aurdep=(picom-git lobster-git maestral dzr onedrivegui-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin \
-		sddm-git emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs pavucontrol-gtk3 \
+		emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs pavucontrol-gtk3 \
 		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview tutanota-desktop-bin betterlockscreen) 
 
 is_installed() {
@@ -143,6 +144,12 @@ do
   fi
 done
 sleep 2
+
+########## ---------- Install 'nb' (cli notes app) ---------- ##########
+
+sudo wget https://raw.github.com/xwmx/nb/master/nb -O /usr/local/bin/nb &&
+  sudo chmod +x /usr/local/bin/nb &&
+  sudo nb completions install
 
 ########## ---------- Add gh0stzk's repo to pacman.conf ---------- ##########
 
