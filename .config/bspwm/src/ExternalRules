@@ -99,6 +99,9 @@ case "$class" in
 	Galculator)
 		result "state=floating focus=on center=on"
 		;;
+	Virt-manager)
+		result "state=floating desktop=^5 follow=on center=on"
+		;;
 	Pavucontrol)
 		result "state=floating center=on"
 		;;

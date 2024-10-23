@@ -1,6 +1,6 @@
-import = ["~/.config/alacritty/rice-colors.toml", "~/.config/alacritty/fonts.toml"]
+general.import = ["~/.config/alacritty/rice-colors.toml", "~/.config/alacritty/fonts.toml"]
 
-live_config_reload = true
+general.live_config_reload = true
 
 [cursor]
 blink_interval = 550
@@ -28,7 +28,7 @@ multiplier = 3
 x = 15
 y = 15
 
-[bell]
-animation = "Linear"
-duration = 0
-command = { program = "paplay", args = ["/usr/share/sounds/freedesktop/stereo/dialog-error.oga"] }
+#[bell]
+#animation = "Linear"
+#duration = 0
+#command = { program = "paplay", args = ["/usr/share/sounds/freedesktop/stereo/dialog-error.oga"] }
