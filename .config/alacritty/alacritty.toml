@@ -1,6 +1,6 @@
-general.import = ["~/.config/alacritty/rice-colors.toml", "~/.config/alacritty/fonts.toml"]
-
-general.live_config_reload = true
+[general]
+import = ["~/.config/alacritty/rice-colors.toml", "~/.config/alacritty/fonts.toml"]
+live_config_reload = true
 
 [cursor]
 blink_interval = 550
