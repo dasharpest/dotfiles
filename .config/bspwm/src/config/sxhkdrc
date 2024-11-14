@@ -75,7 +75,7 @@ button10
 	rofi_windows
 
 # Apps
-shift + alt {e,c,n,q,g,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apostrophe,i,k}
+shift + alt {e,c,n,q,g,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apostrophe,k}
 	{geany, \
 	code, \
 	thunar, \
@@ -96,7 +96,6 @@ shift + alt {e,c,n,q,g,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apos
 	freetube, \
 	flatpak run io.gpt4all.gpt4all, \
 	evolution, \
-	chromium --profile-directory=Default --app-id=lnabneoegdnfkogedbhhmfmpfldogfjo, \
 	OpenApps --music}
 
 # KeyChords (Notes)

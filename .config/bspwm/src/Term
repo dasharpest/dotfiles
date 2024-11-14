@@ -70,7 +70,7 @@ case $MY_TERM in
                 alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
                 ;;
             "--fetch")
-                alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=40 -e ~/.local/bin/sysfetch
+                alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=4 -e ~/.local/bin/sysfetch
                 ;;
         esac
         ;;

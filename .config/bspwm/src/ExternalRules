@@ -88,7 +88,13 @@ case "$class" in
 		result "state=floating follow=on rectangle=1240x900+0+0 center=on"
 		;;
 	Nvidia-settings)
-		result "state=floating follow=on rectangle=1240x900+0+0 center=on"
+		result "state=floating follow=on center=on"
+		;;
+	Viewnior)
+		result "state=floating focus=on center=on"
+		;;
+	TelegramDesktop)
+		result "state=floating focus=on center=on"
 		;;
 	Fileman)
 		result "desktop=^2 follow=on"

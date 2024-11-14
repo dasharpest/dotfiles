@@ -10,7 +10,7 @@
 
 # Screenshot general options
 timestamp=$(date +%Y-%m-%d-%H%M%S)
-dir="$(xdg-user-dir PICTURES)/Screenshots"
+dir="$(xdg-user-dir PICTURES)/ScreenShots"
 filename="$dir/Shot-${timestamp}.png"
 
 # Create dir if not exists
@@ -54,7 +54,7 @@ take_screenshot() {
 
 countdown() {
     for sec in $(seq "$1" -1 1); do
-        dunstify -t 1000 -i  ~/.config/bspwm/assets/screenshot.png "Taking shot in : $sec"
+        dunstify -t 1000 -i  ~/.config/bspwm/src/assets/screenshot.png "Taking shot in : $sec"
         sleep 1
     done
 }

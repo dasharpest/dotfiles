@@ -5,7 +5,9 @@ configuration {
     show-icons:                 false;
 }
 
+
 @import "shared.rasi"
+
 
 window {
     transparency:                "real";
