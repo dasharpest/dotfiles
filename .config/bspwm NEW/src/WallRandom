@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Set some variables
-read -r current_rice < "$HOME"/.config/bspwm/.rice
-wall_dir="$HOME/.config/bspwm/rices/$current_rice/walls"
-
-# Set wallpaper
-feh -z --no-fehbg --bg-fill "${wall_dir}"
