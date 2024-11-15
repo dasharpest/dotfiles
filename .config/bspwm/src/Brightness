@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Author : rxyhn
 
-DIR="$HOME/.config/bspwm/src/assets"
+DIR="$HOME/.config/bspwm/assets"
 BRIGHTNESS_STEPS=5
 
 function get_brightness {

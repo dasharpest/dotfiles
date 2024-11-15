@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+#
+#  ██████╗ ███████╗██████╗ ██╗    ██╗███╗   ███╗██████╗  ██████╗
+#  ██╔══██╗██╔════╝██╔══██╗██║    ██║████╗ ████║██╔══██╗██╔════╝
+#  ██████╔╝███████╗██████╔╝██║ █╗ ██║██╔████╔██║██████╔╝██║
+#  ██╔══██╗╚════██║██╔═══╝ ██║███╗██║██║╚██╔╝██║██╔══██╗██║
+#  ██████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║██║  ██║╚██████╗
+#  ╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+#
+
+read -r RICETHEME < "${HOME}"/.config/bspwm/.rice
+
+export PATH="$HOME/.config/bspwm/src:$PATH"
+export XDG_CURRENT_DESKTOP='bspwm'
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+#  ╦ ╦╔═╗╦═╗╦╔═╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗
+#  ║║║║ ║╠╦╝╠╩╗╚═╗╠═╝╠═╣║  ║╣ ╚═╗
+#  ╚╩╝╚═╝╩╚═╩ ╩╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
+
+for monitor in $(xrandr -q | grep -w 'connected' | cut -d' ' -f1); do
+    bspc monitor "$monitor" -d '1' '2' '3' '4' '5' '6'
+    #bspc monitor "$monitor" -d '' '' '' '' '' ''
+done
+
+## For two or three monitors configuration see https://github.com/gh0stzk/dotfiles/wiki/Two-or-more-monitors-setup
+
+#  ╔╗ ╔═╗╔═╗╦ ╦╔╦╗  ╔═╗╔═╗╔╗╔╔═╗╦╔═╗
+#  ╠╩╗╚═╗╠═╝║║║║║║  ║  ║ ║║║║╠╣ ║║ ╦
+#  ╚═╝╚═╝╩  ╚╩╝╩ ╩  ╚═╝╚═╝╝╚╝╚  ╩╚═╝
+
+bspc config external_rules_command "${HOME}"/.config/bspwm/src/ExternalRules
+
+bspc config window_gap                5
+bspc config split_ratio               0.51
+bspc config single_monocle            true
+bspc config borderless_monocle        false
+bspc config gapless_monocle           false
+
+bspc config focus_follows_pointer     true
+bspc config pointer_follows_focus     false
+bspc config pointer_motion_interval   5
+bspc config pointer_modifier          mod4
+bspc config pointer_action1           move
+bspc config pointer_action2           resize_side
+bspc config pointer_action3           resize_corner
+
+bspc rule -a scratch sticky=on state=floating focus=on
+
+bspc rule -a '*:*:Picture-in-picture' state=floating
+bspc rule -a '*:*:pop-up' state=floating
+bspc rule -a '*:*:Picture in picture' state=floating
+
+#  ╔═╗╦ ╦╔╦╗╔═╗╔═╗╔╦╗╔═╗╦═╗╔╦╗
+#  ╠═╣║ ║ ║ ║ ║╚═╗ ║ ╠═╣╠╦╝ ║
+#  ╩ ╩╚═╝ ╩ ╚═╝╚═╝ ╩ ╩ ╩╩╚═ ╩
+
+"$HOME"/.config/bspwm/src/SetSysVars
+
+"${HOME}"/.config/bspwm/rices/"${RICETHEME}"/Theme.sh
+
+pidof -q sxhkd || { sxhkd -c "${HOME}"/.config/bspwm/src/config/sxhkdrc & }
+
+pidof -q picom || { picom --config "${HOME}"/.config/bspwm/src/config/picom.conf & }
+
+pidof -q xsettings || { xsettingsd --config="${HOME}"/.config/bspwm/src/config/xsettingsd >/dev/null 2>&1 & }
+
+pidof -q eww || { eww -c "${HOME}"/.config/bspwm/eww daemon & }
+
+pidof -q greenclip || { greenclip daemon & }
+
+pidof -q polkit-gnome-authentication-agent-1 || { /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & }
+
+exec libinput-gestures-setup desktop autostart start &
+
+xsetroot -cursor_name left_ptr
+
+unclutter &
+
+exec mpd &
+
+/usr/bin/emacs --daemon &
+
+start-kp.sh &
+start-ss.sh &
+
+## 1 > terminal (always open emacs on workspace-1)
+declare -a term=(Emacs)
+for i in ${term[@]}; do
+   bspc rule -a $i state=tiled desktop='^1' follow=on focus=on; done
+
+## 2 > files (always open file manager on workspace-2)
+declare -a files=(qBittorrent Thunar) 
+for i in ${files[@]}; do
+   bspc rule -a $i desktop='^2' follow=on focus=on; done
+
+## 3 > brows (always open general browsers on workspace-3)
+declare -a brows=(firefox vesktop)
+for i in ${brows[@]}; do
+   bspc rule -a $i desktop='^3' follow=on focus=on; done
+
+## 4 > code (always open editors on workspace-4)
+declare -a code=(Geany Code)
+for i in ${code[@]}; do
+   bspc rule -a $i desktop='^4' follow=on focus=on; done
+
+## 5 > wrk (always open work browser on workspace-5)
+declare -a wrk=(Brave-browser Vivaldi-stable)
+for i in ${wrk[@]}; do
+   bspc rule -a $i desktop='^5' follow=on focus=on; done
+
+## 6 > vid (always open yt-video on workspace-6)
+declare -a vid=(FreeTube)
+for i in ${vid[@]}; do
+   bspc rule -a $i desktop='^6' follow=on focus=on; done

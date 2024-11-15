@@ -10,18 +10,15 @@
 #  About   :  This file will configure and launch the rice.
 #
 
+# Terminate existing processes if necessary.
+. "${HOME}"/.config/bspwm/src/Process.bash
+
 # Current Rice
 read -r RICE < "$HOME"/.config/bspwm/.rice
 
-# Terminate or reload existing processes if necessary.
-. "${HOME}"/.config/bspwm/src/Process.bash
-
 # Vars config for h4ck3r Rice
-# Bspwm border		# Normal border color	# Focused border color
-BORDER_WIDTH="1"	NORMAL_BC="#4A9801"		FOCUSED_BC="#76EA00"
-
-# Fade true|false	# Shadows true|false	# Corner radius		# Shadow color			# Animations true|false
-P_FADE="false"		P_SHADOWS="false"		P_CORNER_R="0"		SHADOW_C="#000000"		ANIMATIONS="false"
+# Bspwm border		# Fade true|false	# Shadows true|false	# Corner radius		# Shadow color
+BORDER_WIDTH="1"	P_FADE="false"		P_SHADOWS="false"		P_CORNER_R="0"		SHADOW_C="#000000"
 
 # (Hack The box) colorscheme
 bg="#0c1018"  fg="#1947e0"
@@ -35,7 +32,6 @@ blueb="#7eb3f7"  magentab="#220991"  cyanb="#3a11f0"  whiteb="#3b5eed"
 # Gtk theme vars
 gtk_theme="h4ck3r-zk"	gtk_icons="Hack"	gtk_cursor="Qogirr-Dark"	geany_theme="z0mbi3-HackTheBox"
 
-
 # Set bspwm configuration
 set_bspwm_config() {
 	bspc config border_width ${BORDER_WIDTH}
@@ -43,8 +39,9 @@ set_bspwm_config() {
 	bspc config bottom_padding 1
 	bspc config left_padding 1
 	bspc config right_padding 1
-#	bspc config normal_border_color "${NORMAL_BC}"
-	bspc config focused_border_color "${FOCUSED_BC}"
+#	bspc config normal_border_color "${black}"
+	bspc config active_border_color "${magenta}"
+	bspc config focused_border_color "${yellow}"
 	bspc config presel_feedback_color "${cyan}"
 }
 
@@ -151,32 +148,19 @@ pidof -q kitty && killall -USR1 kitty
 
 # Set compositor configuration
 set_picom_config() {
-	picom_conf_file="$HOME/.config/bspwm/src/config/picom.conf"
-	picom_rules_file="$HOME/.config/bspwm/src/config/picom-rules.conf"
-
-	sed -i "$picom_conf_file" \
-		-e "s/shadow = .*/shadow = ${P_SHADOWS};/" \
-		-e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/" \
-		-e "s/fading = .*/fading = ${P_FADE};/" \
-		-e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/"
-
-	sed -i "$picom_rules_file" \
-		-e "95s/	opacity = .*/	opacity = 1;/"
-
-	if [[ "$ANIMATIONS" = "true" ]]; then
-		sed -i "$picom_rules_file" \
-			-e '/picom-animations/c\@include "picom-animations.conf"'
-	else
-		sed -i "$picom_rules_file" \
-			-e '/picom-animations/c\#@include "picom-animations.conf"'
-	fi
+	sed -i "$HOME"/.config/bspwm/picom.conf \
+		-e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
+		-e "s/dock = .*/dock =  { fade = ${P_FADE}; }/g" \
+		-e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
+		-e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
+		-e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
+		-e "s/\".*:class_g = 'kitty'\"/\"100:class_g = 'kitty'\"/g" \
+		-e "s/\".*:class_g = 'FloaTerm'\"/\"100:class_g = 'FloaTerm'\"/g"
 }
 
 # Set dunst config
 set_dunst_config() {
-	dunst_config_file="$HOME/.config/bspwm/src/config/dunstrc"
-
-	sed -i "$dunst_config_file" \
+	sed -i "$HOME"/.config/bspwm/dunstrc \
 		-e "s/transparency = .*/transparency = 0/g" \
 		-e "s/icon_theme = .*/icon_theme = \"BeautyLine, Adwaita\"/g" \
 		-e "s/frame_color = .*/frame_color = \"${bg}\"/g" \
@@ -184,8 +168,8 @@ set_dunst_config() {
 		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
 		-e "s/foreground='.*'/foreground='${red}'/g"
 
-	sed -i '/urgency_low/Q' "$dunst_config_file"
-	cat >>"$dunst_config_file" <<-_EOF_
+	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
+	cat >>"$HOME"/.config/bspwm/dunstrc <<-_EOF_
 		[urgency_low]
 		timeout = 3
 		background = "${bg}"
@@ -222,7 +206,7 @@ EOF
 
 set_launchers() {
 	# Jgmenu
-	sed -i "$HOME"/.config/bspwm/src/config/jgmenurc \
+	sed -i "$HOME"/.config/bspwm/jgmenurc \
 		-e "s/color_menu_bg = .*/color_menu_bg = ${bg}/" \
 		-e "s/color_norm_fg = .*/color_norm_fg = ${fg}/" \
 		-e "s/color_sel_bg = .*/color_sel_bg = #1B2333/" \
@@ -246,21 +230,12 @@ set_launchers() {
     img-background: url("~/.config/bspwm/rices/${RICE}/rofi.webp", width);
 }
 EOF
-
-	# Screenlock colors
-	sed -i "$HOME"/.config/bspwm/src/ScreenLocker \
-		-e "s/bg=.*/bg=${bg:1}/" \
-		-e "s/fg=.*/fg=${yellow:1}/" \
-		-e "s/ring=.*/ring=${bg:1}/" \
-		-e "s/wrong=.*/wrong=${red:1}/" \
-		-e "s/date=.*/date=${yellow:1}/" \
-		-e "s/verify=.*/verify=${yellow:1}/"
 }
 
 set_appearance() {
 	# Set the gtk theme corresponding to rice
 	if pidof -q xsettingsd; then
-		sed -i "$HOME"/.config/bspwm/src/config/xsettingsd \
+		sed -i "$HOME"/.config/bspwm/xsettingsd \
 			-e "s|Net/ThemeName .*|Net/ThemeName \"$gtk_theme\"|" \
 			-e "s|Net/IconThemeName .*|Net/IconThemeName \"$gtk_icons\"|" \
 			-e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$gtk_cursor\"|"
@@ -292,8 +267,12 @@ set_geany(){
 # Launch theme
 launch_theme() {
 
+	# Set default wallpaper for actual rice
+#	feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
+	feh --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls/default.*
+
 	# Launch dunst notification daemon
-	dunst -config "${HOME}"/.config/bspwm/src/config/dunstrc &
+	dunst -config "${HOME}"/.config/bspwm/dunstrc &
 
 	# Launch polybar
 	sleep 0.1

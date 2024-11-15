@@ -20,23 +20,23 @@ transparency = 0
 
 gap_size = 3
 separator_height = 1
-separator_color = "#abb2bf"
+separator_color = "#bb9af7"
 
 padding = 15
 horizontal_padding = 15
 text_icon_padding = 0
 
 frame_width = 0
-frame_color = "#14171c"
+frame_color = "#1a1b26"
 
 sort = no
 idle_threshold = 0
 
-font = Inconsolata Semi Condensed Bold 9
+font = JetBrainsMono NF Medium 9
 line_height = 0
 
 markup = full
-format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#7560d3'>%s</span>\n%b"
+format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#7aa2f7'>%s</span>\n%b"
 alignment = center
 vertical_alignment = center
 
@@ -49,7 +49,7 @@ hide_duplicate_count = true
 show_indicators = yes
 
 enable_recursive_icon_lookup = true
-icon_theme = "Qogir-Dark, Adwaita"
+icon_theme = "TokyoNight-SE, Adwaita"
 icon_position = left
 min_icon_size = 60
 max_icon_size = 90
@@ -83,15 +83,15 @@ class = Dunst
 
 [urgency_low]
 timeout = 3
-background = "#14171c"
-foreground = "#81ae5f"
+background = "#1a1b26"
+foreground = "#9ece6a"
 
 [urgency_normal]
 timeout = 5
-background = "#14171c"
-foreground = "#abb2bf"
+background = "#1a1b26"
+foreground = "#a9b1d6"
 
 [urgency_critical]
 timeout = 0
-background = "#14171c"
-foreground = "#be5046"
+background = "#1a1b26"
+foreground = "#f7768e"

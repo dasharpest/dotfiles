@@ -10,8 +10,9 @@ options=(
 
 rofi_cmd() {
 	rofi -dmenu \
-		-p "Goodbye ${USER}" \
+		-p "Goodbye, ${USER}" \
 		-mesg "Uptime: $(uptime -p | sed -e 's/up //g')" \
+		-no-click-to-exit \
 		-theme "$HOME"/.config/bspwm/src/rofi-themes/PowerMenu.rasi
 }
 

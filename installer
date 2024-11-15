@@ -58,7 +58,7 @@ dependencies=(base-devel rustup pacman-contrib bspwm polybar sxhkd ncmpcpp geany
 			  emacs-nativecomp fd ripgrep keepassxc lxappearance qt6ct qpwgraph qbittorrent yt-dlp mpv vim vim-runtime realtime-privileges \
 			  unclutter npm python-gobject python-pipx python-pynvim neovim xsel go discord telegram-desktop gimp asciiquarium lynx w3m nano p7zip xarchiver evolution evolution-on evolution-ews \
 			  calf lsp-plugins-lv2 x42-plugins-lv2 distrho-ports-lv2 ambix-lv2 artyfx dpf-plugins-lv2 zam-plugins-lv2 linuxsampler gigedit mda.lv2 \
-			  ttf-ubuntu-mono-nerd xsettingsd zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot xorg-xwininfo xorg-xrandr)
+			  ttf-ubuntu-mono-nerd xsettingsd zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot xorg-xwininfo xorg-xrandr yazi)
 
 is_installed() {
   pacman -Qi "$1" &> /dev/null
@@ -125,7 +125,7 @@ fi
 
 aurdep=(picom-git lobster-git maestral dzr onedrivegui-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin \
 		emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs pavucontrol-gtk3 \
-		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview tutanota-desktop-bin betterlockscreen) 
+		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview tutanota-desktop-bin i3lock-color betterlockscreen) 
 
 is_installed() {
   yay -Qi "$1" &> /dev/null
@@ -483,10 +483,40 @@ sudo gpasswd -a $USER input
 ########## --------- Change shell to zsh ---------- ##########
 
 	if [[ $SHELL != "/usr/bin/zsh" ]]; then
-		printf "\n%s%sChanging your shell to zsh. Your root password is needed.%s\n\n" "${BLD}" "${CYE}" "${CNC}"
-		chsh -s /usr/bin/zsh
-		printf "%s%sShell changed to zsh. Please Reboot to Complete Installation%s\n\n" "${BLD}" "${CGR}" "${CNC}"
-	else
-		printf "%s%sYour shell is already zsh. Please Reboot to Complete Installation\%s\n" "${BLD}" "${CGR}" "${CNC}"
-	fi
-zsh
+        printf "%s%sChanging your shell to zsh...%s\n\n" "${BLD}" "${CYE}" "${CNC}"
+
+        if chsh -s /usr/bin/zsh 2> >(tee -a "$ERROR_LOG"); then
+            printf "\n%s[%sOK%s%s] Shell changed to zsh successfully!%s\n\n" "${BLD}" "${CGR}" "${CNC}" "${BLD}" "${CNC}"
+        else
+            printf "%s%sError changing your shell to zsh. Please check %sRiceError.log%s for details%s\n\n" \
+                   "${BLD}" "${CRE}" "${CYE}" "${CRE}" "${CNC}"
+            log_error "Failed to change shell to zsh"
+        fi
+    else
+        printf "%s%sYour shell is already zsh%s\n\n" "${BLD}" "${CGR}" "${CNC}"
+    fi
+sleep 2
+clear
+
+########## --------- exit ---------- ##########
+
+printf "%sThe installation is complete, you %sneed%s to restart your machine.%s\n\n" "${BLD}" "${CBL}" "${CNC}" "${CNC}"
+
+	while true; do
+		read -rp " Reboot now? [y/N]: " yn
+		case $yn in
+			[Yy]* )
+				printf "\n%s%sRebooting now...%s\n" "${BLD}" "${CGR}" "${CNC}"
+				sleep 2
+				reboot
+				break
+				;;
+			[Nn]* )
+				printf "\n%s%sOK, remember to restart later!%s\n\n" "${BLD}" "${CYE}" "${CNC}"
+				break
+				;;
+			* )
+				printf "\n%s%sPlease answer yes or no.%s\n\n" "${BLD}" "${CRE}" "${CNC}"
+				;;
+		esac
+	done

@@ -4,7 +4,10 @@ Name=Ledger Live
 Comment=Launches the ledger live app
 Icon=~/.local/share/applications/ledger.png
 Terminal=false
-Exec=/home/sharpest/.appimage/ledger-live-desktop.AppImage
-Categories=Graphics;Utility;
+Exec=/home/sharpest/.appimage/ledger-live.AppImage
+Categories=Utility;
 MimeType=inode/directory;
-#Keywords=File;Manager;Browser;Explorer;Launcher;
+Keywords=File;Manager;Browser;Explorer;Launcher;Grapics
+
+#	version:
+#	2.91.0

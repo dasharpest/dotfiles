@@ -6,19 +6,26 @@
 #  ██╔══██╗╚════██║██╔═══╝ ██║███╗██║██║╚██╔╝██║██╔══██╗██║
 #  ██████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║██║  ██║╚██████╗
 #  ╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-#
+#	Author	-	gh0stzk
+#	Repo	-	https://github.com/gh0stzk/dotfiles
+#	Copyright (C) 2021-2024 gh0stzk <z0mbi3.zk@protonmail.com>
+#	Modified By:
+#	- https://github.com/dasharpest/dotfiles
 
+# Current rice
 read -r RICETHEME < "${HOME}"/.config/bspwm/.rice
 
+# Set environment variables
 export PATH="$HOME/.config/bspwm/src:$PATH"
 export XDG_CURRENT_DESKTOP='bspwm'
-
+## Fix java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 #  ╦ ╦╔═╗╦═╗╦╔═╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗
 #  ║║║║ ║╠╦╝╠╩╗╚═╗╠═╝╠═╣║  ║╣ ╚═╗
 #  ╚╩╝╚═╝╩╚═╩ ╩╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
 
+# Default 1 monitor with 6 workspaces
 for monitor in $(xrandr -q | grep -w 'connected' | cut -d' ' -f1); do
     bspc monitor "$monitor" -d '1' '2' '3' '4' '5' '6'
     #bspc monitor "$monitor" -d '' '' '' '' '' ''
@@ -48,28 +55,32 @@ bspc config pointer_action3           resize_corner
 
 bspc rule -a scratch sticky=on state=floating focus=on
 
-bspc rule -a '*:*:Picture-in-picture' state=floating
-bspc rule -a '*:*:pop-up' state=floating
-bspc rule -a '*:*:Picture in picture' state=floating
-
 #  ╔═╗╦ ╦╔╦╗╔═╗╔═╗╔╦╗╔═╗╦═╗╔╦╗
 #  ╠═╣║ ║ ║ ║ ║╚═╗ ║ ╠═╣╠╦╝ ║
 #  ╩ ╩╚═╝ ╩ ╚═╝╚═╝ ╩ ╩ ╩╩╚═ ╩
 
+# Set system vars for polybar
 "$HOME"/.config/bspwm/src/SetSysVars
 
+# Load current theme
 "${HOME}"/.config/bspwm/rices/"${RICETHEME}"/Theme.sh
 
-pidof -q sxhkd || { sxhkd -c "${HOME}"/.config/bspwm/src/config/sxhkdrc & }
+# Launch sxhkd daemon
+pidof -q sxhkd || { sxhkd -c "${HOME}"/.config/bspwm/sxhkdrc & }
 
-pidof -q picom || { picom --config "${HOME}"/.config/bspwm/src/config/picom.conf & }
+# Launch picom
+pidof -q picom || { picom --config "${HOME}"/.config/bspwm/picom.conf & }
 
-pidof -q xsettings || { xsettingsd --config="${HOME}"/.config/bspwm/src/config/xsettingsd >/dev/null 2>&1 & }
+# Launch xsettingsd
+pidof -q xsettings || { xsettingsd --config="${HOME}"/.config/bspwm/xsettingsd & }
 
+# Launch eww daemon
 pidof -q eww || { eww -c "${HOME}"/.config/bspwm/eww daemon & }
 
+# Launch clipboard daemon
 pidof -q greenclip || { greenclip daemon & }
 
+# Launch polkit
 pidof -q polkit-gnome-authentication-agent-1 || { /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & }
 
 exec libinput-gestures-setup desktop autostart start &
@@ -81,9 +92,6 @@ unclutter &
 exec mpd &
 
 /usr/bin/emacs --daemon &
-
-start-kp.sh &
-start-ss.sh &
 
 ## 1 > terminal (always open emacs on workspace-1)
 declare -a term=(Emacs)
@@ -114,3 +122,13 @@ for i in ${wrk[@]}; do
 declare -a vid=(FreeTube)
 for i in ${vid[@]}; do
    bspc rule -a $i desktop='^6' follow=on focus=on; done
+
+bspc rule -a '*:*:Picture-in-picture' state=floating
+bspc rule -a '*:*:pop-up' state=floating
+bspc rule -a '*:*:Picture in picture' state=floating
+
+# Launch Surfshark VPN & KeepassXC if not runnng
+
+start-kp.sh &
+#	start-ob.sh &
+start-ss.sh &
