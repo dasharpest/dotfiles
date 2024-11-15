@@ -48,8 +48,8 @@ case "$1" in
     --android)
 		AndroidMount
 		;;
-    --ranger)
-        Term --ranger
+    --yazi)
+        Term --yazi
         ;;
     --lynx)
         Term --lynx
@@ -69,8 +69,8 @@ case "$1" in
 	--nvtop)
 		Term --nvtop
 		;;
-	--rangerfloat)
-		Term --ranger-float
+	--yazifloat)
+		Term --yazi-float
 		;;
         # Apps
     --filemanager)

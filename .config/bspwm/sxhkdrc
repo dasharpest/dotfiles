@@ -48,13 +48,13 @@ super + {a,BackSpace}
 	{rofi_launcher,OpenApps --powermenu}
 
 # Applets & Alt Apps
-super + shift + {e,v,Return,o,n,r,b,a,t,m,u,g,period,apostrophe,w,equal,p,z}
+super + shift + {e,v,Return,o,n,y,b,a,t,m,u,g,period,apostrophe,w,equal,p,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
 	OpenApps --floating, \
 	tdrop -a -w 70% -h 35% -y -1% -x 15%  --class scratch alacritty --class=scratch, \
-	OpenApps --ranger, \
-	OpenApps --rangerfloat, \
+	OpenApps --yazi, \
+	OpenApps --yazifloat, \
 	brave --incognito, \
 	OpenApps --usercard, \
 	telegram-desktop, \
