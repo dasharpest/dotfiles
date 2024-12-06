@@ -72,6 +72,12 @@ case $MY_TERM in
             "--fetch")
                 alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=4 -e ~/.local/bin/sysfetch
                 ;;
+            "--matrix")
+                alacritty --class FullScreen,FullScreen -e rmatrix -u 9
+                ;;
+            "--asciaq")
+				alacritty --class FullScreen,FullScreen -e ~/.local/bin/asciifish
+				;;
         esac
         ;;
     "kitty")
@@ -109,6 +115,12 @@ case $MY_TERM in
             "--fetch")
                 kitty --class=FloaTerm -o initial_window_width=394 -o initial_window_height=580 -e ~/.local/bin/sysfetch
                 ;;
+            "--matrix")
+                kitty --class FullScreen,FullScreen -e rmatrix -u 9
+                ;;
+            "--asciaq")
+				kitty --class FullScreen,FullScreen -e ~/.local/bin/asciifish
+				;;
         esac
         ;;
 esac

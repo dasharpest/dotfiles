@@ -21,7 +21,7 @@ ctrl + alt + @space
 	RiceSelector-new
 
 # Rofi Widgets & Alt Sys Tools
-ctrl + alt + {l,t,n,a,c,v,b,m,r,Delete,p,s}
+ctrl + alt + {l,t,n,a,c,v,b,m,0,9,r,Delete,p,s}
 	{betterlockscreen -l -w dimblur, \
 	Term --selecterm, \
 	OpenApps --netmanager, \
@@ -30,6 +30,8 @@ ctrl + alt + {l,t,n,a,c,v,b,m,r,Delete,p,s}
 	OpenApps --clipboard, \
 	OpenApps --bluetooth, \
 	OpenApps --player, \
+	OpenApps --matrixscr, \
+	OpenApps --aquascr, \
 	rofi_asroot, \
 	OpenApps --sysmon, \
 	bspcolorpicker, \
@@ -79,7 +81,7 @@ shift + alt {e,c,n,q,g,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apos
 	{geany, \
 	code, \
 	thunar, \
-	qbitorrent, \
+	qbittorrent, \
 	flatpak run org.gimp.GIMP, \
     qpwgraph, \
 	OpenApps --soundcontrol, \

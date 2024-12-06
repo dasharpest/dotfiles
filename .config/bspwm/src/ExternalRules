@@ -66,6 +66,9 @@ case "$class" in
         dimensions=$(calculate_dimensions 53 53)
 		result "state=floating focus=on center=on rectangle=$dimensions"
         ;;
+	FullScreen)
+		result "state=fullscreen"
+		;;
 	firefox|Navigator)
 		result "desktop=^3 follow=on"
 		;;
