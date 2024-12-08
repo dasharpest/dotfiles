@@ -5,6 +5,10 @@
 #  ┬  ┬┌─┐┬─┐┌─┐
 #  └┐┌┘├─┤├┬┘└─┐
 #   └┘ ┴ ┴┴└─└─┘
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 export TERMINAL='alacritty'
@@ -12,6 +16,7 @@ export BROWSER='firefox'
 export BROWSERCLI='w3m'
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|htop|nvtop|y)"
 export PATH="$HOME/.config/emacs/bin:$PATH"
+export BAT_THEME="base16"
 
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
@@ -85,6 +90,12 @@ function dir_icon {
 
 PS1='%B%F{blue}%f%b  %B%F{magenta}%n%f%b $(dir_icon)  %B%F{red}%~%f%b${vcs_info_msg_0_} %(?.%B%F{green}.%F{red})%f%b '
 
+# command not found
+command_not_found_handler() {
+	printf "%s%s? I know not what is...\n" "$acc" "$0" >&2
+    return 127
+}
+
 #  ┌─┐┬  ┬ ┬┌─┐┬┌┐┌┌─┐
 #  ├─┘│  │ ││ ┬││││└─┐
 #  ┴  ┴─┘└─┘└─┘┴┘└┘└─┘
@@ -132,9 +143,13 @@ alias vm-off="sudo systemctl stop libvirtd.service"
 alias vb-on="sudo systemctl start vboxweb.service"
 alias vb-off="sudo systemctl stop vboxweb.service"
 
+alias agon="sudo cp /etc/resolv.adguard.conf /etc/resolv.conf"
+alias agoff="sudo cp /etc/resolv.clearnet.conf /etc/resolv.conf"
+
+alias cat="bat --theme=base16"
 alias ls="lsd -a --group-directories-first"
 alias ll="lsd -la --group-directories-first"
-alias lf="ranger"
+alias lf="yazi"
 alias cdl="cd $1 && ls"
 alias mkcd="mkcd_alias() { mkdir "$1" && cd "$1"; }; mkcd_alias"
 alias mkdir="mkdir -p"
@@ -146,32 +161,31 @@ alias .3='cd ../../..'
 alias .4=' ../../../..'
 alias .5='cd ../../../../..'
 
-alias gg="cd /mnt/Data/git"
+alias gg="cd ~/Git"
 alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
 alias gpl="git pull"
 alias gcl="git clone"
 alias gs="git status"
-alias dots="/usr/bin/git --git-dir=/mnt/Data/git/dotfiles --work-tree=$HOME"
+alias dots="/usr/bin/git --git-dir=~/Git/bare --work-tree=$HOME"
 alias lg="lazygit"
 
 alias pac="sudo pacman"
 alias ytf="ytfzf -t"
 alias musica="ncmpcpp"
-alias aq="asciiquarium"
 alias nf="neofetch"
 alias ff="fastfetch"
 alias clc="tty-clock"
 alias pks="pokemon-colorscripts -r --no-title"
 alias moon="curl wttr.in/Moon"
-alias nb="newsboat"
+alias nbt="newsboat"
 alias wttr="curl wttr.in/"
 alias clcb="greenclip clear"
 
 alias drop="maestral"
-alias od-h="onedrive --confdir=~/.config/onedrive/accounts/****@hotmail.co.uk"
-alias od-o="onedrive --confdir=~/.config/onedrive/accounts/****@outlook.com"
+alias od-h="onedrive --confdir=/home/sharpest/.config/onedrive/accounts/da_sharpest@hotmail.co.uk"
+alias od-o="onedrive --confdir=/home/sharpest/.config/onedrive/accounts/dasharpest@outlook.com"
 
 ### Function for crypto price (add ticker symbol for specific asset)
 ccp() {
@@ -213,3 +227,13 @@ ex () {
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │
 #  ┴ ┴└─┘ ┴ └─┘  └─┘ ┴ ┴ ┴┴└─ ┴
 pokemon-colorscripts -r --no-title
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/sharpest/.dart-cli-completion/zsh-config.zsh ]] && . /home/sharpest/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

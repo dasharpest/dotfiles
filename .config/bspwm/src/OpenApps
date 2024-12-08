@@ -72,6 +72,12 @@ case "$1" in
 	--yazifloat)
 		Term --yazi-float
 		;;
+	--matrixscr)
+		Term --matrix
+		;;
+	--aquascr)
+		Term --asciaq
+		;;
         # Apps
     --filemanager)
         thunar
@@ -92,7 +98,7 @@ case "$1" in
         pavucontrol
         ;;
 	--emacs-c)
-		emacsclient -c -a "";;
+		emacsclient -c -a 'emacs' ;;
         # Eww Widgets
     --KeyHelp)
 		eww -c "$WIDGET_DIR" open --toggle csheet

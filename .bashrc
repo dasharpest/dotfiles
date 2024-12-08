@@ -33,19 +33,19 @@ alias vb-off="sudo systemctl stop vboxweb.service"
 
 alias ls='ls --color=auto'
 alias la='ls -a --color=auto'
-alias lf="ranger"
+alias lf="yazi"
 alias cdl="cd $1 && ls"
 alias mkcd="mkcd_alias() { mkdir "$1" && cd "$1"; }; mkcd_alias"
 alias mkdir="mkdir -p"
 
-alias gg="cd /run/media/sharpest/Data/git"
+alias gg="cd ~/Git"
 alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
 alias gpl="git pull"
 alias gcl="git clone"
 alias gs="git status"
-alias dots="/usr/bin/git --git-dir=/run/media/sharpest/Data/git/dotfiles --work-tree=$HOME"
+alias dots="/usr/bin/git --git-dir=~/Git/bare --work-tree=$HOME"
 
 alias kn="keyname"
 alias ytf="ytfzf -t"
@@ -56,3 +56,9 @@ alias clc="tty-clock"
 alias pks="pokemon-colorscripts -r --no-title"
 alias moon="curl wttr.in/Moon"
 alias nb="newsboat"
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4=' ../../../..'
+alias .5='cd ../../../../..'
