@@ -4,10 +4,15 @@
 
 export PS1="\[$(tput setaf 139)\]\u\[$(tput setaf 109)\]@\[$(tput setaf 39)\]\h \[$(tput setaf 114)\]\w \[$(tput sgr0)\]$ "
 export PS1="\[\e[38;5;140m\]\u\[\e[38;5;109m\]@\[\e[38;5;39m\]\h \[\e[38;5;114m\]\w \[\033[0m\]$ "
-export VISUAL='vim'
-export EDITOR='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
+export BROWSERCLI='w3m'
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..|htop|nvtop|y)"
+export PATH="$HOME/.config/emacs/bin:$PATH"
+export BAT_THEME="base16"
+export MANPAGER="nvim +Man!"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
