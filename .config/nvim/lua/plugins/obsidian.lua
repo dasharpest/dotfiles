@@ -70,7 +70,14 @@ return {
     -- Optional, default tags to add to each new daily note created.
     default_tags = { "daily-notes" },
     -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-    template = nil
+    template = "trading-journal-template.md"
+  },
+
+  -- Optional, for templates (see below).
+  templates = {
+    folder = "~/notes/vault/templates",
+    -- A map for custom variables, the key should be the variable and the value a function
+    substitutions = {},
   },
 
       -- Open URL under cursor in browser (uses `open` for MacOS).

@@ -20,11 +20,11 @@ return {
 
         -- Menu
         dashboard.section.buttons.val = {
-            dashboard.button("e", "󰈔 New file", ":ene <BAR> startinsert<CR>"),
-            dashboard.button("r", "󱔗 Recent files", ":Telescope oldfiles<CR>"),
-            dashboard.button("f", "󰱼 Find file", ":Telescope find_files<CR>"),
-            dashboard.button("g", "󰺮 Find text", ":Telescope live_grep <CR>"),
-            dashboard.button("q", " Quit", ":qa<CR>"),
+            dashboard.button("<leader>   e", "󰈔 New file", ":ene <BAR> startinsert<CR>"),
+            dashboard.button("<leader>   r", "󱔗 Recent files", ":Telescope oldfiles<CR>"),
+            dashboard.button("<leader> f f", "󰱼 Find file", ":Telescope find_files<CR>"),
+            dashboard.button("<leader>   g", "󰺮 Find text", ":Telescope live_grep <CR>"),
+            dashboard.button("<leader>   q", " Quit", ":qa<CR>"),
         }
 
         -- Footer

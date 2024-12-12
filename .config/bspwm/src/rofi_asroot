@@ -5,19 +5,20 @@
 # Import Current Theme
 DIR="$HOME/.config/bspwm"
 RASI="$DIR/src/rofi-themes/asroot.rasi"
+CFG_TERM="$HOME/.config/bspwm/src/.term"
 
 # Theme Elements
 prompt='Root'
 mesg="Run Applications As Root"
-term='alacritty --class alacritty-float,alacritty-float --config-file /root/.config/bspwm/alacritty/alacritty.toml'
+term=$(< "$CFG_TERM")
 
 # Options
 layout=`cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
-	option_1=" Alacritty"
+	option_1=" Terminal"
 	option_2=" Thunar"
 	option_3=" Geany"
-	option_4=" Ranger"
+	option_4=" Yazi"
 	option_5=" Vim"
 else
 	option_1=""
@@ -50,7 +51,7 @@ run_cmd() {
 	elif [[ "$1" == '--opt3' ]]; then
 		bspasroot geany
 	elif [[ "$1" == '--opt4' ]]; then
-		bspasroot "$term -e ranger"
+		bspasroot "$term -e yazi"
 	elif [[ "$1" == '--opt5' ]]; then
 		bspasroot "$term -e vim"
 	fi
