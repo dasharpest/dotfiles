@@ -123,8 +123,8 @@ fi
 			}
 	fi
 
-aurdep=(picom-git lobster-git dzr onedrivegui-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin \
-		emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs pavucontrol-gtk3 rmatrix \
+aurdep=(picom-git lobster-git dzr onedrivegui-git tdrop-git xqp shellcheck-bin pandoc-bin tty-clock cava networkmanager-dmenu-git freetube-bin zen-browser-bin \
+		emacs-libvterm-git gnome-network-displays-git popcorntime-bin nvm invada-studio-plugins-lv2 ttf-maple rofi-greenclip simple-mtpfs pavucontrol-gtk3 rmatrix-git \
 		brave-bin google-chrome visual-studio-code-bin spotify-adblock-git yet-another-spotify-tray-git onlyoffice-bin tradingview tutanota-desktop-bin i3lock-color betterlockscreen) 
 
 is_installed() {
