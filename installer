@@ -474,6 +474,24 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 yay -S libinput-gestures-git --noconfirm
 sudo gpasswd -a $USER input
 
+########## ---------- Install Flatpak and add overides --------- ##########
+
+sudo pacman -S flatpak
+
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+flatpak install --user -y flathub
+flatpak remove --unused
+
+gtkTheme=$(gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g")
+gtkIcon=$(gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g")
+
+flatpak --user override --filesystem=~/.themes
+flatpak --user override --filesystem=~/.icons
+
+flatpak --user override --env=GTK_THEME=${gtkTheme}
+flatpak --user override --env=ICON_THEME=${gtkIcon}
+
 ########## --------- Change shell to zsh ---------- ##########
 
 	if [[ $SHELL != "/usr/bin/zsh" ]]; then
