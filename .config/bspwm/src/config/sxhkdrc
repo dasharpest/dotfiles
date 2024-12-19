@@ -42,8 +42,8 @@ button2
   xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/src/config/jgmenu.txt --config-file=~/.config/bspwm/src/config/jgmenurc
 
 # Power off, Reboot, Log out, Lockscreen, kill an app
-ctrl + super + alt + {p,r,q,l,k}
-	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
+ctrl + super + alt + {p,r,q,l,k,s}
+	{systemctl poweroff, systemctl reboot,bspc quit,ScreenLocker,xkill,SoftReload}
 
 # Rofi Apps Full & Power Launcher
 super + {a,BackSpace}
@@ -101,9 +101,8 @@ shift + alt {e,c,n,q,g,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apos
 	OpenApps --music}
 
 # KeyChords (Notes)
-super + n; {j,l,o}
-	{flatpak run net.cozic.joplin_desktop, \
-	flatpak run com.logseq.Logseq, \
+super + n; {j,o}
+	{~/.joplin/Joplin.AppImage, \
 	obsidian}
 
 # KeyChords (Web)

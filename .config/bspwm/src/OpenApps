@@ -98,7 +98,7 @@ case "$1" in
         pavucontrol
         ;;
 	--emacs-c)
-		emacsclient -c -a 'emacs' ;;
+		emacsclient -c;;
         # Eww Widgets
     --KeyHelp)
 		eww -c "$WIDGET_DIR" open --toggle csheet
