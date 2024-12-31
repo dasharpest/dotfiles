@@ -7,18 +7,19 @@
 monitor = 0
 follow = mouse
 
-#width = 300
-#height = 300
+width = (300, 400)
+#height = (0, 200)
 origin = top-right
-offset = 10x72
+offset = (10, 50)
 scale = 0
 
 notification_limit = 20
 indicate_hidden = yes
 
 transparency = 0
+corner_radius = 6
 
-gap_size = 3
+gap_size = 4
 separator_height = 1
 separator_color = "#abb2bf"
 
@@ -27,7 +28,7 @@ horizontal_padding = 15
 text_icon_padding = 0
 
 frame_width = 0
-frame_color = "#14171c"
+frame_color = "#8677cf"
 
 sort = no
 idle_threshold = 0
@@ -41,7 +42,7 @@ alignment = center
 vertical_alignment = center
 
 show_age_threshold = 60
-ellipsize = middle
+#ellipsize = middle
 ignore_newline = no
 stack_duplicates = false
 hide_duplicate_count = true
@@ -49,7 +50,7 @@ hide_duplicate_count = true
 show_indicators = yes
 
 enable_recursive_icon_lookup = true
-icon_theme = "Qogir-Dark, Adwaita"
+icon_theme = Qogir, Adwaita
 icon_position = left
 min_icon_size = 60
 max_icon_size = 90
@@ -62,8 +63,6 @@ history_length = 25
 browser = /usr/bin/xdg-open
 always_run_script = true
 ignore_dbusclose = false
-
-corner_radius = 5
 
 force_xinerama = false
 

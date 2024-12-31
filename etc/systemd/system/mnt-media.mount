@@ -6,6 +6,7 @@ What=//192.168.68.92/media
 Where=/mnt/media
 Type=cifs
 Options=rw,username=localshare,password=********,file_mode=0644,dir_mode=0755,uid=1000,gid=1000
+TimeoutIdleSec=0
 
 [Install]
 WantedBy=multi-user.target

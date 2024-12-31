@@ -476,21 +476,25 @@ sudo gpasswd -a $USER input
 
 ########## ---------- Install Flatpak and add overides --------- ##########
 
-sudo pacman -S flatpak
+#	sudo pacman -S flatpak
 
-flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+#	flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-flatpak install --user -y flathub
-flatpak remove --unused
+#	flatpak install --user -y flathub
+#	flatpak remove --unused
 
-gtkTheme=$(gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g")
-gtkIcon=$(gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g")
+#	flatpak install --user -y org.gimp.GIMP org.gimp.GIMP.Plugin.Resynthesizer org.gimp.GIMP.Plugin.LiquidRescale org.gimp.GIMP.Plugin.Lensfun org.gimp.GIMP.Plugin.GMic org.gimp.GIMP.Plugin.Fourier org.gimp.GIMP.Plugin.FocusBlur org.gimp.GIMP.Plugin.BIMP
 
-flatpak --user override --filesystem=~/.themes
-flatpak --user override --filesystem=~/.icons
+###	   1) runtime/org.gimp.GIMP.Plugin.Resynthesizer/x86_64/2-3.36
 
-flatpak --user override --env=GTK_THEME=${gtkTheme}
-flatpak --user override --env=ICON_THEME=${gtkIcon}
+#	gtkTheme=$(gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g")
+#	gtkIcon=$(gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g")
+
+#	flatpak --user override --filesystem=~/.themes
+#	flatpak --user override --filesystem=~/.icons
+
+#	flatpak --user override --env=GTK_THEME=${gtkTheme}
+#	flatpak --user override --env=ICON_THEME=${gtkIcon}
 
 ########## --------- Change shell to zsh ---------- ##########
 

@@ -34,7 +34,7 @@ fi
 }
 
 update_system() {
-	yay -Syu --combinedupgrade=false
+	yay -Syu --combinedupgrade=false && flatpak update -y
 	echo -e
 	echo -e "\033[1m\033[32mDone ..\033[0m"
 }

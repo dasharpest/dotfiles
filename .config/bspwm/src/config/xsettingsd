@@ -1,6 +1,6 @@
-Net/ThemeName "TokyoNight-zk"
-Net/IconThemeName "TokyoNight-SE"
-Gtk/CursorThemeName "Qogirr-Dark"
+Net/ThemeName "Manhattan"
+Net/IconThemeName "Qogir"
+Gtk/CursorThemeName "Adwaita"
 Gtk/DecorationLayout ":"
 Xft/Hinting 1
 Xft/HintStyle "hintslight"

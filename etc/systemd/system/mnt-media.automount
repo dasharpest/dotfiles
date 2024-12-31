@@ -3,6 +3,7 @@ Description=Media on Toshilab
 
 [Automount]
 Where=/mnt/media
+TimeoutIdleSec=0
 
 [Install]
 WantedBy=multi-user.target
