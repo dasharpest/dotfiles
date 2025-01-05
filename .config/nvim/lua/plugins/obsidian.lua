@@ -78,7 +78,7 @@ return {
     -- Optional, if you want to change the date format of the default alias of daily notes.
     alias_format = "%A %B %-d, %Y",
     -- Location of template
-    folder = "~/notes/vault/templates",
+    folder = "~/notes/vault/Templates",
     -- A map for custom variables, the key should be the variable and the value a function
   },
 
