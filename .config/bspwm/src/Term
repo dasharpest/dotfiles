@@ -70,7 +70,7 @@ case $MY_TERM in
                 alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=18 window.dimensions.columns=67 -e ncmpcpp
                 ;;
             "--fetch")
-                alacritty --class FloaTerm,FloaTerm -o window.dimensions.lines=26 window.dimensions.columns=4 -e ~/.local/bin/sysfetch
+                alacritty --class FetchTerm,FetchTerm -o window.dimensions.lines=26 window.dimensions.columns=4 -e ~/.local/bin/sysfetch
                 ;;
             "--matrix")
                 alacritty --class FullScreen,FullScreen -e rmatrix -u 9
@@ -113,7 +113,7 @@ case $MY_TERM in
                 kitty --class=FloaTerm -o initial_window_width=637 -o initial_window_height=412 -e ncmpcpp
                 ;;
             "--fetch")
-                kitty --class=FloaTerm -o initial_window_width=394 -o initial_window_height=580 -e ~/.local/bin/sysfetch
+                kitty --class=FetchTerm -o initial_window_width=394 -o initial_window_height=580 -e ~/.local/bin/sysfetch
                 ;;
             "--matrix")
                 kitty --class FullScreen,FullScreen -e rmatrix -u 9
