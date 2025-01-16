@@ -116,5 +116,6 @@ declare -a vid=(FreeTube)
 for i in ${vid[@]}; do
    bspc rule -a $i desktop='^6' follow=on focus=on; done
 
+start-nc.sh &
 start-kp.sh &
 start-ss.sh &
