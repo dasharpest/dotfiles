@@ -1,8 +1,8 @@
-Net/ThemeName "Manhattan"
-Net/IconThemeName "Qogir"
-Gtk/CursorThemeName "Adwaita"
+Net/ThemeName "OneDark-zk"
+Net/IconThemeName "Zafiro-Purple"
+Gtk/CursorThemeName "Qogirr-Dark"
 Gtk/DecorationLayout ":"
 Xft/Hinting 1
-Xft/HintStyle "hintslight"
+Xft/HintStyle "hintfull"
 Xft/Antialias 1
-Xft/RGBA "rgb"
+Xft/RGBA "none"

@@ -1,6 +1,0 @@
-{
-    "telemetry.telemetryLevel": "off",
-    "workbench.colorTheme": "One Dark Pro",
-    "workbench.startupEditor": "none",
-    "security.workspace.trust.untrustedFiles": "open"
-}

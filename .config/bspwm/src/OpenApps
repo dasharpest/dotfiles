@@ -5,72 +5,75 @@
 #  ██╔══██║██╔═══╝ ██╔═══╝ ╚════██║    ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗
 #  ██║  ██║██║     ██║     ███████║    ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║
 #  ╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝    ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-# Script to control prefered apps to launch for all themes
-# Author: z0mbi3
-# url:    https://github.com/gh0stzk
+#	Script to control prefered apps to launch for all themes
+#	Author: z0mbi3
+#	url:    https://github.com/gh0stzk/dotfiles
 
 WIDGET_DIR="$HOME/.config/bspwm/eww"
 
 case "$1" in
-    --menu)
-        rofi -show drun -theme "$HOME"/.config/bspwm/src/rofi-themes/Launcher.rasi 
-        ;;
-    --rice)
-        RiceSelector
-        ;;
-    --terminal)
-        Term --terminal
-        ;;
-    --floating)
-        Term --floating
-        ;;
-    --update)
-        Term --update 
-        ;;
-    --checkupdates)
-        Term --checkupdates
-        ;;
-    --netmanager)
+	--menu)
+		rofi -show drun -theme "$HOME"/.config/bspwm/src/rofi-themes/Launcher.rasi
+		;;
+	--rice)
+		RiceSelector
+		;;
+	--terminal)
+		Term --terminal
+		;;
+	--floating)
+		Term --floating
+		;;
+	--update)
+		Term --update
+		;;
+	--checkupdates)
+		Term --checkupdates
+		;;
+	--netmanager)
 		NetManagerDM
 		;;
 	--bluetooth)
 		rofi-bluetooth
 		;;
 	--clipboard)
-		rofi -modi "clipboard:greenclip print" -theme "$HOME"/.config/bspwm/src/rofi-themes/Clipboard.rasi -show clipboard -run-command '{cmd}'
+		clipcat-menu
 		;;
 	--screenshot)
 		ScreenShoTer
 		;;
 	--powermenu)
-        PowerMenu
-        ;;
-    --android)
+		PowerMenu
+		;;
+	--android)
 		AndroidMount
 		;;
-    --yazi)
-        Term --yazi
-        ;;
+	--keyboard)
+		KeyBoardL
+		;;
+	--yazi)
+		Term --yazi
+		;;
     --lynx)
         Term --lynx
         ;;
-    --nvim)
-        Term --nvim
-        ;;
-    --music)
-        Term --music
-        ;;
-    --fetch)
-        Term --fetch
-        ;;
+	--nvim)
+		Term --nvim
+		;;
+	--music)
+		Term --music
+		;;
+	--fetch)
+		Term --fetch
+		;;
 	--sysmon)
 		Term --btop
 		;;
-	--nvtop)
-		Term --nvtop
+	--scratch)
+		Term --scratch
 		;;
-	--yazifloat)
-		Term --yazi-float
+	--yaziscratch)
+		Term --yaziscratch
 		;;
 	--matrixscr)
 		Term --matrix
@@ -78,41 +81,42 @@ case "$1" in
 	--aquascr)
 		Term --asciaq
 		;;
-        # Apps
-    --filemanager)
-        thunar
-        ;;
-    --browser)
-        firefox
-        ;;
-    --editor)
-        geany
-        ;;
-    --telegram)
-        telegram-desktop
-        ;;
+		# Apps
+	--filemanager)
+		thunar
+		;;
+	--browser)
+		firefox
+		;;
+	--editor)
+		geany
+		;;
+	--telegram)
+		telegram-desktop
+		;;
     --whats)
         whatsdesk --disable-gpu
-        ;;
-    --soundcontrol)
-        pavucontrol
-        ;;
+		;;
+	--soundcontrol)
+		pavucontrol
+		;;
 	--emacs-c)
-		emacsclient -c;;
-        # Eww Widgets
-    --KeyHelp)
+		emacsclient -c
+		;;
+		# Eww Widgets
+	--KeyHelp)
 		eww -c "$WIDGET_DIR" open --toggle csheet
 		;;
-    --usercard)
-        eww -c "$WIDGET_DIR" open --toggle launchermenu
-        ;;
-    --player)
-        eww -c "$WIDGET_DIR" open --toggle music
-        ;;
-    --calendar)
-        eww -c "$WIDGET_DIR" open --toggle date
-        ;;
-    *)
-        echo "Invalid Option"
-        ;;
+	--usercard)
+		eww -c "$WIDGET_DIR" open --toggle launchermenu
+		;;
+	--player)
+		eww -c "$WIDGET_DIR" open --toggle music
+		;;
+	--calendar)
+		eww -c "$WIDGET_DIR" open --toggle date
+		;;
+	*)
+		echo "Invalid Option"
+		;;
 esac

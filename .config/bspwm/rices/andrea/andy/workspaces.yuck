@@ -1,0 +1,13 @@
+;; Workspaces ;;
+(deflisten workspace0 "scripts/WorkSpaces eDP-1")
+
+;; Workspaces Widgets ;;
+(defwidget workspace0 [] (literal :content workspace0))
+
+;; Workspaces Main Widget ;;
+(defwidget workspaces [monitor]
+    (box :halign "center"
+         :spacing 15
+         :space-evenly "false"
+         (box :visible { monitor=="eDP-1" } (workspace0))
+))

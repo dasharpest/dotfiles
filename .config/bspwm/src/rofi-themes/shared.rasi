@@ -1,5 +1,3 @@
-// Rofi colors for Isabel
-
 * {
     font: "Terminess Nerd Font Mono Bold 10";
     background: #14171c;

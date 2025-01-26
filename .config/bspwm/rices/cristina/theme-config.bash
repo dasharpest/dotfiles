@@ -1,6 +1,8 @@
 #############################
 #		Cristina Theme		#
 #############################
+# Copyright (C) 2021-2025 gh0stzk <z0mbi3.zk@protonmail.com>
+# https://github.com/gh0stzk/dotfiles
 
 # (Rose-Pine Moon) colorschenme
 bg="#232136"
@@ -23,13 +25,20 @@ magentab="#c3a5e6"
 cyanb="#ebbcba"
 whiteb="#e0def4"
 
+accent_color="#2a2740"
+arch_icon="#0f94d2"
+
 # Bspwm options
-BORDER_WIDTH="0"		# Bspwm border
-NORMAL_BC="#9bced7"		# Normal border color
+BORDER_WIDTH="1"		# Bspwm border
+TOP_PADDING="53"
+BOTTOM_PADDING="1"
+LEFT_PADDING="1"
+RIGHT_PADDING="1"
+NORMAL_BC="#000000"		# Normal border color
 FOCUSED_BC="#c3a5e6"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
+term_font_size="7"
 term_font_name="JetBrainsMono Nerd Font"
 
 # Picom options
@@ -39,7 +48,7 @@ SHADOW_C="#000000"		# Shadow color
 P_CORNER_R="6"			# Corner radius (0 = disabled)
 P_BLUR="false"			# Blur true|false
 P_ANIMATIONS="@"		# (@ = enable) (# = disable)
-P_TERM_OPACITY="1.0"	# Terminal transparency. Range: 0.1 - 1.0 (1.0 = disabled)
+P_TERM_OPACITY="0.9"	# Terminal transparency. Range: 0.1 - 1.0 (1.0 = disabled)
 
 # Dunst
 dunst_offset='(0, 10)'
@@ -48,8 +57,40 @@ dunst_transparency='0'
 dunst_corner_radius='6'
 dunst_font='JetBrainsMono NF Medium 9'
 dunst_border='2'
+dunst_frame_color="$magenta"
+dunst_icon_theme="Catppuccin-Mocha"
+# Dunst animations
+dunst_close_preset="fly-out"
+dunst_close_direction="up"
+dunst_open_preset="fly-in"
+dunst_open_direction="up"
 
-# Gtk theme vars
+# Jgmenu colors
+jg_bg="$bg"
+jg_fg="$fg"
+jg_sel_bg="$accent_color"
+jg_sel_fg="$fg"
+jg_sep="$black"
+
+# Rofi menu font and colors
+rofi_font="JetBrainsMono NF Bold 9"
+rofi_background="$bg"
+rofi_bg_alt="$accent_color"
+rofi_background_alt="${bg}E0"
+rofi_fg="$fg"
+rofi_selected="$magenta"
+rofi_active="$green"
+rofi_urgent="$red"
+
+# Screenlocker
+sl_bg="${bg:1}"
+sl_fg="${magenta:1}"
+sl_ring="${bg:1}"
+sl_wrong="${red:1}"
+sl_date="${magenta:1}"
+sl_verify="${green:1}"
+
+# Gtk theme
 gtk_theme="RosePineMoon-zk"
 gtk_icons="Catppuccin-Mocha"
 gtk_cursor="Qogirr-Dark"

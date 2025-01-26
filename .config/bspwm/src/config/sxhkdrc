@@ -1,14 +1,19 @@
-#  ╔═╗═╗ ╦╦ ╦╦╔═╔╦╗╦═╗╔═╗
-#  ╚═╗╔╩╦╝╠═╣╠╩╗ ║║╠╦╝║  
-#  ╚═╝╩ ╚═╩ ╩╩ ╩═╩╝╩╚═╚═╝
+#  ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ ██████╗  ██████╗
+#  ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗██╔══██╗██╔════╝
+#  ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║██████╔╝██║
+#  ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║██╔══██╗██║
+#  ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝██║  ██║╚██████╗
+#  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝
+#	dasharpest		https://github.com/dasharpest/dotfiles
+#
 
-# Show keybindings help
+# Show help
 #alt + F1
-#    OpenApps --KeyHelp
+#	OpenApps --KeyHelp
 
-# Open Terminal
-super + Return
-	OpenApps --terminal
+# Open Terminal (Normal & Floating)
+super + {_,shift + }Return
+	OpenApps --{terminal,floating}
 	
 # Menu aplicaciones
 super + @space
@@ -21,7 +26,7 @@ ctrl + alt + @space
 	RiceSelector-new
 
 # Rofi Widgets & Alt Sys Tools
-ctrl + alt + {l,t,n,a,c,v,b,m,0,9,r,Delete,p,s}
+ctrl + alt + {l,t,n,a,c,v,b,m,0,9,r,Delete,s,k,p}
 	{betterlockscreen -l -w dimblur, \
 	Term --selecterm, \
 	OpenApps --netmanager, \
@@ -34,8 +39,9 @@ ctrl + alt + {l,t,n,a,c,v,b,m,0,9,r,Delete,p,s}
 	OpenApps --aquascr, \
 	rofi_asroot, \
 	OpenApps --sysmon, \
-	bspcolorpicker, \
-	OpenApps --screenshot}
+	OpenApps --screenshot, \
+	OpenApps --keyboard, \
+	bspcolorpicker}
 
 # jgmenu
 button2
@@ -50,13 +56,12 @@ super + {a,BackSpace}
 	{rofi_launcher,OpenApps --powermenu}
 
 # Applets & Alt Apps
-super + shift + {e,v,Return,o,n,y,b,a,t,m,u,g,period,apostrophe,w,equal,p,z}
+super + shift + {e,v,n,o,y,b,a,t,m,u,g,period,apostrophe,w,equal,z}
 	{OpenApps --emacs-c, \
 	OpenApps --nvim, \
-	OpenApps --floating, \
-	tdrop -a -w 70% -h 35% -y -1% -x 15%  --class scratch alacritty --class=scratch, \
 	OpenApps --yazi, \
-	OpenApps --yazifloat, \
+	OpenApps --scratch, \
+	OpenApps --yaziscratch, \
 	brave --incognito, \
 	OpenApps --usercard, \
 	telegram-desktop, \
@@ -67,7 +72,6 @@ super + shift + {e,v,Return,o,n,y,b,a,t,m,u,g,period,apostrophe,w,equal,p,z}
 	caprine, \
 	OpenApps --whats, \
 	galculator, \
-	gpodder, \
 	OpenApps --fetch}
 
 # Rofi Window Switch
@@ -77,7 +81,7 @@ button10
 	rofi_windows
 
 # Apps
-shift + alt {e,c,n,q,g,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apostrophe,k}
+shift + alt {e,c,n,q,i,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,g,semicolon,apostrophe,k}
 	{geany, \
 	code, \
 	thunar, \
@@ -96,6 +100,7 @@ shift + alt {e,c,n,q,g,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,semicolon,apos
 	surfshark, \
 	tradingview, \
 	freetube, \
+	grayjay, \
 	flatpak run io.gpt4all.gpt4all, \
 	evolution, \
 	OpenApps --music}

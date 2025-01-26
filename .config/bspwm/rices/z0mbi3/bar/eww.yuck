@@ -6,7 +6,7 @@
 (defvar pac false)
 
 ;; Workspaces
-(deflisten workspaces "scripts/WorkSpaces")
+(include "./workspaces.yuck")
 
 ;; Volume vars
 (defpoll volume_icon :interval "1s" "scripts/Volume --icon")
@@ -18,6 +18,12 @@
 
 ;; Updates vars
 (defpoll UPDATES :interval "15m" `Updates --get-updates`)
+
+;; Battery vars
+(defpoll battery_icon :interval "1s" "scripts/battery icon")
+(defpoll battery_percentage :interval "1s" "scripts/battery percent")
+(defpoll battery_status :interval "1s" "[ -d /sys/class/power_supply/BAT0 ] && echo true || echo false")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;							Widget Section's							 ;;
@@ -38,14 +44,6 @@
   )
 )
 
-
-;; Workspaces Widgets ;;
-(defwidget workspaces []
-	(literal :content workspaces
-  )
-)
-
-
 ;; Wifi Widgets ;;
 (defwidget wifi []
 	(box	:orientation "v"
@@ -58,6 +56,14 @@
 	)
 )
 
+;; Battery Widget
+(defwidget battery []
+  (box :orientation "v"
+       :visible {battery_status}
+    (eventbox :cursor "pointer"
+      (button :class "trayicon"
+              :style "background-image: url('${battery_icon}');"
+              :tooltip "Battery: ${battery_percentage}%"))))
 
 ;; control center ;;
 (defwidget notifycenter []
@@ -211,12 +217,12 @@
 
 
 ;; Top Widgets ;;
-(defwidget top []
+(defwidget top [monitor]
 	(box	:orientation "v"
 			:space-evenly "false"
 			:valign "start"
 (launcher)
-(workspaces)))
+(workspaces :monitor monitor)))
 
 ;; Bottom Widgets ;;
 (defwidget bottom []
@@ -233,6 +239,7 @@
 (notifycenter)
 (volum)
 (wifi)
+(battery)
 (pacman)))
 
 ;; End Widgets ;;
@@ -246,19 +253,20 @@
 (bottom)))
 
 ;; Bar Widgets ;;
-(defwidget bar []
+(defwidget bar [monitor]
 	(box :class "eww_bar"
 		 :orientation "v"
 		 :vexpand "false"
 		 :hexpand "false"
-(top)
+(top :monitor monitor)
 (end)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;							Window Section's							 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defwindow bar
+(defwindow bar [monitor]
+	:monitor monitor
 	:geometry (geometry :x "10px"
 						:y "0%"
 						:anchor "left center"
@@ -267,4 +275,4 @@
 	:reserve (struts :distance "5px"
 					 :side "left")
 	:wm-ignore false
-	(bar))
+	(bar :monitor monitor))

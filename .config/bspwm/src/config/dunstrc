@@ -9,8 +9,8 @@ follow = mouse
 
 width = (300, 400)
 #height = (0, 200)
-origin = top-right
-offset = (10, 50)
+origin = top-center
+offset = (0, 10)
 scale = 0
 
 notification_limit = 20
@@ -37,7 +37,7 @@ font = Inconsolata Semi Condensed Bold 9
 line_height = 0
 
 markup = full
-format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#7560d3'>%s</span>\n%b"
+format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#4889be'>%s</span>\n%b"
 alignment = center
 vertical_alignment = center
 
@@ -50,7 +50,7 @@ hide_duplicate_count = true
 show_indicators = yes
 
 enable_recursive_icon_lookup = true
-icon_theme = Qogir, Adwaita
+icon_theme = "Zafiro-Purple, Adwaita"
 icon_position = left
 min_icon_size = 60
 max_icon_size = 90
