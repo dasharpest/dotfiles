@@ -82,8 +82,14 @@ unclutter &
 # Launch emacs daemon
 /usr/bin/emacs --daemon &
 
+## 1 > terminal (always open emacs on workspace-1)
+declare -a term=(Emacs)
+for i in ${term[@]}; do
+   bspc rule -a $i state=tiled desktop='^1' follow=on focus=on; done
+
 # Auto-start programs
 start-nc.sh &
 start-kp.sh &
 start-ss.sh &
+
 # End one time code
