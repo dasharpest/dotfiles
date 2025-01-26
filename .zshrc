@@ -182,11 +182,7 @@ alias pks="pokemon-colorscripts -r --no-title"
 alias moon="curl wttr.in/Moon"
 alias nbt="newsboat"
 alias wttr="curl wttr.in/"
-alias clcb="greenclip clear"
-
-alias drop="maestral"
-alias od-h="onedrive --confdir=/home/sharpest/.config/onedrive/accounts/da_sharpest@hotmail.co.uk"
-alias od-o="onedrive --confdir=/home/sharpest/.config/onedrive/accounts/dasharpest@outlook.com"
+alias clcb="clipcatctl clear"
 
 ### Function for crypto price (add ticker symbol for specific asset)
 ccp() {
