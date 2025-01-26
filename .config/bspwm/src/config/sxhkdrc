@@ -81,9 +81,8 @@ button10
 	rofi_windows
 
 # Apps
-shift + alt {e,c,n,q,i,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,g,semicolon,apostrophe,k}
+shift + alt {e,n,q,i,h,a,t,m,d,o,p,y,u,slash,comma,equal,period,g,semicolon,apostrophe,k}
 	{geany, \
-	code, \
 	thunar, \
 	qbittorrent, \
 	flatpak run org.gimp.GIMP, \
