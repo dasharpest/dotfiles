@@ -1,0 +1,169 @@
+{
+
+"layer": "top",
+"position": "top",
+"height": 28,
+"margin-top": 5,
+"margin-bottom": 0,
+"margin-left": 7,
+"margin-right": 7,
+
+"modules-left": ["custom/apps", "hyprland/workspaces", "hyprland/submap"],
+"modules-center": ["hyprland/window"],
+"modules-right": ["group/cputemp", "memory", "custom/updates", "pulseaudio", "custom/notification", "tray", "clock", "custom/power"],
+
+"group/cputemp": {
+	"orientation": "horizontal",
+	"drawer": {
+		"transition-duration": 200,
+		"transition-left-to-right": false,
+		"click-to-reveal": false
+	},
+	"modules": [
+		"cpu",
+		"temperature"
+	]
+},
+
+"hyprland/workspaces": {
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
+    "warp-on-scroll": false,
+    // "active-only": true,
+	"move-to-monitor": true,
+    "all-outputs": true,
+    "format": "{}",
+    "format-icons": {
+	"urgent": "",
+	"active": "",
+	"default": "",
+	"magic": ""
+	},
+},
+
+"hyprland/submap": {
+	"format": "<span style=\"italic\">{}</span>"
+},
+
+"tray": {
+	"icon-size": 14,
+	"spacing": 8
+    },
+
+"clock": {
+	"format": "{:%H:%M}",
+	"format-alt": "  {:%a %d %b, %Y}",
+	"tooltip-format": "<span>{calendar}</span>",
+	"calendar": {
+		"mode": "month",
+		"format": {
+			"months": "<span color='white'><b>{}</b></span>",
+			"days": "<span color='white'><b>{}</b></span>",
+			"weekdays": "<span color='grey'><b>{}</b></span>",
+			"today": "<span color='orange'><b>{}</b></span>"
+		}
+	}
+},
+
+"cpu": {
+	"interval": 3,
+	"format": " {usage}%",
+	// "format-icons": ["", "", ""],
+	// "interval": 1,
+	// "format": "{icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+	// "format": " {usage:>2}%",
+	// "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+},
+
+"temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": " {temperatureC}°C",
+        // "format-icons": ["", "", ""]
+},
+
+"disk": {
+	"interval": 30,
+	"format": " {free}",
+},
+
+"memory": {
+	"interval": 10,
+	"format": " {used:0.1f}G",
+	"on-click-right": "kitty --class floating sh -c 'btop'"
+},
+
+"pulseaudio": {
+	"scroll-step": 1,
+	"format": "  {volume}%",
+	"format-muted": " mute",
+	"format-bluetooth": "{volume}%",
+	"format-bluetooth-muted": "",
+	"on-click-right": "pavucontrol",
+	"on-click": "~/.config/hypr/scripts/Volume.sh --toggle # mute"
+},
+
+"custom/power": {
+	"format": "⏻  ",
+	"tooltip": false,
+	"on-click": "~/.config/hypr/scripts/wlogout.sh",
+},
+
+"custom/updates": {
+	"format": " {}",
+	"interval": 340,
+	"escape": true,
+	"exec": "$HOME/.config/hypr/scripts/updates.sh",
+	"return-type": "json",
+	"exec-if": "exit 0",
+	"signal": 8,
+	"on-click": "~/.config/hypr/scripts/update.sh",
+    "on-click-right": "~/.config/hypr/scripts/software.sh"
+},
+
+"custom/update": {
+	"format": " {}",
+	"tooltip-format": "{}",
+	"escape": true,
+	"return-type": "json",
+	"exec": "~/.config/hypr/scripts/updates.sh",
+	"restart-interval": 60,
+	"on-click": "kitty --class floating -e ~/.config/hypr/scripts/installupdates.sh",
+	"tooltip": false
+},
+
+"custom/apps": {
+	"format": "󰣇 ",
+	"tooltip": false,
+	"on-click": "~/.config/hypr/scripts/launcher.sh"
+},
+	
+"custom/notification": {
+	"tooltip": false,
+	"format": "{icon}",
+	"format-icons": {
+		"notification": "<span foreground='orange'><sup></sup></span>",
+		"none": "",
+		"dnd-notification": "<span foreground='orange'><sup></sup></span>",
+		"dnd-none": "",
+		"inhibited-notification": "<span foreground='orange'><sup></sup></span>",
+		"inhibited-none": "",
+		"dnd-inhibited-notification": "<span foreground='orange'><sup></sup></span>",
+		"dnd-inhibited-none": ""
+	},
+	"return-type": "json",
+	"exec-if": "which swaync-client",
+	"exec": "swaync-client -swb",
+	"on-click": "swaync-client -t -sw",
+	"on-click-right": "swaync-client -d -sw",
+	"on-click-middle": "swaync-client -C -sw",
+	"escape": true
+},
+
+"custom/empty": {
+	"format": ""
+},
+
+}
