@@ -18,4 +18,5 @@
 #    -theme ${dir}/${theme}.rasi
 
 
-pkill rofi || rofi -show window -replace -i -theme ~/.config/hypr/rofi/simple/appswitch.rasi
+#pkill rofi || rofi -show window -replace -i -theme ~/.config/hypr/rofi/simple/appswitch.rasi
+pkill rofi || rofi -show window -replace -i -theme ~/.config/hypr/rofi/evf/config.rasi

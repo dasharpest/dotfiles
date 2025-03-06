@@ -17,7 +17,8 @@
 #    -show drun \
 #    -theme ${dir}/${theme}.rasi
 
-pkill rofi || rofi -show drun -replace -i -theme ~/.config/hypr/rofi/simple/launcher.rasi
+#pkill rofi || rofi -show drun -replace -i -theme ~/.config/hypr/rofi/simple/launcher.rasi
+pkill rofi || rofi -show drun -replace -i -theme ~/.config/hypr/rofi/evf/config.rasi
 
 #rofi -show drun -show-icons -theme ~/.config/hypr/rofi/ml4w/config-old.rasi
 

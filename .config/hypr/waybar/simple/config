@@ -32,11 +32,9 @@
     // "active-only": true,
 	"move-to-monitor": true,
     "all-outputs": true,
-    "format": "{}",
+	"show-special": true,
+    "format": "{icon}",
     "format-icons": {
-	"urgent": "",
-	"active": "",
-	"default": "",
 	"magic": ""
 	},
 },
@@ -157,8 +155,8 @@
 	"exec-if": "which swaync-client",
 	"exec": "swaync-client -swb",
 	"on-click": "swaync-client -t -sw",
-	"on-click-right": "swaync-client -d -sw",
-	"on-click-middle": "swaync-client -C -sw",
+	"on-click-middle": "swaync-client -d -sw",
+	"on-click-right": "swaync-client -C -sw",
 	"escape": true
 },
 
