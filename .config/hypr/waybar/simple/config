@@ -84,7 +84,7 @@
 
 "disk": {
 	"interval": 30,
-	"format": " {free}",
+	"format": " {used}",
 },
 
 "memory": {
