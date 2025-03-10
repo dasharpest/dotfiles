@@ -316,6 +316,12 @@ label:focus {
   color: @color15;
 }
 
+    /* #custom-updates:hover {
+  color: @background;
+  background: @color10;
+  transition: all 0.3s cubic-bezier(0, 0.42, 0.58, 1);
+} */
+
 #custom-notification,
 #custom-notification.dnd-notification {
   color: @color15;

@@ -110,7 +110,7 @@
 },
 
 "custom/updates": {
-	"format": " {}",
+	"format": "  {}",
 	"interval": 340,
 	"escape": true,
 	"exec": "$HOME/.config/hypr/scripts/updates.sh",
