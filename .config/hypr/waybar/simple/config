@@ -60,7 +60,12 @@
 			"weekdays": "<span color='grey'><b>{}</b></span>",
 			"today": "<span color='orange'><b>{}</b></span>"
 		}
-	}
+	},
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
 },
 
 "cpu": {
@@ -100,6 +105,7 @@
 	"format-bluetooth": "{volume}%",
 	"format-bluetooth-muted": "",
 	"on-click-right": "pavucontrol",
+	"on-click-middle": "qpwgraph",
 	"on-click": "~/.config/hypr/scripts/Volume.sh --toggle # mute"
 },
 
@@ -162,6 +168,19 @@
 
 "custom/empty": {
 	"format": ""
+},
+
+"network": {
+    "format": "{ifname}",
+    "format-wifi": "   {signalStrength}%",
+    "format-ethernet": "  {ifname}",
+    "format-disconnected": "Not connected", //An empty format will hide the module.
+    "tooltip-format": " {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "kitty --class floating -e nmtui"
 },
 
 }
