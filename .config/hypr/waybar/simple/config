@@ -127,16 +127,16 @@
     "on-click-right": "~/.config/hypr/scripts/software.sh"
 },
 
-"custom/update": {
-	"format": " {}",
-	"tooltip-format": "{}",
-	"escape": true,
-	"return-type": "json",
-	"exec": "~/.config/hypr/scripts/updates.sh",
-	"restart-interval": 60,
-	"on-click": "kitty --class floating -e ~/.config/hypr/scripts/installupdates.sh",
-	"tooltip": false
-},
+//"custom/update": {
+//	"format": " {}",
+//	"tooltip-format": "{}",
+//	"escape": true,
+//	"return-type": "json",
+//	"exec": "~/.config/hypr/scripts/updates.sh",
+//	"restart-interval": 60,
+//	"on-click": "kitty --class floating -e ~/.config/hypr/scripts/installupdates.sh",
+//	"tooltip": false
+//},
 
 "custom/apps": {
 	"format": "󰣇 ",
