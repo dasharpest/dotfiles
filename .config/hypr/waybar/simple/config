@@ -40,7 +40,7 @@
 },
 
 "hyprland/submap": {
-	"format": "<span style=\"italic\">{}</span>"
+	"format": "<span style=\"italic\"> {}</span>"
 },
 
 "tray": {
@@ -51,7 +51,7 @@
 "clock": {
 	"format": "{:%H:%M}",
 	"format-alt": "  {:%a %d %b, %Y}",
-	"tooltip-format": "<span>{calendar}</span>",
+	"tooltip-format": "{calendar}",
 	"calendar": {
 		"mode": "month",
 		"format": {
@@ -76,6 +76,7 @@
 	// "format": "{icon0}{icon1}{icon2}{icon3} {usage:>2}%",
 	// "format": " {usage:>2}%",
 	// "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+	"on-click-right": "kitty --class floating sh -c 'htop'"
 },
 
 "temperature": {
@@ -110,7 +111,7 @@
 },
 
 "custom/power": {
-	"format": "⏻  ",
+	"format": "  ",
 	"tooltip": false,
 	"on-click": "~/.config/hypr/scripts/wlogout.sh",
 },
