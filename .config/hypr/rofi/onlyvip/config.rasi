@@ -1,0 +1,16 @@
+configuration{
+    modi: "run,drun,window,filebrowser";
+    lines: 5;
+    font: "VictorMono Nerd Font Semibold 12";
+    show-icons: true;
+    icon-theme: "Papirus";
+    terminal: "urxvt";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "Apps ";
+}
+
+/* Light theme. */
+@import "~/.cache/wal/colors-rofi-dark.rasi"

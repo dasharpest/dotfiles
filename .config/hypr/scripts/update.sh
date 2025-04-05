@@ -1,1 +1,1 @@
-kitty --class floating -e ~/.config/hypr/scripts/installupdates.sh
+kitty --class floating -e ~/.config/hypr/scripts/updaterun.sh

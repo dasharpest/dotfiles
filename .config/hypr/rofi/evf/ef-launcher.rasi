@@ -18,6 +18,8 @@ configuration {
 	drun-display-format:        "{name}";
 }
 
+@import "~/.cache/wal/colors-rofi-pywal.rasi"
+
 /*****----- Global Properties -----*****/
 * {
     font:                        "Proto Nerd Font 10";

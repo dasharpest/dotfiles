@@ -8,7 +8,7 @@
 
 sleep 1
 clear
-install_platform="$(cat ~/.config/hypr/scripts/platform.sh)"
+install_platform=arch
 figlet -f smslant "Updates"
 echo
 
@@ -50,7 +50,7 @@ _isInstalled() {
 # Check if platform is supported
 case $install_platform in
     arch)
-        aur_helper="$(cat ~/.config/hypr/scripts/aur.sh)"
+        aur_helper=yay
 
         if [[ $(_isInstalled "timeshift") == "0" ]]; then
             echo

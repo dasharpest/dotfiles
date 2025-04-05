@@ -120,7 +120,7 @@
 	"format": "  {}",
 	"interval": 340,
 	"escape": true,
-	"exec": "$HOME/.config/hypr/scripts/updates.sh",
+	"exec": "$HOME/.config/hypr/scripts/updatecheck.sh",
 	"return-type": "json",
 	"exec-if": "exit 0",
 	"signal": 8,
