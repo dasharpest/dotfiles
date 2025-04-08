@@ -101,7 +101,7 @@
 
 "pulseaudio": {
 	"scroll-step": 1,
-	"format": "  {volume}%",
+	"format": "󰕾 {volume}%",
 	"format-muted": " mute",
 	"format-bluetooth": "{volume}%",
 	"format-bluetooth-muted": "",
@@ -111,7 +111,7 @@
 },
 
 "custom/power": {
-	"format": "  ",
+	"format": "󰐥  ",
 	"tooltip": false,
 	"on-click": "~/.config/hypr/scripts/wlogout.sh",
 },
