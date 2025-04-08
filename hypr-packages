@@ -1,4 +1,5 @@
 aquamarine
+gnome-keyring
 hyprcursor
 hyprgraphics
 hypridle
@@ -12,4 +13,12 @@ hyprshade
 hyprsunset
 hyprutils
 hyprwayland-scanner
+swaync
+swww
+waypaper
+xdg-dbus-proxy
+xdg-desktop-portal
+xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
+xdg-user-dirs
+xdg-utils
