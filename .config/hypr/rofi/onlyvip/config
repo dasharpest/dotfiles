@@ -1,5 +1,5 @@
 
 
 
-rofi.theme: /usr/share/rofi/themes/sidebar.rasi
+rofi.theme: ~/.config/hypr/rofi/onlyvip/themes/sidebar.rasi
 
