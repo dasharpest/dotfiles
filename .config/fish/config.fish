@@ -40,6 +40,7 @@ end
 ### SET CURSOR ###
 # block, line, underscore
 set fish_cursor_default block
+set fish_cursor_insert underline
 
 ### FUNCTIONS ###
 # Functions needed for !! and !$
@@ -123,5 +124,5 @@ alias gs="git status"
 alias lg="lazygit"
 
 # virt machines
-alias lvon="sudo systemctl start libvirtd.service"
-alias lvoff="sudo systemctl stop libvirtd.service"
+alias vmon="sudo systemctl start libvirtd.service"
+alias vmoff="sudo systemctl stop libvirtd.service"
