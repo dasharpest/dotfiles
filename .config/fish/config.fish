@@ -19,8 +19,8 @@ set -U fish_user_paths $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applicatio
 
 set fish_greeting
 set TERM "xterm-256color"
-set EDITOR "vim"
-set VISUAL "vim"
+set EDITOR "nvim"
+set VISUAL "nvim"
 
 ### SET FZF DEFAULTS
 
@@ -111,6 +111,7 @@ alias ff="fastfetch"
 alias cat="bat --theme=base16"
 alias ls='eza --icons=always --color=always -a'
 alias ll='eza --icons=always --color=always -la'
+alias lf="yazi"
 alias umnt="sudo umount -a"
 
 # git
