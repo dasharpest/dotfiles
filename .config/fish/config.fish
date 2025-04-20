@@ -18,18 +18,18 @@ set -U fish_user_paths $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applicatio
 ### EXPORT ###
 
 set fish_greeting
-set TERM "xterm-256color"
-set EDITOR "nvim"
-set VISUAL "nvim"
+set TERM 'xterm-256color'
+set EDITOR 'nvim'
+set VISUAL 'nvim'
 
 ### SET FZF DEFAULTS
 
-set FZF_DEFAULT_OPTS "--layout=reverse --exact --border=bold --border=rounded --margin=3% --color=dark"
+set FZF_DEFAULT_OPTS '--layout=reverse --exact --border=bold --border=rounded --margin=3% --color=dark'
 
 ### SET MANPAGER
 
-# "nvim" as manpager
-set -x MANPAGER "nvim +Man!"
+# 'nvim' as manpager
+set -x MANPAGER 'nvim +Man!'
 
 ### SET VI MODE ###
 
@@ -46,25 +46,25 @@ set fish_cursor_insert underline
 # Functions needed for !! and !$
 function __history_previous_command
   switch (commandline -t)
-  case "!"
+  case '!'
     commandline -t $history[1]; commandline -f repaint
-  case "*"
+  case '*'
     commandline -i !
   end
 end
 
 function __history_previous_command_arguments
   switch (commandline -t)
-  case "!"
-    commandline -t ""
+  case '!'
+    commandline -t ''
     commandline -f history-token-search-backward
-  case "*"
+  case '*'
     commandline -i '$'
   end
 end
 
 # The bindings for !! and !$
-if [ "$fish_key_bindings" = "fish_vi_key_bindings" ];
+if [ '$fish_key_bindings' = 'fish_vi_key_bindings' ];
   bind -Minsert ! __history_previous_command
   bind -Minsert '$' __history_previous_command_arguments
 else
@@ -77,7 +77,7 @@ end
 # result: copies the directory and all of its contents.
 function copy
     set count (count $argv | tr -d \n)
-    if test "$count" = 2; and test -d "$argv[1]"
+    if test '$count' = 2; and test -d '$argv[1]'
 	set from (echo $argv[1] | trim-right /)
 	set to (echo $argv[2])
         command cp -r $from $to
@@ -96,34 +96,37 @@ alias .4='cd ../../../..'
 #alias .5='cd ../../../../..'
 
 # file
-alias lf="yazi"
-alias cdl="cd $1 && ls"
-alias mkdir="mkdir -p"
-alias cdc="cd ~/.config"
-
-# system
-alias maintain="yay -Sc && sudo pacman -Scc"
-alias purge="pacman -Qtdq | sudo pacman -Rns -" # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
-alias trim="sudo fstrim -av"
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-alias clpw="cliphist wipe"
-alias ff="fastfetch"
-alias cat="bat --theme=base16"
+alias cdl='cd $1 && ls'
+alias mkdir='mkdir -p'
+alias cdc='cd ~/.config'
+alias cat='bat --theme=base16'
 alias ls='eza --icons=always --color=always -a'
 alias ll='eza --icons=always --color=always -la'
-alias lf="yazi"
-alias umnt="sudo umount -a"
+alias lf='yazi'
+
+# system
+alias maintain='yay -Sc && sudo pacman -Scc'
+alias purge='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
+alias trim='sudo fstrim -av'
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias umnt='sudo umount -a'
 
 # git
-alias gg="cd ~/git"
-alias ga="git add"
-alias gc="git commit"
-alias gp="git push"
-alias gpl="git pull"
-alias gcl="git clone"
-alias gs="git status"
-alias lg="lazygit"
+alias gg='cd ~/git'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gpl='git pull'
+alias gcl='git clone'
+alias gs='git status'
+alias lg='lazygit'
 
 # virt machines
-alias vmon="sudo systemctl start libvirtd.service"
-alias vmoff="sudo systemctl stop libvirtd.service"
+alias vmon='sudo systemctl start libvirtd.service'
+alias vmoff='sudo systemctl stop libvirtd.service'
+
+# user
+alias clpw='cliphist wipe'
+alias ff='fastfetch'
+alias cm='cmatrix -u 6'
+
