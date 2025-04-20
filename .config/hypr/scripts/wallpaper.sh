@@ -3,10 +3,14 @@
 wallpaper=$1
 
 ln -sf $wallpaper ~/.config/hypr/temp/current.png &
+
+### execute wallust skipping tty and terminal changes
+# wallust -d ~/.config/hypr/wallust/ run ~/.config/hypr/temp/current.png -s &
+    
 wal -qi ~/.config/hypr/temp/current.png &
 wal -R &
 sleep 0.5 &
-~/.config/hypr/scripts/wybar.sh &
+~/.config/hypr/scripts/waybar.sh &
 ~/.config/hypr/scripts/swaync.sh &
 
 magick convert ~/.config/hypr/temp/current.png -resize 100x100^ \

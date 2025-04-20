@@ -1,4 +1,11 @@
-@import "~/.cache/wal/colors-rofi-pywal.rasi"
+/**
+ *
+ * Author : Aditya Shakya (adi1090x) + SirEthanator
+ * Github : @adi1090x + @SirEthanator
+ * 
+ * Rofi Theme File
+ * Rofi Version: 1.7.3
+ **/
 
 /*****----- Configuration -----*****/
 configuration {
@@ -9,6 +16,19 @@ configuration {
     display-filebrowser:        "FILES";
     display-window:        		"WINDOW";
 	drun-display-format:        "{name}";
+}
+
+@import "~/.cache/wal/colors-rofi-pywal.rasi"
+
+/*****----- Global Properties -----*****/
+* {
+    font:                        "Proto Nerd Font 10";
+    background:                  #272E33;
+    background-alt:              @color1;
+    foreground:                  #D3C6AA;
+    selected:                    @color12;
+    active:                      @color11;
+    urgent:                      #F7768E;
 }
 
 /*****----- Main Window -----*****/
