@@ -43,6 +43,7 @@ return {
       { '<leader>os', ':ObsidianSearch<cr>', desc = 'obsidian [s]earch' },
       { '<leader>oo', ':ObsidianQuickSwitch<cr>', desc = 'obsidian [o]pen quickswitch' },
       { '<leader>oO', ':ObsidianOpen<cr>', desc = 'obsidian [O]pen in app' },
+      { '<leader>o', '<cr>', desc = 'obsidian' },
     },
     config = function()
       ---@diagnostic disable-next-line: missing-fields
