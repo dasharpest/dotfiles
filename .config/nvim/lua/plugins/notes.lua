@@ -20,7 +20,7 @@ return {
   },
 
   {
-    'epwalsh/obsidian.nvim',
+    'obsidian-nvim/obsidian.nvim',
     enabled = true,
     ft = 'markdown',
     event = {
