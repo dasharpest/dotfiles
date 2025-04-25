@@ -1,19 +1,8 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x) + SirEthanator
- * Github : @adi1090x + @SirEthanator
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
 
 /*****----- Configuration -----*****/
 configuration {
 	modi:                       "window";
     show-icons:                 true;
-    display-drun:               "APPS";
-    display-run:                "RUN";
-    display-filebrowser:        "FILES";
     display-window:        		"Open Apps";
 	drun-display-format:        "{name}";
 }
@@ -61,7 +50,7 @@ imagebox {
     background-color:            transparent;
     background-image:            url("~/.config/hypr/temp/rofi.png", width);
     orientation:                 vertical;
-    children:                    [ "inputbar", "dummy", "mode-switcher" ];
+    children:                    [ "inputbar", "dummy" ];
 }
 
 listbox {
@@ -100,25 +89,6 @@ entry {
     cursor:                      text;
     placeholder:                 "Search";
     placeholder-color:           inherit;
-}
-
-/*****----- Mode Switcher -----*****/
-mode-switcher{
-    enabled:                     true;
-    spacing:                     20px;
-    background-color:            transparent;
-    text-color:                  @foreground;
-}
-button {
-    padding:                     15px;
-    border-radius:               10px;
-    background-color:            @background-alt;
-    text-color:                  inherit;
-    cursor:                      pointer;
-}
-button selected {
-    background-color:            @selected;
-    text-color:                  #2E383C;
 }
 
 /*****----- Listview -----*****/
