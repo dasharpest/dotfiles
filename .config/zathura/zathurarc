@@ -1,0 +1,36 @@
+# Zathura configuration file
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+set pages-per-row 1
+set scroll-page-aware "true"
+set scroll-step 100
+set page-padding 10
+ 
+# styling
+set guioptions "s"
+set font "FiraCode Nerd Font 11"
+set default-bg "#242424"
+set default-fg "#EDEDEC"
+set inputbar-bg "#242424"
+set inputbar-fg "#EDEDEC"
+set statusbar-bg "#242424"
+set statusbar-fg "#EDEDEC"
+
+# darkmode
+set recolor "false"
+set recolor-lightcolor "#242424"
+set recolor-darkcolor "#EDEDEC"
+set recolor-keephue "true"
+
+# keybindings
+map p print
+map u recolor # toggle darkmode
+map <C-k> zoom out
+map <C-j> zoom in
+map R rotate
+map i adjust_window width
+
+# system clipboard
+set selection-clipboard clipboard
