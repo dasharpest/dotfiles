@@ -15,8 +15,10 @@ hyprutils
 hyprwayland-scanner
 nwg-displays
 nwg-look
+rofi-wayland
 swaync
 swww
+waybar
 waypaper
 xdg-dbus-proxy
 xdg-desktop-portal
