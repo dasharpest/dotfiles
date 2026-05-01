@@ -1,0 +1,11 @@
+"widgets": {
+  "left": [
+    // other widgets
+  ],
+  "center": [
+    { "id": "Clock" }
+  ],
+  "right": [
+    // other widgets
+  ]
+}
