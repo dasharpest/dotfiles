@@ -2,7 +2,7 @@
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.bin $HOME/.lmstudio/bin $HOME/.local/bin $HOME/AppImages /var/lib/flatpak/exports/bin/ $fish_user_paths
+set -U fish_user_paths $HOME/.bin $HOME/.var/app/com.mikeasoft.pied/data/pied/piper $HOME/.lmstudio/bin $HOME/.local/bin $HOME/AppImages /var/lib/flatpak/exports/bin/ $fish_user_paths
 
 ### EXPORT ###
 set fish_greeting # Supresses fish's intro message
@@ -38,6 +38,15 @@ set fish_color_param brcyan
 
 ### FUNCTIONS ###
 
+# Function for SSH agent
+if status is-interactive
+    if not set -q SSH_AUTH_SOCK
+        eval (ssh-agent -c) > /dev/null
+        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+    end
+end
+
 # Functions needed for !! and !$
 function __history_previous_command
     switch (commandline -t)
@@ -49,15 +58,10 @@ function __history_previous_command
     end
 end
 
-function __history_previous_command_arguments
-    switch (commandline -t)
-        case "!"
-            commandline -t ""
-            commandline -f history-token-search-backward
-        case "*"
-            commandline -i '$'
-    end
+function last_history_item
+    echo $history[1]
 end
+abbr -a !! --position anywhere --function last_history_item
 
 # The bindings for !! and !$
 if [ "$fish_key_bindings" = fish_vi_key_bindings ]
@@ -140,6 +144,7 @@ alias cdgs='cd ~/git/dasharpest'
 # vim
 alias vim='nvim'
 alias v='nvim'
+alias nv='nvim'
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first --icons' # my preferred listing
@@ -214,6 +219,13 @@ alias lmsdd="lms daemon down"
 # programs
 alias ff="fastfetch"
 alias opc="opencode"
+
+# homelab
+alias omvu="sudo umount /mnt/nfs/omv-docker && sudo umount /mnt/nfs/omv-nas"
+alias omvm="sudo mount /mnt/nfs/omv-docker && sudo mount /mnt/nfs/omv-nas"
+alias omvw="bash ~/git/dasharpest/scripts/omv-wake.sh"
+alias pveu="sudo umount /mnt/nfs/pve-data"
+alias pvem="sudo mount /mnt/nfs/pve-data"
 
 # Mocp must be launched with bash instead of Fish!
 alias mocp="bash -c mocp"
