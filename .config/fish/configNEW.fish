@@ -1,22 +1,14 @@
-#  ____ _____
-# |  _ \_   _|  Derek Taylor (DistroTube)
-# | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/
-# |____/ |_|
-#
-# My fish config. Not much to see here; just some pretty standard stuff.
-
 ### ADDING TO THE PATH
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.bin $HOME/.lmstudio/bin $HOME/.local/bin $HOME/AppImages /var/lib/flatpak/exports/bin/ $fish_user_paths
+set -U fish_user_paths $HOME/.bin $HOME/.var/app/com.mikeasoft.pied/data/pied/piper $HOME/.lmstudio/bin $HOME/.local/bin $HOME/AppImages /var/lib/flatpak/exports/bin/ $fish_user_paths
 
 ### EXPORT ###
-set fish_greeting                                 # Supresses fish's intro message
-set TERM "xterm-256color"                         # Sets the terminal type
-set EDITOR "neovim"                 # $EDITOR use Emacs in terminal
-set VISUAL "kate"              # $VISUAL use Emacs in GUI mode
+set fish_greeting # Supresses fish's intro message
+set TERM xterm-256color # Sets the terminal type
+set EDITOR nvim # use neovim in terminal
+set VISUAL kate # se kate in GUI mode
 
 ### SET FZF DEFAULTS
 set -gx FZF_DEFAULT_OPTS "--layout=reverse --exact --border=bold --border=rounded --margin=3% --color=dark"
@@ -32,8 +24,8 @@ set -x MANPAGER "nvim +Man!"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
-  # fish_default_key_bindings
-  fish_vi_key_bindings
+    # fish_default_key_bindings
+    fish_vi_key_bindings
 end
 ### END OF VI MODE ###
 
@@ -46,33 +38,44 @@ set fish_color_param brcyan
 
 ### FUNCTIONS ###
 
+# Function for SSH agent
+if status is-interactive
+    if not set -q SSH_AUTH_SOCK
+        eval (ssh-agent -c) > /dev/null
+        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+    end
+end
+
 # Functions needed for !! and !$
 function __history_previous_command
-  switch (commandline -t)
-  case "!"
-    commandline -t $history[1]; commandline -f repaint
-  case "*"
-    commandline -i !
-  end
+    switch (commandline -t)
+        case "!"
+            commandline -t $history[1]
+            commandline -f repaint
+        case "*"
+            commandline -i !
+    end
 end
 
 function __history_previous_command_arguments
-  switch (commandline -t)
-  case "!"
-    commandline -t ""
-    commandline -f history-token-search-backward
-  case "*"
-    commandline -i '$'
-  end
+    switch (commandline -t)
+        case "!"
+            commandline -t ""
+            commandline -f history-token-search-backward
+        case "*"
+            commandline -i '$'
+    end
 end
 
 # The bindings for !! and !$
-if [ "$fish_key_bindings" = "fish_vi_key_bindings" ];
-  bind -Minsert ! __history_previous_command
-  bind -Minsert '$' __history_previous_command_arguments
+if [ "$fish_key_bindings" = fish_vi_key_bindings ]
+
+    bind -Minsert ! __history_previous_command
+    bind -Minsert '$' __history_previous_command_arguments
 else
-  bind ! __history_previous_command
-  bind '$' __history_previous_command_arguments
+    bind ! __history_previous_command
+    bind '$' __history_previous_command_arguments
 end
 
 # Function for creating a backup file
@@ -88,8 +91,8 @@ end
 function copy
     set count (count $argv | tr -d \n)
     if test "$count" = 2; and test -d "$argv[1]"
-	set from (echo $argv[1] | trim-right /)
-	set to (echo $argv[2])
+        set from (echo $argv[1] | trim-right /)
+        set to (echo $argv[2])
         command cp -r $from $to
     else
         command cp $argv
@@ -126,8 +129,12 @@ function take --argument number
     head -$number
 end
 
-### END OF FUNCTIONS ###
+### CREATE A DIRECTORY & cd INTO ###
+function mkcd
+    mkdir -p $argv[1] && cd $argv[1]
+end
 
+### END OF FUNCTIONS ###
 
 ### ALIASES ###
 # navigation
@@ -136,15 +143,17 @@ alias ...='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
+alias cdg='cd ~/git'
+alias cdgs='cd ~/git/dasharpest'
 
-# vim and emacs
+# vim
 alias vim='nvim'
 alias v='nvim'
 
 # Changing "ls" to "eza"
-alias ls='eza -al --color=always --group-directories-first' # my preferred listing
-alias la='eza -a --color=always --group-directories-first'  # all files and dirs
-alias ll='eza -l --color=always --group-directories-first'  # long format
+alias ls='eza -al --color=always --group-directories-first --icons' # my preferred listing
+alias la='eza -a --color=always --group-directories-first --icons' # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons' # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
 alias l.='eza -a | egrep "^\."'
 alias l.='eza -al --color=always --group-directories-first ../' # ls on the PARENT directory
@@ -152,12 +161,12 @@ alias l..='eza -al --color=always --group-directories-first ../../' # ls on dire
 alias l...='eza -al --color=always --group-directories-first ../../../' # ls on directory 3 levels up
 
 # pacman and yay
-alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
-alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
-alias yaysua='yay -Sua --noconfirm'             # update only AUR pkgs (yay)
-alias yaysyu='yay -Syu --noconfirm'             # update standard pkgs and AUR pkgs (yay)
-alias pacdb='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
-alias purge='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages (DANGEROUS!)
+alias pacsyu='sudo pacman -Syu' # update only standard pkgs
+alias pacsyyu='sudo pacman -Syyu' # Refresh pkglist & update standard pkgs
+alias yaysua='yay -Sua --noconfirm' # update only AUR pkgs (yay)
+alias yaysyu='yay -Syu --noconfirm' # update standard pkgs and AUR pkgs (yay)
+alias pacdb='sudo rm /var/lib/pacman/db.lck' # remove pacman lock
+alias purge='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages (DANGEROUS!)
 
 # get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -167,8 +176,8 @@ alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pac
 alias mirroruk="sudo reflector --country 'United Kingdom' --age 12 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
 # adding flags
-alias df='df -h'               # human-readable sizes
-alias free='free -m'           # show sizes in MB
+alias df='df -h' # human-readable sizes
+alias free='free -m' # show sizes in MB
 alias grep='grep --color=auto' # colorize output (good for log files)
 
 # ps
@@ -207,6 +216,14 @@ alias tobash="chsh $USER -s /bin/bash && echo 'Log out and log back in for chang
 alias tozsh="chsh $USER -s /bin/zsh && echo 'Log out and log back in for change to take effect.'"
 alias tofish="chsh $USER -s /bin/fish && echo 'Log out and log back in for change to take effect.'"
 
+# lm studio
+alias lmsdu="lms daemon up"
+alias lmsdd="lms daemon down"
+
+# programs
+alias ff="fastfetch"
+alias opc="opencode"
+
 # Mocp must be launched with bash instead of Fish!
 alias mocp="bash -c mocp"
 
@@ -219,7 +236,7 @@ alias mocp="bash -c mocp"
 #end
 
 ### SETTING THE STARSHIP PROMPT ###
-# starship init fish | source
+starship init fish | source
 
 ### FZF ###
 # Enables the following keybindings:
@@ -227,3 +244,6 @@ alias mocp="bash -c mocp"
 # CTRL-r = fzf history
 # ALT-c  = fzf cd
 fzf --fish | source
+
+# Added by LM Studio CLI tool (lms)
+set -gx PATH $PATH /home/sharpest/.lmstudio/bin
